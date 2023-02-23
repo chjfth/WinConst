@@ -48,13 +48,13 @@ const Bitfield2Val_st b2v_WS_xxx_SysListView32[] =
 	ITC_NAMEPAIR(LVS_NOSORTHEADER),        // 0x8000
 };
 
-const ConstGroup_st cgs_WS_xxx_SysListView32[] = 
+const EnumGroup_st egs_WS_xxx_SysListView32[] = 
 {
 	{ LVS_TYPEMASK,  e2v_WS_xxx_SysListView32_TYPE,  ARRAYSIZE(e2v_WS_xxx_SysListView32_TYPE)  },
 	{ LVS_ALIGNMASK, e2v_WS_xxx_SysListView32_ALIGN, ARRAYSIZE(e2v_WS_xxx_SysListView32_ALIGN) },
 };
 CInterpretConst WS_xxx_SysListView32(ITCF_HEX4B,
-	cgs_WS_xxx_SysListView32, ARRAYSIZE(cgs_WS_xxx_SysListView32),
+	egs_WS_xxx_SysListView32, ARRAYSIZE(egs_WS_xxx_SysListView32),
 	b2v_WS_xxx_SysListView32, ARRAYSIZE(b2v_WS_xxx_SysListView32), 
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
@@ -131,6 +131,7 @@ const Bitfield2Val_st b2v_WS_xxx_SysTreeView32[] =
 CInterpretConst WS_xxx_SysTreeView32(ITCF_HEX4B,
 	nullptr, 0,
 	b2v_WS_xxx_SysTreeView32, ARRAYSIZE(b2v_WS_xxx_SysTreeView32),
+	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
 // Extended-style for "SysTreeView32"
@@ -151,6 +152,35 @@ const Bitfield2Val_st b2v_TVS_EX_xxx[] =
 //#endif
 };
 CInterpretConst TVS_EX_xxx(b2v_TVS_EX_xxx, ITCF_HEX4B);
+
+//
+// Window style for "tooltips_class32"
+//
+
+const Bitfield2Val_st b2v_WS_xxx_tooltips_class32[] =
+{
+	ITC_NAMEPAIR(TTS_ALWAYSTIP),           // 0x01
+	ITC_NAMEPAIR(TTS_NOPREFIX),            // 0x02
+	ITC_NAMEPAIR(TTS_NOANIMATE),           // 0x10
+	ITC_NAMEPAIR(TTS_NOFADE),              // 0x20
+	ITC_NAMEPAIR(TTS_BALLOON),             // 0x40
+	ITC_NAMEPAIR(TTS_CLOSE),               // 0x80
+
+//#if _WIN32_WINNT >= 0x0600
+	ITC_NAMEPAIR(TTS_USEVISUALSTYLE),      // 0x100  // Use themed hyperlinks
+//#endif
+};
+CInterpretConst WS_xxx_tooltips_class32_toplevel(ITCF_HEX4B,
+	nullptr, 0,
+	b2v_WS_xxx_tooltips_class32, ARRAYSIZE(b2v_WS_xxx_tooltips_class32),
+	b2v_WS_xxx_toplevel, ARRAYSIZE(b2v_WS_xxx_childwnd),
+	nullptr, 0);
+CInterpretConst WS_xxx_tooltips_class32_childwnd(ITCF_HEX4B,
+	nullptr, 0,
+	b2v_WS_xxx_tooltips_class32, ARRAYSIZE(b2v_WS_xxx_tooltips_class32),
+	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
+	nullptr, 0);
+
 
 
 }; // namespace itc

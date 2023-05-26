@@ -13,6 +13,16 @@
 
 using namespace itc;
 
+TEST(ItcTest, Demo1With2EnumGroups)
+{
+	int arVals[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 0xff };
+
+	EXPECT_EQ(1, 1);
+	
+//	EXPECT_STREQ(ITCS(0, itcDemo1), "G1_VAL0|G2_VAL0");
+//	EXPECT_STREQ(ITCS(1, itcDemo1), "G1_VAL1|G2_VAL0");
+}
+
 void test_itc1()
 {
 	int arVals[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 0xff};

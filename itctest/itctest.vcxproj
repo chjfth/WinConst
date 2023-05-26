@@ -149,13 +149,19 @@
   <!-- Pending Q: when to use arm-linux-gnueabihf-g++ ? -->
   
   <PropertyGroup Condition="!$(Configuration.EndsWith('-gcc'))">
+    
+    <gtestBinDir Condition="'$(Platform)'=='Win32'">..\__googletest\bazel-out\x64_x86_windows-dbg\bin</gtestBinDir>
+    <gtestBinDir Condition="'$(Platform)'=='x64'"  >..\__googletest\bazel-out\x64_windows-dbg\bin</gtestBinDir>
+    
     <LinkIncremental>false</LinkIncremental>
     <!-- Adaptive .obj/.exe/.pdb output folder structure -->
     <objdirsuffix></objdirsuffix>
     <!-- VC2019: If .sln contains 2+ .vcxproj, different .vcxproj should have different objdirnam to avoid compiler warning MSB8028. -->
     <objdirsuffix Condition="$(SolutionName)!=$(ProjectName)">.$(ProjectName)</objdirsuffix>
     <IntDir>$(ProjectDir)obj-$(PlatformToolset)$(objdirsuffix)\$(Platform)\$(Configuration)\</IntDir>
-    <OutDir>$(SolutionDir)bin-$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    
+    <!-- Chj: I generate our EXE into GoogleTest bin output dir, bcz our EXE needs gtest_0.dll to run. -->
+    <OutDir>$(gtestBinDir)\</OutDir>
   </PropertyGroup>
 
   <PropertyGroup Condition=" $(Configuration.EndsWith('-gcc'))">
@@ -216,8 +222,8 @@
       <ImportLibrary>$(OutDir)$(TargetName)--imp.lib</ImportLibrary>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalLibraryDirectories>;;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalLibraryDirectories Condition="'$(Platform)'=='Win32'">../__googletest/bazel-out/x64_x86_windows-dbg/bin;;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalLibraryDirectories Condition="'$(Platform)'=='x64'"  >../__googletest/bazel-out/x64_windows-dbg/bin;;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Platform)'=='Win32'">$(gtestBinDir);;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Platform)'=='x64'"  >$(gtestBinDir);;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>gtest.if.lib;;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <!-- Better build.log file naming -->

@@ -3,9 +3,9 @@
 namespace itc {
 
 
-extern CInterpretConst itcDemo1;
+extern CInterpretConst Demo1;
 
-extern CInterpretConst weekday;
+extern CInterpretConst Weekday;
 
 
 } // namespace itc {

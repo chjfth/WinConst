@@ -35,7 +35,7 @@ const EnumGroup_st egs_Demo1[] =
 //CInterpretConst itcDemo1(ITCF_HEX2B,
 //	egs_Demo1, ARRAYSIZE(egs_Demo1),
 //	nullptr, 0);
-CInterpretConst itcDemo1(egs_Demo1);
+CInterpretConst Demo1(egs_Demo1);
 
 ////
 
@@ -49,7 +49,7 @@ const Enum2Val_st e2v_weekday[] =
 	{_T("Friday"), 5},
 	{_T("Saturday"), 6},
 };
-CInterpretConst weekday(e2v_weekday);
+CInterpretConst Weekday(e2v_weekday);
 
 
 } // namespace itc {

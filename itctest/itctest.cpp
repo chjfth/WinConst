@@ -16,7 +16,7 @@ void test_itc1()
 	int i;
 	for(i=0; i<ARRAYSIZE(arVals); i++)
 	{
-		_tprintf(_T("%3d : %s\n"), arVals[i], ITCS(arVals[i], itc1));
+		_tprintf(_T("%3d : %s\n"), arVals[i], ITCS(arVals[i], itcDemo1));
 	}
 /*
   0 : SEC1_VAL0|SEC2_VAL0
@@ -199,7 +199,7 @@ void test_itc()
 }
 
 
-int _tmain(int argc, TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	test_itc();
 

@@ -2,6 +2,7 @@
 #define __InterpretConst_h_
 
 #include <tchar.h> // for TCHAR & _T
+#include <stdio.h>
 
 
 namespace itc {
@@ -25,12 +26,13 @@ struct EnumGroup_st
 {
 	CONSTVAL_t GroupMask;
 	const Enum2Val_st *arEnum2Val;
-	int nEnum2Val; // element of arEnum2Val[]
+	int nEnum2Val; // element count of arEnum2Val[]
 };
 
 typedef EnumGroup_st ItcGroup_st;
-// -- When CInterpretConst internally process enum-group and single-bit-group
-//    the same way, it will use the name ItcGroup_st.
+// -- CInterpretConst internally sees a single-bit-group as a special case
+//    of an enum-group(GroupMask has only one bit set), so create an alias name
+//    `ItcGroup_st` for internal use.
 
 enum DisplayFormat_et
 {

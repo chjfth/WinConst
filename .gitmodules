@@ -1,3 +1,6 @@
 [submodule "__googletest"]
 	path = __googletest
 	url = ../googletest.git
+[submodule "__VSPG"]
+	path = __VSPG
+	url = ../VSPG.git

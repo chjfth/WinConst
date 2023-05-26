@@ -8,6 +8,9 @@
 #include "..\itc\InterpretConst.h"
 #include "democonst.h"
 
+#include "gtest/gtest.h"
+#include "gmock/gmock.h"
+
 using namespace itc;
 
 void test_itc1()
@@ -201,8 +204,10 @@ void test_itc()
 
 int main(int argc, char* argv[])
 {
-	test_itc();
+//	test_itc();
 
-	return 0;
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+
 }
 

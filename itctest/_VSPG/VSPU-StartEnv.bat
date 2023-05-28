@@ -25,9 +25,9 @@ endlocal & (
 REM If you have special environment variable(env-var) to set for you own .bat files,
 REM you can set it here.
 
-REM ################ KEY CONTENT HERE ################ 
+REM ################ KEY USER CONTENT HERE ################ 
 
-call :GetAbsPath dir_ThisRepo ..
+call :RelaPathToAbs dir_ThisRepo ..\..
 
 if "%PlatformName%"=="Win32" (
 	set gtest_bcxdir=x64_x86_windows-dbg
@@ -73,11 +73,14 @@ exit /b %LastError%
   set %*
 exit /b 0
 
-:GetAbsPath
-  REM Get absolute-path from a relative-path. If already absolute, return as is.
+:RelaPathToAbs
+  REM Get absolute-path from a relative-path(relative to current .bat's dir). 
+  REM If input is already an absolute path, return as is.
   REM Param1: Var name to receive output.
-  REM Param2: The input path.
+  REM Param2: The input path, can be filepath or dirpath, can contain ".." .
+  setlocal & pushd "%~dp0"
   if "%~1"=="" exit /b 4
   if "%~2"=="" exit /b 4
-  for %%a in ("%~2") do set "%~1=%%~fa"
+  for %%a in ("%~2") do set "parent_dir=%%~fa"
+  endlocal & ( set "%~1=%parent_dir%" )
 exit /b 0

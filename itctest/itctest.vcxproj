@@ -152,6 +152,7 @@
     
     <gtestBinDir Condition="'$(Platform)'=='Win32'">..\__googletest\bazel-out\x64_x86_windows-dbg\bin</gtestBinDir>
     <gtestBinDir Condition="'$(Platform)'=='x64'"  >..\__googletest\bazel-out\x64_windows-dbg\bin</gtestBinDir>
+    <gtestBinDir Condition="'$(Platform)'=='ARM64'">..\__googletest\bazel-out\arm64_windows-dbg\bin</gtestBinDir>
     
     <LinkIncremental>false</LinkIncremental>
     <!-- Adaptive .obj/.exe/.pdb output folder structure -->
@@ -222,8 +223,7 @@
       <ImportLibrary>$(OutDir)$(TargetName)--imp.lib</ImportLibrary>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalLibraryDirectories>;;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalLibraryDirectories Condition="'$(Platform)'=='Win32'">$(gtestBinDir);;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalLibraryDirectories Condition="'$(Platform)'=='x64'"  >$(gtestBinDir);;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(gtestBinDir);;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>gtest.if.lib;;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <!-- Better build.log file naming -->

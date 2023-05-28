@@ -63,8 +63,8 @@ Global
 		{20230526-0000-0000-0000-201646000001}.Release|ARM64.Build.0 = Release|ARM64
 		{20230526-0000-0000-0000-201646000001}.Release|x64.ActiveCfg = Release|x64
 		{20230526-0000-0000-0000-201646000001}.Release|x64.Build.0 = Release|x64
-		{20230526-0000-0000-0000-201646000001}.Release|x86.ActiveCfg = Release|x86
-		{20230526-0000-0000-0000-201646000001}.Release|x86.Build.0 = Release|x86
+		{20230526-0000-0000-0000-201646000001}.Release|x86.ActiveCfg = Release|Win32
+		{20230526-0000-0000-0000-201646000001}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

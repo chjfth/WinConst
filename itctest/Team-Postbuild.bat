@@ -26,28 +26,14 @@ if not defined dir_gtest (
 	exit /b 4
 )
 
-set gtest_buildbazel=%dir_gtest%\BUILD.bazel
+REM ..... Copy itctest.exe to the dir of gtest_0.dll .....
 
-if not exist "%gtest_buildbazel%" (
-	call :Echos [CHECK] File should exist: "%gtest_buildbazel%"
-	call :Echos [ERROR] The GoogleTest Git submodule has not been fetched, I cannot continue.
-	exit /b 4
-)
+set ev_listfiles_ToCopy=%TargetFileNam%
+set ev_listdirs_CopyTo=%gtest_bindir%
 
-if not "%BuildConf%"=="Debug-vs2019" (
-	call :Echos [ERROR] Please select "Debug-vs2019" to be your BuildConf. Your current BuildConf is "%BuildConf%", which is not supported.
-	exit /b 4
-)
+call "%bootsdir%\CopyFilePatternsToDirs.bat" "%ExeDllDir%" ev_listfiles_ToCopy ev_listdirs_CopyTo 
 
-
-set gtest_dllpath=%gtest_bindir%\gtest_0.dll
-
-if not exist "%gtest_dllpath%" (
-	call :Echos [CHECK] File should exist: "%gtest_dllpath%"
-	call :Echos [ERROR] Googletest DLL should have been built using Bazel.
-	exit /b 4
-)
-
+if not !errorlevel!==0 exit /b 4
 
 exit /b 0
 
@@ -79,3 +65,11 @@ exit /b 0
   REM call :SetErrorlevel 4
 exit /b %1
 
+:GetAbsPath
+  REM Get absolute-path from a relative-path. If already absolute, return as is.
+  REM Param1: Var name to receive output.
+  REM Param2: The input path.
+  if "%~1"=="" exit /b 4
+  if "%~2"=="" exit /b 4
+  for %%a in ("%~2") do set "%~1=%%~fa"
+exit /b 0

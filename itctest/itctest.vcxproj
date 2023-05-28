@@ -14,9 +14,9 @@
       <Configuration>Debug-remote-gcc</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x86">
+    <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
-      <Platform>x86</Platform>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <!-- x64 -->
     <ProjectConfiguration Include="Debug-vs2019|x64">
@@ -160,9 +160,10 @@
     <!-- VC2019: If .sln contains 2+ .vcxproj, different .vcxproj should have different objdirnam to avoid compiler warning MSB8028. -->
     <objdirsuffix Condition="$(SolutionName)!=$(ProjectName)">.$(ProjectName)</objdirsuffix>
     <IntDir>$(ProjectDir)obj-$(PlatformToolset)$(objdirsuffix)\$(Platform)\$(Configuration)\</IntDir>
-    
-    <!-- Chj: I generate our EXE into GoogleTest bin output dir, bcz our EXE needs gtest_0.dll to run. -->
-    <OutDir>$(gtestBinDir)\</OutDir>
+    <OutDir>$(SolutionDir)bin-$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+
+	<!-- We'll Debug the EXE from $(gtestBinDir) where gtest_0.dll can be loaded. Team-PostBuild.bat copied that EXE there. -->
+	<LocalDebuggerCommand>$(gtestBinDir)\$(TargetName)$(TargetExt)</LocalDebuggerCommand>
   </PropertyGroup>
 
   <PropertyGroup Condition=" $(Configuration.EndsWith('-gcc'))">

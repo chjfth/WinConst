@@ -34,8 +34,11 @@ if not exist "%gtest_buildbazel%" (
 	exit /b 4
 )
 
-if not "%BuildConf%"=="Debug-vs2019" (
-	call :Echos [ERROR] Please select "Debug-vs2019" to be your BuildConf. Your current BuildConf is "%BuildConf%", which is not supported.
+set isokBuildConf=
+if "%BuildConf%"=="Debug-vs2019" set isokBuildConf=1
+if "%BuildConf%"=="Release" set isokBuildConf=1
+if not defined isokBuildConf (
+	call :Echos [ERROR] Please select "Debug-vs2019" or "Release" to be your BuildConf. Your current BuildConf is "%BuildConf%", which is not supported.
 	exit /b 4
 )
 

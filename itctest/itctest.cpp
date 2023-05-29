@@ -8,10 +8,13 @@
 #include "..\itc\InterpretConst.h"
 #include "democonst.h"
 
+using namespace itc;
+
+
+#ifndef DONT_USE_GTEST
+
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-
-using namespace itc;
 
 TEST(ItcTest, Demo1WithTwoEnumGroups)
 {
@@ -32,6 +35,19 @@ TEST(ItcTest, Demo1WithTwoEnumGroups)
 	EXPECT_STREQ(ITCS(17, itc::Demo1), _T("G1_VAL1|G2_VAL4"));
 	EXPECT_STREQ(ITCS(255, itc::Demo1), _T("G1_VAL3|0x1C|0xE0"));
 }
+
+TEST(ItcTest, Weekday)
+{
+	EXPECT_STREQ(ITCS(0, Weekday), _T("Sunday"));
+	EXPECT_STREQ(ITCS(1, Weekday), _T("Monday"));
+	EXPECT_STREQ(ITCS(2, Weekday), _T("Tuesday"));
+	EXPECT_STREQ(ITCS(5, Weekday), _T("Friday"));
+	EXPECT_STREQ(ITCS(6, Weekday), _T("Saturday"));
+	EXPECT_STREQ(ITCS(7, Weekday), _T("7"));
+	EXPECT_STREQ(ITCS(77, Weekday), _T("77"));
+}
+
+#endif // !DONT_USE_GTEST
 
 void test_itc1() // old code before using GoogleTest
 {
@@ -61,16 +77,6 @@ void test_itc1() // old code before using GoogleTest
 	*/
 }
 
-TEST(ItcTest, Weekday)
-{
-	EXPECT_STREQ(ITCS(0, Weekday), _T("Sunday"));
-	EXPECT_STREQ(ITCS(1, Weekday), _T("Monday"));
-	EXPECT_STREQ(ITCS(2, Weekday), _T("Tuesday"));
-	EXPECT_STREQ(ITCS(5, Weekday), _T("Friday"));
-	EXPECT_STREQ(ITCS(6, Weekday), _T("Saturday"));
-	EXPECT_STREQ(ITCS(7, Weekday), _T("7"));
-	EXPECT_STREQ(ITCS(77, Weekday), _T("77"));
-}
 
 void test_itc_enum() // old code before using GoogleTest
 {
@@ -129,6 +135,7 @@ void test_itc_bitfields()
  96 : bit5and6
 */
 }
+
 
 void test_itc_enum_showval_defaultfmt()
 {
@@ -232,19 +239,27 @@ void test_itc()
 #endif
 }
 
-TEST(TestWideChar, widechar1)
-{
-	const TCHAR* s1 = _T("ABC");
-	EXPECT_STREQ(_T("ABC"), s1);
-}
 
+void pretest()
+{
+	
+	CEngine eng;
+	ZeroneSeg_st zw1(_T("Bit0"), 0x1, disp_default0);
+	eng.InitZerones(1, &zw1);
+}
 
 int main(int argc, char* argv[])
 {
 //	test_itc();
+	pretest();
 
+#ifndef DONT_USE_GTEST
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
+#else
+	printf("Do nothing here, bcz GTEST is not enabled in the program.\n");
+	return 0;
+#endif
 
+	
 }
-

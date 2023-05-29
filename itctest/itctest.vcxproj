@@ -219,6 +219,9 @@
 
       <PreprocessorDefinitions>;;WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 
+      <!-- In order to verify ITC code compilable with VC2010(built with Release), I mask off GoogleTest for Release BuildConf. -->
+      <PreprocessorDefinitions Condition="$(Configuration.Contains('Release'))">DONT_USE_GTEST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+
       <AdditionalIncludeDirectories>.;../__googletest/googletest/include;../__googletest/googlemock/include;;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Condition=" $(Configuration.Contains('vs2019'))" Label="Configuration">

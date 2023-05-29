@@ -15,22 +15,22 @@ using namespace itc;
 
 TEST(ItcTest, Demo1WithTwoEnumGroups)
 {
-	EXPECT_STREQ(ITCS(0, itc::Demo1), "G1_VAL0|G2_VAL0");
-	EXPECT_STREQ(ITCS(1, itc::Demo1), "G1_VAL1|G2_VAL0");
-	EXPECT_STREQ(ITCS(2, itc::Demo1), "G1_VAL2|G2_VAL0");
-	EXPECT_STREQ(ITCS(3, itc::Demo1), "G1_VAL3|G2_VAL0");
-	EXPECT_STREQ(ITCS(4, itc::Demo1), "G1_VAL0|G2_VAL1");
-	EXPECT_STREQ(ITCS(5, itc::Demo1), "G1_VAL1|G2_VAL1");
-	EXPECT_STREQ(ITCS(6, itc::Demo1), "G1_VAL2|G2_VAL1");
-	EXPECT_STREQ(ITCS(7, itc::Demo1), "G1_VAL3|G2_VAL1");
-	EXPECT_STREQ(ITCS(8, itc::Demo1), "G1_VAL0|G2_VAL2");
-	EXPECT_STREQ(ITCS(9, itc::Demo1), "G1_VAL1|G2_VAL2");
-	EXPECT_STREQ(ITCS(10, itc::Demo1), "G1_VAL2|G2_VAL2");
-	EXPECT_STREQ(ITCS(11, itc::Demo1), "G1_VAL3|G2_VAL2");
-	EXPECT_STREQ(ITCS(12, itc::Demo1), "G1_VAL0");
-	EXPECT_STREQ(ITCS(16, itc::Demo1), "G1_VAL0|G2_VAL4");
-	EXPECT_STREQ(ITCS(17, itc::Demo1), "G1_VAL1|G2_VAL4");
-	EXPECT_STREQ(ITCS(255, itc::Demo1), "G1_VAL3|0x1C|0xE0");
+	EXPECT_STREQ(ITCS(0, itc::Demo1), _T("G1_VAL0|G2_VAL0"));
+	EXPECT_STREQ(ITCS(1, itc::Demo1), _T("G1_VAL1|G2_VAL0"));
+	EXPECT_STREQ(ITCS(2, itc::Demo1), _T("G1_VAL2|G2_VAL0"));
+	EXPECT_STREQ(ITCS(3, itc::Demo1), _T("G1_VAL3|G2_VAL0"));
+	EXPECT_STREQ(ITCS(4, itc::Demo1), _T("G1_VAL0|G2_VAL1"));
+	EXPECT_STREQ(ITCS(5, itc::Demo1), _T("G1_VAL1|G2_VAL1"));
+	EXPECT_STREQ(ITCS(6, itc::Demo1), _T("G1_VAL2|G2_VAL1"));
+	EXPECT_STREQ(ITCS(7, itc::Demo1), _T("G1_VAL3|G2_VAL1"));
+	EXPECT_STREQ(ITCS(8, itc::Demo1), _T("G1_VAL0|G2_VAL2"));
+	EXPECT_STREQ(ITCS(9, itc::Demo1), _T("G1_VAL1|G2_VAL2"));
+	EXPECT_STREQ(ITCS(10, itc::Demo1), _T("G1_VAL2|G2_VAL2"));
+	EXPECT_STREQ(ITCS(11, itc::Demo1), _T("G1_VAL3|G2_VAL2"));
+	EXPECT_STREQ(ITCS(12, itc::Demo1), _T("G1_VAL0"));
+	EXPECT_STREQ(ITCS(16, itc::Demo1), _T("G1_VAL0|G2_VAL4"));
+	EXPECT_STREQ(ITCS(17, itc::Demo1), _T("G1_VAL1|G2_VAL4"));
+	EXPECT_STREQ(ITCS(255, itc::Demo1), _T("G1_VAL3|0x1C|0xE0"));
 }
 
 void test_itc1() // old code before using GoogleTest
@@ -63,13 +63,13 @@ void test_itc1() // old code before using GoogleTest
 
 TEST(ItcTest, Weekday)
 {
-	EXPECT_STREQ(ITCS(0, Weekday), "Sunday");
-	EXPECT_STREQ(ITCS(1, Weekday), "Monday");
-	EXPECT_STREQ(ITCS(2, Weekday), "Tuesday");
-	EXPECT_STREQ(ITCS(5, Weekday), "Friday");
-	EXPECT_STREQ(ITCS(6, Weekday), "Saturday");
-	EXPECT_STREQ(ITCS(7, Weekday), "7");
-	EXPECT_STREQ(ITCS(77, Weekday), "77");
+	EXPECT_STREQ(ITCS(0, Weekday), _T("Sunday"));
+	EXPECT_STREQ(ITCS(1, Weekday), _T("Monday"));
+	EXPECT_STREQ(ITCS(2, Weekday), _T("Tuesday"));
+	EXPECT_STREQ(ITCS(5, Weekday), _T("Friday"));
+	EXPECT_STREQ(ITCS(6, Weekday), _T("Saturday"));
+	EXPECT_STREQ(ITCS(7, Weekday), _T("7"));
+	EXPECT_STREQ(ITCS(77, Weekday), _T("77"));
 }
 
 void test_itc_enum() // old code before using GoogleTest
@@ -230,6 +230,12 @@ void test_itc()
 #ifdef WANT_ASSERT_FALSE
 	printf("==== Test_bad_masks\n"); Test_bad_masks(); // This will assert()
 #endif
+}
+
+TEST(TestWideChar, widechar1)
+{
+	const TCHAR* s1 = _T("ABC");
+	EXPECT_STREQ(_T("ABC"), s1);
 }
 
 

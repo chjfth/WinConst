@@ -225,6 +225,39 @@ const Enum2Val_st e2v_NM_xxx_Generic[] =
 CInterpretConst NM_xxx_Generic(e2v_NM_xxx_Generic, ITCF_SINT);
 
 
+// + ListView NM_xxx
+
+const Enum2Val_st e2v_NM_xxx_ListView[]=
+{
+	ITC_NAMEPAIR(LVN_ITEMCHANGING       ),
+	ITC_NAMEPAIR(LVN_ITEMCHANGED        ),
+	ITC_NAMEPAIR(LVN_INSERTITEM         ),
+	ITC_NAMEPAIR(LVN_DELETEITEM         ),
+	ITC_NAMEPAIR(LVN_DELETEALLITEMS     ),
+	ITC_NAMEPAIR(LVN_BEGINLABELEDITA    ),
+	ITC_NAMEPAIR(LVN_BEGINLABELEDITW    ),
+	ITC_NAMEPAIR(LVN_ENDLABELEDITA      ),
+	ITC_NAMEPAIR(LVN_ENDLABELEDITW      ),
+	ITC_NAMEPAIR(LVN_COLUMNCLICK        ),
+	ITC_NAMEPAIR(LVN_BEGINDRAG          ),
+	ITC_NAMEPAIR(LVN_BEGINRDRAG         ),
+	ITC_NAMEPAIR(LVN_ODCACHEHINT        ),
+	ITC_NAMEPAIR(LVN_ODFINDITEMA        ),
+	ITC_NAMEPAIR(LVN_ODFINDITEMW        ),
+	ITC_NAMEPAIR(LVN_ITEMACTIVATE       ),
+	ITC_NAMEPAIR(LVN_ODSTATECHANGED     ),
+};
+/*
+Enum2Val_merge e2vmerge_NM_xxx_ListView(
+	e2v_NM_xxx_Generic,  ARRAYSIZE(e2v_NM_xxx_Generic),
+	e2v_NM_xxx_ListView, ARRAYSIZE(e2v_NM_xxx_ListView),
+	nullptr, 0);
+CInterpretConst NM_xxx_ListView(e2vmerge_NM_xxx_ListView.get_array(), e2vmerge_NM_xxx_ListView.count(), ITCF_SINT);
+*/
+CInterpretConst NM_xxx_ListView(new Enum2Val_merge(
+	e2v_NM_xxx_Generic,  ARRAYSIZE(e2v_NM_xxx_Generic),
+	e2v_NM_xxx_ListView, ARRAYSIZE(e2v_NM_xxx_ListView),
+	nullptr, 0)); // this Enum2Val_merge will not be deleted, by design
 
 
 }; // namespace itc

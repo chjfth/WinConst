@@ -183,6 +183,40 @@ private:
 	int m_chars;
 };
 
+
+class Enum2Val_merge
+{
+	// Use this class to merge two or more existing Enum2Val_st arrays into 
+	// a single Enum2Val_st array, so that the single array can be used to 
+	// construct a CInterpretConst object.
+
+	// Extra memory is allocated to store the new contiguous Enum2Val_st array.
+
+public:
+	Enum2Val_merge(const Enum2Val_st *arEnum2Val, int nEnum2Val, 
+		... // more [arEnum2Val, nEnum2Val] pairs, end with [nullptr, 0]
+		);
+
+	~Enum2Val_merge() {
+		delete mar_enum2val;
+		mar_enum2val = nullptr;
+		m_count = 0;
+	}
+
+	const Enum2Val_st* get_array() const { 
+		return mar_enum2val;
+	}
+	
+	int count() const {
+		return m_count;
+	}
+
+private:
+	Enum2Val_st *mar_enum2val;
+	int m_count;
+};
+
+
 class CInterpretConst
 {
 public:
@@ -197,6 +231,11 @@ public:
 	CInterpretConst(const Enum2Val_st (&ar)[eles], const TCHAR *valfmt=nullptr)
 	{
 		_ctor(ar, eles, valfmt);
+	}
+
+	CInterpretConst(const Enum2Val_merge *ar_e2vmerge, const TCHAR *valfmt=nullptr)
+	{
+		_ctor(ar_e2vmerge->get_array(), ar_e2vmerge->count(), valfmt);
 	}
 
 	//

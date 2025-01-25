@@ -6,6 +6,65 @@
 
 namespace itc {
 
+
+Enum2Val_merge::Enum2Val_merge(const Enum2Val_st *arEnum2Val, int nEnum2Val, 
+	... // more [arEnum2Val, nEnum2Val] pairs, end with [nullptr, 0]
+	)
+{
+	va_list args;
+
+	// First pass, scan through input params to get total Enum2Val count.
+	// Note: This is not count of [arEnum2Val, nEnum2Val] pairs, but total of Enum2Val_st objects.
+
+	int count = nEnum2Val;
+
+	va_start(args, nEnum2Val);
+
+	for(;;)
+	{
+		const Enum2Val_st *p = va_arg(args, const Enum2Val_st *);
+		int n = va_arg(args, int);
+
+		if(!p)
+			break;
+
+		count += n;
+	}
+
+	va_end(args);
+	
+	m_count = count;
+	mar_enum2val = new Enum2Val_st[count];
+
+	// Second pass, copy the Enum2Val_st content into the new array.
+
+	va_start(args, nEnum2Val);
+
+	const Enum2Val_st *ar_now = arEnum2Val;
+	int n = nEnum2Val;
+	int idx = 0;
+
+	for(;;)
+	{
+		for(int i=0; i<n; i++)
+		{
+			mar_enum2val[idx+i].ConstVal = ar_now[i].ConstVal;
+			mar_enum2val[idx+i].EnumName = ar_now[i].EnumName;
+		}
+
+		idx += n;
+
+		ar_now = va_arg(args, const Enum2Val_st *);
+		n = va_arg(args, int);
+
+		if(!ar_now)
+			break;
+	}
+
+	va_end(args);
+}
+
+
 void CInterpretConst::_reset(const TCHAR *valfmt)
 {
 	m_EnumC2V.GroupMask=0; 

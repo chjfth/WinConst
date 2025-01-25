@@ -21,6 +21,7 @@ const Enum2Val_st e2v_WS_xxx_SysListView32_TYPE[] =
 	ITC_NAMEPAIR(LVS_LIST),                // 0x0003
 };
 
+
 const Enum2Val_st e2v_WS_xxx_SysListView32_ALIGN[] =
 {
 //	ITC_NAMEPAIR(LVS_ALIGNMASK),           // 0x0c00 (mask)
@@ -30,6 +31,7 @@ const Enum2Val_st e2v_WS_xxx_SysListView32_ALIGN[] =
 
 	ITC_NAMEPAIR(LVS_OWNERDRAWFIXED),      // 0x0400
 };
+
 
 const Bitfield2Val_st b2v_WS_xxx_SysListView32[] =
 {
@@ -48,6 +50,7 @@ const Bitfield2Val_st b2v_WS_xxx_SysListView32[] =
 	ITC_NAMEPAIR(LVS_NOSORTHEADER),        // 0x8000
 };
 
+
 const EnumGroup_st egs_WS_xxx_SysListView32[] = 
 {
 	{ LVS_TYPEMASK,  e2v_WS_xxx_SysListView32_TYPE,  ARRAYSIZE(e2v_WS_xxx_SysListView32_TYPE)  },
@@ -59,8 +62,9 @@ CInterpretConst WS_xxx_SysListView32(ITCF_HEX4B,
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
-// Extended-style for "SysListView32"
 
+// Extended-style for "SysListView32"
+//
 const Bitfield2Val_st b2v_LVS_EX_xxx[] =
 {
 	ITC_NAMEPAIR(LVS_EX_GRIDLINES),        // 0x00000001
@@ -102,6 +106,7 @@ const Bitfield2Val_st b2v_LVS_EX_xxx[] =
 };
 CInterpretConst LVS_EX_xxx(b2v_LVS_EX_xxx, ITCF_HEX4B);
 
+
 //
 // Window style for "SysTreeView32"
 //
@@ -134,8 +139,9 @@ CInterpretConst WS_xxx_SysTreeView32(ITCF_HEX4B,
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
-// Extended-style for "SysTreeView32"
 
+// Extended-style for "SysTreeView32"
+//
 const Bitfield2Val_st b2v_TVS_EX_xxx[] =
 {
 //#if (_WIN32_WINNT >= 0x0600)
@@ -152,6 +158,7 @@ const Bitfield2Val_st b2v_TVS_EX_xxx[] =
 //#endif
 };
 CInterpretConst TVS_EX_xxx(b2v_TVS_EX_xxx, ITCF_HEX4B);
+
 
 //
 // Window style for "tooltips_class32"
@@ -180,6 +187,43 @@ CInterpretConst WS_xxx_tooltips_class32_childwnd(ITCF_HEX4B,
 	b2v_WS_xxx_tooltips_class32, ARRAYSIZE(b2v_WS_xxx_tooltips_class32),
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
+
+
+//
+// CommCtrl Notification code
+//
+
+const Enum2Val_st e2v_NM_xxx_Generic[] =
+{
+	ITC_NAMEPAIR(NM_OUTOFMEMORY         ), // -1
+	ITC_NAMEPAIR(NM_CLICK               ), // -2
+	ITC_NAMEPAIR(NM_DBLCLK              ), // -3
+	ITC_NAMEPAIR(NM_RETURN              ), // -4
+	ITC_NAMEPAIR(NM_RCLICK              ), // -5
+	ITC_NAMEPAIR(NM_RDBLCLK             ), // -6
+	ITC_NAMEPAIR(NM_SETFOCUS            ), // -7
+	ITC_NAMEPAIR(NM_KILLFOCUS           ), // -8
+	ITC_NAMEPAIR(NM_CUSTOMDRAW          ), // -12
+	ITC_NAMEPAIR(NM_HOVER               ), // -13
+
+	ITC_NAMEPAIR(NM_NCHITTEST           ), // -14
+	ITC_NAMEPAIR(NM_KEYDOWN             ), // -15
+	ITC_NAMEPAIR(NM_RELEASEDCAPTURE     ), // -16
+	ITC_NAMEPAIR(NM_SETCURSOR           ), // -17
+	ITC_NAMEPAIR(NM_CHAR                ), // -18
+
+	ITC_NAMEPAIR(NM_TOOLTIPSCREATED     ), // -19
+
+	ITC_NAMEPAIR(NM_LDOWN               ), // -20
+	ITC_NAMEPAIR(NM_RDOWN               ), // -21
+	ITC_NAMEPAIR(NM_THEMECHANGED        ), // -22
+
+	ITC_NAMEPAIR(NM_FONTCHANGED         ), // -23
+	ITC_NAMEPAIR(NM_CUSTOMTEXT          ), // -24
+//	ITC_NAMEPAIR(NM_TVSTATEIMAGECHANGING), // -24 (looks not generic)
+};
+CInterpretConst NM_xxx_Generic(e2v_NM_xxx_Generic, ITCF_SINT);
+
 
 
 

@@ -118,6 +118,9 @@ struct EnumSeg_st : public ItcSeg_st
 
 	int nEnum2Val;
 	const Enum2Val_st* arEnum2Val;
+
+	// [2025-01-25] 
+	// TODO: warning C4510: 'itc::EnumSeg_st' : default constructor could not be generated
 };
 
 	
@@ -287,6 +290,10 @@ private:
 // Note: ITCS() cannot be used in __try{} block, otherwise we'll get Compiler Error C2712.
 
 #define ITCSv(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue).get()
+
+
+#define ITCF_UINT _T("%u") // unsigned int (default)
+#define ITCF_SINT _T("%d") // signed int
 
 #define ITCF_HEX1B _T("0x%02X")
 #define ITCF_HEX2B _T("0x%04X")

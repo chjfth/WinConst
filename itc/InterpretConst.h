@@ -16,7 +16,7 @@ struct Enum2Val_st // ok
 	CONSTVAL_t ConstVal;
 };
 
-struct Bitfield2Val_st // oldname
+struct SingleBit2Val_st // oldname Bitfield2Val_st
 {
 	const TCHAR *BitfieldName;
 	CONSTVAL_t ConstVal;
@@ -242,13 +242,13 @@ public:
 
 	//
 
-	CInterpretConst(const Bitfield2Val_st *arBitfield2Val, int nBitfield2Val, const TCHAR *valfmt=nullptr)
+	CInterpretConst(const SingleBit2Val_st *arSingleBit2Val, int nSingleBit2Val, const TCHAR *valfmt=nullptr)
 	{
-		_ctor(arBitfield2Val, nBitfield2Val, valfmt);
+		_ctor(arSingleBit2Val, nSingleBit2Val, valfmt);
 	}
 
 	template<size_t eles>
-	CInterpretConst(const Bitfield2Val_st (&ar)[eles], const TCHAR *valfmt=nullptr)
+	CInterpretConst(const SingleBit2Val_st (&ar)[eles], const TCHAR *valfmt=nullptr)
 	{
 		_ctor(ar, eles, valfmt);
 	}
@@ -270,7 +270,7 @@ public:
 
 	CInterpretConst(const TCHAR *valfmt,
 		const EnumGroup_st *arGroups, int nGroups, 
-		const Bitfield2Val_st *arBitfield2Val, int nBitfield2Val,
+		const SingleBit2Val_st *arBitfield2Val, int nBitfield2Val,
 		... // more [arBitfield2Val, nBitfield2Val] pairs, end with [nullptr, 0]
 		);
 
@@ -294,7 +294,7 @@ private:
 	void _ctor(const Enum2Val_st *arEnum2Val, int nEnum2Val, 
 		const TCHAR *valfmt);
 
-	void _ctor(const Bitfield2Val_st *arBitfield2Val, int nBitfield2Val, 
+	void _ctor(const SingleBit2Val_st *arBitfield2Val, int nBitfield2Val, 
 		const TCHAR *valfmt);
 
 	void _ctor(const EnumGroup_st *arGroups, int nGroups, 

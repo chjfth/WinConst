@@ -128,7 +128,7 @@ void CInterpretConst::_ctor(const Enum2Val_st *arEnum2Val, int nEnum2Val,
 	ensure_unique_masks();
 }
 
-void CInterpretConst::_ctor(const Bitfield2Val_st *arBitfield2Val, int nBitfield2Val,
+void CInterpretConst::_ctor(const SingleBit2Val_st *arBitfield2Val, int nBitfield2Val,
 	const TCHAR *valfmt)
 {
 	_reset(valfmt);
@@ -167,7 +167,7 @@ void CInterpretConst::_ctor(const ItcGroup_st *arGroups, int nGroups,
 
 CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 	const EnumGroup_st *arGroups, int nGroups, 
-	const Bitfield2Val_st *arBitfield2Val, int nBitfield2Val,
+	const SingleBit2Val_st *arBitfield2Val, int nBitfield2Val,
 	... // more [arBitfield2Val, nBitfield2Val] pairs, end with [nullptr, nullptr]
 	) // most generic ctor, combine two sets of input
 {
@@ -184,7 +184,7 @@ CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 
 		for(; ; nBitfieldsChunk++)
 		{
-			const Bitfield2Val_st *p = va_arg(args, const Bitfield2Val_st *);
+			const SingleBit2Val_st *p = va_arg(args, const SingleBit2Val_st *);
 			int n = va_arg(args, int);
 
 			if(!p)
@@ -222,7 +222,7 @@ CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 	{
 		assert(bfall_verify<=nBitfieldsAll);
 
-		const Bitfield2Val_st *pBF = va_arg(args, const Bitfield2Val_st *);
+		const SingleBit2Val_st *pBF = va_arg(args, const SingleBit2Val_st *);
 		int nBF = va_arg(args, int);
 
 		if(!pBF)

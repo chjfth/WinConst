@@ -33,7 +33,7 @@ const Enum2Val_st e2v_WS_xxx_SysListView32_ALIGN[] =
 };
 
 
-const Bitfield2Val_st b2v_WS_xxx_SysListView32[] =
+const SingleBit2Val_st b2v_WS_xxx_SysListView32[] =
 {
 	ITC_NAMEPAIR(LVS_SINGLESEL),           // 0x0004
 	ITC_NAMEPAIR(LVS_SHOWSELALWAYS),       // 0x0008
@@ -65,7 +65,7 @@ CInterpretConst WS_xxx_SysListView32(ITCF_HEX4B,
 
 // Extended-style for "SysListView32"
 //
-const Bitfield2Val_st b2v_LVS_EX_xxx[] =
+const SingleBit2Val_st b2v_LVS_EX_xxx[] =
 {
 	ITC_NAMEPAIR(LVS_EX_GRIDLINES),        // 0x00000001
 	ITC_NAMEPAIR(LVS_EX_SUBITEMIMAGES),    // 0x00000002
@@ -111,7 +111,7 @@ CInterpretConst LVS_EX_xxx(b2v_LVS_EX_xxx, ITCF_HEX4B);
 // Window style for "SysTreeView32"
 //
 
-const Bitfield2Val_st b2v_WS_xxx_SysTreeView32[] =
+const SingleBit2Val_st b2v_WS_xxx_SysTreeView32[] =
 {
 	ITC_NAMEPAIR(TVS_HASBUTTONS),          // 0x0001
 	ITC_NAMEPAIR(TVS_HASLINES),            // 0x0002
@@ -142,7 +142,7 @@ CInterpretConst WS_xxx_SysTreeView32(ITCF_HEX4B,
 
 // Extended-style for "SysTreeView32"
 //
-const Bitfield2Val_st b2v_TVS_EX_xxx[] =
+const SingleBit2Val_st b2v_TVS_EX_xxx[] =
 {
 //#if (_WIN32_WINNT >= 0x0600)
 	ITC_NAMEPAIR(TVS_EX_MULTISELECT),          // 0x0002 (not implemented)
@@ -164,7 +164,7 @@ CInterpretConst TVS_EX_xxx(b2v_TVS_EX_xxx, ITCF_HEX4B);
 // Window style for "tooltips_class32"
 //
 
-const Bitfield2Val_st b2v_WS_xxx_tooltips_class32[] =
+const SingleBit2Val_st b2v_WS_xxx_tooltips_class32[] =
 {
 	ITC_NAMEPAIR(TTS_ALWAYSTIP),           // 0x01
 	ITC_NAMEPAIR(TTS_NOPREFIX),            // 0x02

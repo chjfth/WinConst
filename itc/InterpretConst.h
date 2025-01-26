@@ -22,7 +22,7 @@ struct Bitfield2Val_st // oldname
 	CONSTVAL_t ConstVal;
 };
 
-struct EnumGroup_st // oldname
+struct EnumGroup_st
 {
 	CONSTVAL_t GroupMask;
 	const Enum2Val_st *arEnum2Val;
@@ -110,6 +110,7 @@ struct ZeroneSeg_st : public ItcSeg_st
 	}
 };
 
+/*
 struct EnumSeg_st : public ItcSeg_st
 {
 	// This is segment that can hold multiple values(normally >2).
@@ -122,9 +123,10 @@ struct EnumSeg_st : public ItcSeg_st
 	// [2025-01-25] 
 	// TODO: warning C4510: 'itc::EnumSeg_st' : default constructor could not be generated
 };
+*/
 
 	
-enum DisplayFormat_et // oldname
+enum DisplayFormat_et
 {
 	DF_NameOnly = 0,
 	DF_NameAndValue = 1,
@@ -339,6 +341,7 @@ private:
 #define ITCF_HEX4B _T("0x%08X")
 
 
+/*
 class CEngine
 {
 public:
@@ -357,6 +360,7 @@ private:
 	int m_nenum_segs;
 	EnumSeg_st* mar_enum_segs;
 };
+*/
 
 	
 } // namespace itc

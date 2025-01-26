@@ -904,6 +904,27 @@ CInterpretConst WS_xxx_ComboBox(ITCF_HEX4B,
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
 
+//
+// WM_COMMAND.codeNotify for ComboBox
+//
+
+const Enum2Val_st e2v_CBN_xxx_ComboBox[]=
+{
+	ITC_NAMEPAIR(CBN_ERRSPACE      ), //  (-1)
+	ITC_NAMEPAIR(CBN_SELCHANGE     ), //  1
+	ITC_NAMEPAIR(CBN_DBLCLK        ), //  2
+	ITC_NAMEPAIR(CBN_SETFOCUS      ), //  3
+	ITC_NAMEPAIR(CBN_KILLFOCUS     ), //  4
+	ITC_NAMEPAIR(CBN_EDITCHANGE    ), //  5
+	ITC_NAMEPAIR(CBN_EDITUPDATE    ), //  6
+	ITC_NAMEPAIR(CBN_DROPDOWN      ), //  7
+	ITC_NAMEPAIR(CBN_CLOSEUP       ), //  8
+	ITC_NAMEPAIR(CBN_SELENDOK      ), //  9
+	ITC_NAMEPAIR(CBN_SELENDCANCEL  ), //  10
+};
+CInterpretConst CBN_xxx_ComboBox(e2v_CBN_xxx_ComboBox, ITCF_SINT);
+
+
 
 
 } //namespace itc

@@ -83,10 +83,16 @@ bool CInterpretConst::SetValFmt(const TCHAR *fmt)
 {
 	// fmt example: "%d", "%X", "0x%02X", "0x%04X"
 
-	bool is_correct_valfmt = true;
+	if(fmt==nullptr || fmt[0]=='\0')
+	{
+		m_valfmt = nullptr;
+		return true;
+	}
 
 	// simple fmt format checking:
 	// try to format a value 0x3F, check whether we get "3F", "3f" or "63" in output string. 
+
+	bool is_correct_valfmt = true;
 
 	if(fmt)
 	{
@@ -278,6 +284,18 @@ bool CInterpretConst::ensure_unique_masks()
 	return true;
 }
 
+const TCHAR* CInterpretConst::displayfmt()
+{
+	const TCHAR *pfmt = m_valfmt;
+
+	if(!pfmt)
+	{
+		pfmt = is_enum_ctor() ? _T("%u") : _T("0x%X");
+	}
+
+	return pfmt; // always points to an persistent string
+}
+
 TCHAR* CInterpretConst::FormatOneDisplay(
 	const TCHAR *szVal, CONSTVAL_t val, DisplayFormat_et dispfmt, 
 	TCHAR obuf[], int obufsize)
@@ -289,13 +307,9 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 
 	if(dispfmt==DF_NameAndValue)
 	{
-		const TCHAR *valfmt = m_valfmt;
-		if(valfmt==nullptr)
-			valfmt = is_enum_ctor() ? _T("%d") : _T("0x%X");
-
 		// Add brackets to value, let "0x3F" shown as "(0x3F)"
 		TCHAR _valfmt_[FmtSpecMaxChars+2] = {};
-		_sntprintf_s(_valfmt_, _TRUNCATE, _T("(%s)"), valfmt);
+		_sntprintf_s(_valfmt_, _TRUNCATE, _T("(%s)"), displayfmt());
 
 		_sntprintf_s(obuf+len1, obufsize-len1, _TRUNCATE, _valfmt_, val);
 	}
@@ -339,34 +353,22 @@ const TCHAR *CInterpretConst::Interpret(
 			}
 		}
 
-		// No designated name exists, we consider it an unrecognized value from
-		// ITC interpreter's knowledge, so should present its hex-value instead of mute on it.
-		//
 		if(i==m_arGroups[sec].nEnum2Val)
 		{
+			// No designated name exists, we consider it an unrecognized value from
+			// ITC interpreter's knowledge, so should present its HEXRR instead of mute on it.
+
 			if( secval!=0 || i>1 )
 			{
-				TCHAR fmt_explicit[10] = {};
-				const TCHAR *p_fmt_concat = nullptr;
-
-				if(m_valfmt)
-				{
-					_sntprintf_s(fmt_explicit, _TRUNCATE, _T("%%s%s|"), m_valfmt);
-					p_fmt_concat = fmt_explicit;
-				}
-				else
-				{
-					p_fmt_concat = is_enum_ctor() ? _T("%s%u|") : _T("%s0x%X|");
-				}
-
-				_sntprintf_s(buf, bufsize, _TRUNCATE, 
-					p_fmt_concat, 
-					buf, secval);
+				TCHAR szfmt_concat[20] = {};
+				_sntprintf_s(szfmt_concat, _TRUNCATE, _T("%%s%s"), displayfmt());
+				
+				_sntprintf_s(buf, bufsize, _TRUNCATE, szfmt_concat, buf, secval);
 			}
 			else
 			{
-				// If m_using_Bitfield_ctor and secval==0, 
-				// this 0-value is of course not consider unrecognized, so mute it here. 
+				// It's a single-bit group and secval==0, 
+				// this 0-value is of course not considered unrecognized, so mute it here. 
 
 				assert(secval==0);
 			}

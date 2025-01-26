@@ -120,6 +120,8 @@ extern CInterpretConst WS_xxx_Button;
 extern CInterpretConst WS_xxx_ListBox;
 extern CInterpretConst WS_xxx_ComboBox;
 
+extern CInterpretConst CBN_xxx_ComboBox;
+
 
 } // namespace itc {
 

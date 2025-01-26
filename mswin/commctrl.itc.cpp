@@ -247,10 +247,13 @@ const Enum2Val_st e2v_NM_xxx_ListView[]=
 	ITC_NAMEPAIR(LVN_ITEMACTIVATE       ), // -114
 	ITC_NAMEPAIR(LVN_ODSTATECHANGED     ), // -115
 };
-CInterpretConst NM_xxx_ListView(new Enum2Val_merge(
-	e2v_NM_xxx_Generic,  ARRAYSIZE(e2v_NM_xxx_Generic),
-	e2v_NM_xxx_ListView, ARRAYSIZE(e2v_NM_xxx_ListView),
-	nullptr, 0)); // this Enum2Val_merge will not be deleted, by design
+CInterpretConst NM_xxx_ListView(
+	new Enum2Val_merge(
+		e2v_NM_xxx_Generic,  ARRAYSIZE(e2v_NM_xxx_Generic),
+		e2v_NM_xxx_ListView, ARRAYSIZE(e2v_NM_xxx_ListView),
+		nullptr, 0) // this Enum2Val_merge will not be deleted, by design
+	, ITCF_SINT
+	); 
 
 
 }; // namespace itc

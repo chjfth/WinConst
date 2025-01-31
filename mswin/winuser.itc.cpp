@@ -677,7 +677,7 @@ CInterpretConst VK_xxx(E2v_VK_xxx, ITCF_HEX1B);
 #define LLKHF_LOWER_IL_INJECTED 0x2 // since Win8+
 #endif
 
-const Bitfield2Val_st b2v_LLKHF_xxx[] =
+const SingleBit2Val_st b2v_LLKHF_xxx[] =
 {
 	ITC_NAMEPAIR(LLKHF_EXTENDED), // (KF_EXTENDED >> 8) // bit 0, 0x01
 	ITC_NAMEPAIR(LLKHF_LOWER_IL_INJECTED),              // bit 1, 0x02
@@ -733,7 +733,7 @@ const Enum2Val_st e2v_WS_xxx_Static_ELLIPSIS[] =
 	ITC_NAMEPAIR(SS_WORDELLIPSIS), // 0x0000C000L
 };
 
-const Bitfield2Val_st b2v_WS_xxx_Static[] = 
+const SingleBit2Val_st b2v_WS_xxx_Static[] = 
 {
 	ITC_NAMEPAIR(SS_REALSIZECONTROL), // 0x00000040L
 	ITC_NAMEPAIR(SS_NOPREFIX), // 0x00000080L Don't do "&" character translation 
@@ -774,7 +774,7 @@ CInterpretConst WS_xxx_Static(ITCF_HEX4B,
 // Window style for "Edit"
 //
 
-const Bitfield2Val_st b2v_WS_xxx_Edit[] =
+const SingleBit2Val_st b2v_WS_xxx_Edit[] =
 {
 //	ITC_NAMEPAIR(ES_LEFT), // 0x0000L
 	ITC_NAMEPAIR(ES_CENTER), // 0x0001L
@@ -819,7 +819,7 @@ const Enum2Val_st e2v_WS_xxx_Button_TYPE[] =
 	ITC_NAMEPAIR(BS_OWNERDRAW),        // 0x0000000BL
 };
 
-const Bitfield2Val_st b2v_WS_xxx_Button[] =
+const SingleBit2Val_st b2v_WS_xxx_Button[] =
 {
 	ITC_NAMEPAIR(BS_LEFTTEXT),         // 0x00000020L
 
@@ -853,7 +853,7 @@ CInterpretConst WS_xxx_Button(ITCF_HEX4B,
 // Window style for "ListBox"
 //
 
-const Bitfield2Val_st b2v_WS_xxx_ListBox[] = 
+const SingleBit2Val_st b2v_WS_xxx_ListBox[] = 
 {
 	ITC_NAMEPAIR(LBS_NOTIFY),            // 0x0001L
 	ITC_NAMEPAIR(LBS_SORT),              // 0x0002L
@@ -882,7 +882,7 @@ CInterpretConst WS_xxx_ListBox(ITCF_HEX4B,
 // Window style for "ComboBox"
 //
 
-const Bitfield2Val_st b2v_WS_xxx_ComboBox[] =
+const SingleBit2Val_st b2v_WS_xxx_ComboBox[] =
 {
 	ITC_NAMEPAIR(CBS_SIMPLE),            // 0x0001L
 	ITC_NAMEPAIR(CBS_DROPDOWN),          // 0x0002L
@@ -903,6 +903,27 @@ CInterpretConst WS_xxx_ComboBox(ITCF_HEX4B,
 	b2v_WS_xxx_ComboBox, ARRAYSIZE(b2v_WS_xxx_ComboBox), // 12 bits
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
+
+//
+// WM_COMMAND.codeNotify for ComboBox
+//
+
+const Enum2Val_st e2v_CBN_xxx_ComboBox[]=
+{
+	ITC_NAMEPAIR(CBN_ERRSPACE      ), //  (-1)
+	ITC_NAMEPAIR(CBN_SELCHANGE     ), //  1
+	ITC_NAMEPAIR(CBN_DBLCLK        ), //  2
+	ITC_NAMEPAIR(CBN_SETFOCUS      ), //  3
+	ITC_NAMEPAIR(CBN_KILLFOCUS     ), //  4
+	ITC_NAMEPAIR(CBN_EDITCHANGE    ), //  5
+	ITC_NAMEPAIR(CBN_EDITUPDATE    ), //  6
+	ITC_NAMEPAIR(CBN_DROPDOWN      ), //  7
+	ITC_NAMEPAIR(CBN_CLOSEUP       ), //  8
+	ITC_NAMEPAIR(CBN_SELENDOK      ), //  9
+	ITC_NAMEPAIR(CBN_SELENDCANCEL  ), //  10
+};
+CInterpretConst CBN_xxx_ComboBox(e2v_CBN_xxx_ComboBox, ITCF_SINT);
+
 
 
 

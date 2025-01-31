@@ -21,6 +21,7 @@ const Enum2Val_st e2v_WS_xxx_SysListView32_TYPE[] =
 	ITC_NAMEPAIR(LVS_LIST),                // 0x0003
 };
 
+
 const Enum2Val_st e2v_WS_xxx_SysListView32_ALIGN[] =
 {
 //	ITC_NAMEPAIR(LVS_ALIGNMASK),           // 0x0c00 (mask)
@@ -31,7 +32,8 @@ const Enum2Val_st e2v_WS_xxx_SysListView32_ALIGN[] =
 	ITC_NAMEPAIR(LVS_OWNERDRAWFIXED),      // 0x0400
 };
 
-const Bitfield2Val_st b2v_WS_xxx_SysListView32[] =
+
+const SingleBit2Val_st b2v_WS_xxx_SysListView32[] =
 {
 	ITC_NAMEPAIR(LVS_SINGLESEL),           // 0x0004
 	ITC_NAMEPAIR(LVS_SHOWSELALWAYS),       // 0x0008
@@ -48,6 +50,7 @@ const Bitfield2Val_st b2v_WS_xxx_SysListView32[] =
 	ITC_NAMEPAIR(LVS_NOSORTHEADER),        // 0x8000
 };
 
+
 const EnumGroup_st egs_WS_xxx_SysListView32[] = 
 {
 	{ LVS_TYPEMASK,  e2v_WS_xxx_SysListView32_TYPE,  ARRAYSIZE(e2v_WS_xxx_SysListView32_TYPE)  },
@@ -59,9 +62,10 @@ CInterpretConst WS_xxx_SysListView32(ITCF_HEX4B,
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
-// Extended-style for "SysListView32"
 
-const Bitfield2Val_st b2v_LVS_EX_xxx[] =
+// Extended-style for "SysListView32"
+//
+const SingleBit2Val_st b2v_LVS_EX_xxx[] =
 {
 	ITC_NAMEPAIR(LVS_EX_GRIDLINES),        // 0x00000001
 	ITC_NAMEPAIR(LVS_EX_SUBITEMIMAGES),    // 0x00000002
@@ -102,11 +106,12 @@ const Bitfield2Val_st b2v_LVS_EX_xxx[] =
 };
 CInterpretConst LVS_EX_xxx(b2v_LVS_EX_xxx, ITCF_HEX4B);
 
+
 //
 // Window style for "SysTreeView32"
 //
 
-const Bitfield2Val_st b2v_WS_xxx_SysTreeView32[] =
+const SingleBit2Val_st b2v_WS_xxx_SysTreeView32[] =
 {
 	ITC_NAMEPAIR(TVS_HASBUTTONS),          // 0x0001
 	ITC_NAMEPAIR(TVS_HASLINES),            // 0x0002
@@ -134,9 +139,10 @@ CInterpretConst WS_xxx_SysTreeView32(ITCF_HEX4B,
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
-// Extended-style for "SysTreeView32"
 
-const Bitfield2Val_st b2v_TVS_EX_xxx[] =
+// Extended-style for "SysTreeView32"
+//
+const SingleBit2Val_st b2v_TVS_EX_xxx[] =
 {
 //#if (_WIN32_WINNT >= 0x0600)
 	ITC_NAMEPAIR(TVS_EX_MULTISELECT),          // 0x0002 (not implemented)
@@ -153,11 +159,12 @@ const Bitfield2Val_st b2v_TVS_EX_xxx[] =
 };
 CInterpretConst TVS_EX_xxx(b2v_TVS_EX_xxx, ITCF_HEX4B);
 
+
 //
 // Window style for "tooltips_class32"
 //
 
-const Bitfield2Val_st b2v_WS_xxx_tooltips_class32[] =
+const SingleBit2Val_st b2v_WS_xxx_tooltips_class32[] =
 {
 	ITC_NAMEPAIR(TTS_ALWAYSTIP),           // 0x01
 	ITC_NAMEPAIR(TTS_NOPREFIX),            // 0x02
@@ -181,6 +188,94 @@ CInterpretConst WS_xxx_tooltips_class32_childwnd(ITCF_HEX4B,
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
+
+//
+// CommCtrl Notification code
+//
+
+const Enum2Val_st e2v_NM_xxx_Generic[] =
+{
+	ITC_NAMEPAIR(NM_OUTOFMEMORY         ), // -1
+	ITC_NAMEPAIR(NM_CLICK               ), // -2
+	ITC_NAMEPAIR(NM_DBLCLK              ), // -3
+	ITC_NAMEPAIR(NM_RETURN              ), // -4
+	ITC_NAMEPAIR(NM_RCLICK              ), // -5
+	ITC_NAMEPAIR(NM_RDBLCLK             ), // -6
+	ITC_NAMEPAIR(NM_SETFOCUS            ), // -7
+	ITC_NAMEPAIR(NM_KILLFOCUS           ), // -8
+	ITC_NAMEPAIR(NM_CUSTOMDRAW          ), // -12
+	ITC_NAMEPAIR(NM_HOVER               ), // -13
+
+	ITC_NAMEPAIR(NM_NCHITTEST           ), // -14
+	ITC_NAMEPAIR(NM_KEYDOWN             ), // -15
+	ITC_NAMEPAIR(NM_RELEASEDCAPTURE     ), // -16
+	ITC_NAMEPAIR(NM_SETCURSOR           ), // -17
+	ITC_NAMEPAIR(NM_CHAR                ), // -18
+
+	ITC_NAMEPAIR(NM_TOOLTIPSCREATED     ), // -19
+
+	ITC_NAMEPAIR(NM_LDOWN               ), // -20
+	ITC_NAMEPAIR(NM_RDOWN               ), // -21
+	ITC_NAMEPAIR(NM_THEMECHANGED        ), // -22
+
+	ITC_NAMEPAIR(NM_FONTCHANGED         ), // -23
+	ITC_NAMEPAIR(NM_CUSTOMTEXT          ), // -24
+//	ITC_NAMEPAIR(NM_TVSTATEIMAGECHANGING), // -24 (looks not generic)
+};
+CInterpretConst NM_xxx_Generic(e2v_NM_xxx_Generic, ITCF_SINT);
+
+
+// + ListView NM_xxx
+
+const Enum2Val_st e2v_NM_xxx_ListView[]=
+{
+	ITC_NAMEPAIR(LVN_ITEMCHANGING       ), // -100
+	ITC_NAMEPAIR(LVN_ITEMCHANGED        ), // -101
+	ITC_NAMEPAIR(LVN_INSERTITEM         ), // -102
+	ITC_NAMEPAIR(LVN_DELETEITEM         ), // -103
+	ITC_NAMEPAIR(LVN_DELETEALLITEMS     ), // -104
+	ITC_NAMEPAIR(LVN_BEGINLABELEDITA    ), // -105
+	ITC_NAMEPAIR(LVN_BEGINLABELEDITW    ), // -175
+	ITC_NAMEPAIR(LVN_ENDLABELEDITA      ), // -106
+	ITC_NAMEPAIR(LVN_ENDLABELEDITW      ), // -176
+	ITC_NAMEPAIR(LVN_COLUMNCLICK        ), // -108
+	ITC_NAMEPAIR(LVN_BEGINDRAG          ), // -109
+	ITC_NAMEPAIR(LVN_BEGINRDRAG         ), // -110
+	ITC_NAMEPAIR(LVN_ODCACHEHINT        ), // -113
+	ITC_NAMEPAIR(LVN_ODFINDITEMA        ), // -152
+	ITC_NAMEPAIR(LVN_ODFINDITEMW        ), // -179
+	ITC_NAMEPAIR(LVN_ITEMACTIVATE       ), // -114
+	ITC_NAMEPAIR(LVN_ODSTATECHANGED     ), // -115
+	
+	ITC_NAMEPAIR(LVN_HOTTRACK), // -121
+	ITC_NAMEPAIR(LVN_GETDISPINFOA), // -150
+	ITC_NAMEPAIR(LVN_SETDISPINFOA), // -151
+	ITC_NAMEPAIR(LVN_GETDISPINFOW), // -177
+	ITC_NAMEPAIR(LVN_SETDISPINFOW), // -178
+
+	ITC_NAMEPAIR(LVN_KEYDOWN),  // -155
+	ITC_NAMEPAIR(LVN_MARQUEEBEGIN), // -156
+
+	ITC_NAMEPAIR(LVN_GETINFOTIPA), // -157
+	ITC_NAMEPAIR(LVN_GETINFOTIPW), // -158
+
+	ITC_NAMEPAIR(LVN_BEGINSCROLL), // -180
+	ITC_NAMEPAIR(LVN_ENDSCROLL),   // -181
+
+#if _WIN32_WINNT >= 0x0600
+	ITC_NAMEPAIR(LVN_COLUMNDROPDOWN),  // -164
+	ITC_NAMEPAIR(LVN_COLUMNOVERFLOWCLICK), // -166
+	ITC_NAMEPAIR(LVN_LINKCLICK), // -184
+	ITC_NAMEPAIR(LVN_GETEMPTYMARKUP), // -187
+#endif
+};
+CInterpretConst NM_xxx_ListView(
+	new Enum2Val_merge(
+		e2v_NM_xxx_Generic,  ARRAYSIZE(e2v_NM_xxx_Generic),
+		e2v_NM_xxx_ListView, ARRAYSIZE(e2v_NM_xxx_ListView),
+		nullptr, 0) // this Enum2Val_merge will not be deleted, by design
+	, ITCF_SINT
+	); 
 
 
 }; // namespace itc

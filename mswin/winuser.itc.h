@@ -13,7 +13,7 @@ namespace itc {
 // Chj memo: Place b2v_WS_xxx_toplevel definition in .itc.h instead of in .itc.cpp
 // bcz commctrl.itc.cpp needs it.
 
-const Bitfield2Val_st b2v_WS_xxx_toplevel[] =
+const SingleBit2Val_st b2v_WS_xxx_toplevel[] =
 {
 //	ITC_NAMEPAIR(WS_OVERLAPPED),  // 0x00000000L (reject 0 value, invalid bitfield)
 	ITC_NAMEPAIR(WS_POPUP),       // 0x80000000L
@@ -41,7 +41,7 @@ const Bitfield2Val_st b2v_WS_xxx_toplevel[] =
 // window style for child window : WS_xxx
 ///////////////////////////////////////////////////////////////////////////
 
-const Bitfield2Val_st b2v_WS_xxx_childwnd[] =
+const SingleBit2Val_st b2v_WS_xxx_childwnd[] =
 {
 //	ITC_NAMEPAIR(WS_OVERLAPPED),   // 0x00000000L (reject 0 value, invalid bitfield)
 	ITC_NAMEPAIR(WS_POPUP),        // 0x80000000L
@@ -69,7 +69,7 @@ const Bitfield2Val_st b2v_WS_xxx_childwnd[] =
 // Extended-window styles: WS_EX_xxx
 ///////////////////////////////////////////////////////////////////////////
 
-const Bitfield2Val_st b2v_WS_EX_xxx[] = 
+const SingleBit2Val_st b2v_WS_EX_xxx[] = 
 {
 	ITC_NAMEPAIR(WS_EX_DLGMODALFRAME),  // 0x00000001L
 	ITC_NAMEPAIR(WS_EX_NOPARENTNOTIFY), // 0x00000004L
@@ -119,6 +119,8 @@ extern CInterpretConst WS_xxx_Edit;
 extern CInterpretConst WS_xxx_Button;
 extern CInterpretConst WS_xxx_ListBox;
 extern CInterpretConst WS_xxx_ComboBox;
+
+extern CInterpretConst CBN_xxx_ComboBox;
 
 
 } // namespace itc {

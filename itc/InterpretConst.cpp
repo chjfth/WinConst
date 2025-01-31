@@ -6,6 +6,65 @@
 
 namespace itc {
 
+
+Enum2Val_merge::Enum2Val_merge(const Enum2Val_st *arEnum2Val, int nEnum2Val, 
+	... // more [arEnum2Val, nEnum2Val] pairs, end with [nullptr, 0]
+	)
+{
+	va_list args;
+
+	// First pass, scan through input params to get total Enum2Val count.
+	// Note: This is not count of [arEnum2Val, nEnum2Val] pairs, but total of Enum2Val_st objects.
+
+	int count = nEnum2Val;
+
+	va_start(args, nEnum2Val);
+
+	for(;;)
+	{
+		const Enum2Val_st *p = va_arg(args, const Enum2Val_st *);
+		int n = va_arg(args, int);
+
+		if(!p)
+			break;
+
+		count += n;
+	}
+
+	va_end(args);
+	
+	m_count = count;
+	mar_enum2val = new Enum2Val_st[count];
+
+	// Second pass, copy the Enum2Val_st content into the new array.
+
+	va_start(args, nEnum2Val);
+
+	const Enum2Val_st *ar_now = arEnum2Val;
+	int n = nEnum2Val;
+	int idx = 0;
+
+	for(;;)
+	{
+		for(int i=0; i<n; i++)
+		{
+			mar_enum2val[idx+i].ConstVal = ar_now[i].ConstVal;
+			mar_enum2val[idx+i].EnumName = ar_now[i].EnumName;
+		}
+
+		idx += n;
+
+		ar_now = va_arg(args, const Enum2Val_st *);
+		n = va_arg(args, int);
+
+		if(!ar_now)
+			break;
+	}
+
+	va_end(args);
+}
+
+
 void CInterpretConst::_reset(const TCHAR *valfmt)
 {
 	m_EnumC2V.GroupMask=0; 
@@ -24,10 +83,16 @@ bool CInterpretConst::SetValFmt(const TCHAR *fmt)
 {
 	// fmt example: "%d", "%X", "0x%02X", "0x%04X"
 
-	bool is_correct_valfmt = true;
+	if(fmt==nullptr || fmt[0]=='\0')
+	{
+		m_valfmt = nullptr;
+		return true;
+	}
 
 	// simple fmt format checking:
 	// try to format a value 0x3F, check whether we get "3F", "3f" or "63" in output string. 
+
+	bool is_correct_valfmt = true;
 
 	if(fmt)
 	{
@@ -69,7 +134,7 @@ void CInterpretConst::_ctor(const Enum2Val_st *arEnum2Val, int nEnum2Val,
 	ensure_unique_masks();
 }
 
-void CInterpretConst::_ctor(const Bitfield2Val_st *arBitfield2Val, int nBitfield2Val,
+void CInterpretConst::_ctor(const SingleBit2Val_st *arBitfield2Val, int nBitfield2Val,
 	const TCHAR *valfmt)
 {
 	_reset(valfmt);
@@ -108,7 +173,7 @@ void CInterpretConst::_ctor(const ItcGroup_st *arGroups, int nGroups,
 
 CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 	const EnumGroup_st *arGroups, int nGroups, 
-	const Bitfield2Val_st *arBitfield2Val, int nBitfield2Val,
+	const SingleBit2Val_st *arBitfield2Val, int nBitfield2Val,
 	... // more [arBitfield2Val, nBitfield2Val] pairs, end with [nullptr, nullptr]
 	) // most generic ctor, combine two sets of input
 {
@@ -125,7 +190,7 @@ CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 
 		for(; ; nBitfieldsChunk++)
 		{
-			const Bitfield2Val_st *p = va_arg(args, const Bitfield2Val_st *);
+			const SingleBit2Val_st *p = va_arg(args, const SingleBit2Val_st *);
 			int n = va_arg(args, int);
 
 			if(!p)
@@ -163,7 +228,7 @@ CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 	{
 		assert(bfall_verify<=nBitfieldsAll);
 
-		const Bitfield2Val_st *pBF = va_arg(args, const Bitfield2Val_st *);
+		const SingleBit2Val_st *pBF = va_arg(args, const SingleBit2Val_st *);
 		int nBF = va_arg(args, int);
 
 		if(!pBF)
@@ -219,6 +284,18 @@ bool CInterpretConst::ensure_unique_masks()
 	return true;
 }
 
+const TCHAR* CInterpretConst::displayfmt()
+{
+	const TCHAR *pfmt = m_valfmt;
+
+	if(!pfmt)
+	{
+		pfmt = is_enum_ctor() ? _T("%u") : _T("0x%X");
+	}
+
+	return pfmt; // always points to an persistent string
+}
+
 TCHAR* CInterpretConst::FormatOneDisplay(
 	const TCHAR *szVal, CONSTVAL_t val, DisplayFormat_et dispfmt, 
 	TCHAR obuf[], int obufsize)
@@ -230,13 +307,9 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 
 	if(dispfmt==DF_NameAndValue)
 	{
-		const TCHAR *valfmt = m_valfmt;
-		if(valfmt==nullptr)
-			valfmt = is_enum_ctor() ? _T("%d") : _T("0x%X");
-
 		// Add brackets to value, let "0x3F" shown as "(0x3F)"
 		TCHAR _valfmt_[FmtSpecMaxChars+2] = {};
-		_sntprintf_s(_valfmt_, _TRUNCATE, _T("(%s)"), valfmt);
+		_sntprintf_s(_valfmt_, _TRUNCATE, _T("(%s)"), displayfmt());
 
 		_sntprintf_s(obuf+len1, obufsize-len1, _TRUNCATE, _valfmt_, val);
 	}
@@ -280,34 +353,22 @@ const TCHAR *CInterpretConst::Interpret(
 			}
 		}
 
-		// No designated name exists, we consider it an unrecognized value from
-		// ITC interpreter's knowledge, so should present its hex-value instead of mute on it.
-		//
 		if(i==m_arGroups[sec].nEnum2Val)
 		{
+			// No designated name exists, we consider it an unrecognized value from
+			// ITC interpreter's knowledge, so should present its HEXRR instead of mute on it.
+
 			if( secval!=0 || i>1 )
 			{
-				TCHAR fmt_explicit[10] = {};
-				const TCHAR *p_fmt_concat = nullptr;
-
-				if(m_valfmt)
-				{
-					_sntprintf_s(fmt_explicit, _TRUNCATE, _T("%%s%s|"), m_valfmt);
-					p_fmt_concat = fmt_explicit;
-				}
-				else
-				{
-					p_fmt_concat = is_enum_ctor() ? _T("%s%u|") : _T("%s0x%X|");
-				}
-
-				_sntprintf_s(buf, bufsize, _TRUNCATE, 
-					p_fmt_concat, 
-					buf, secval);
+				TCHAR szfmt_concat[20] = {};
+				_sntprintf_s(szfmt_concat, _TRUNCATE, _T("%%s%s"), displayfmt());
+				
+				_sntprintf_s(buf, bufsize, _TRUNCATE, szfmt_concat, buf, secval);
 			}
 			else
 			{
-				// If m_using_Bitfield_ctor and secval==0, 
-				// this 0-value is of course not consider unrecognized, so mute it here. 
+				// It's a single-bit group and secval==0, 
+				// this 0-value is of course not considered unrecognized, so mute it here. 
 
 				assert(secval==0);
 			}

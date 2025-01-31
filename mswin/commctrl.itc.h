@@ -19,6 +19,6 @@ extern CInterpretConst NM_xxx_Generic;
 extern CInterpretConst NM_xxx_ListView;
 
 
-} // namespace itc {
+} // namespace itc
 
 

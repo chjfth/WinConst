@@ -171,45 +171,54 @@ void CInterpretConst::_ctor(const ItcGroup_st *arGroups, int nGroups,
 	ensure_unique_masks();
 }
 
-CInterpretConst::CInterpretConst(const TCHAR *valfmt,
+#ifdef _MSC_VER
+#ifndef va_copy
+// VC2010 lacks va_copy, so manual supply it
+#define va_copy(destination, source) ((destination) = (source))
+#endif
+#endif 
+
+void CInterpretConst::_ctor(const TCHAR *valfmt,
 	const EnumGroup_st *arGroups, int nGroups, 
-	const SingleBit2Val_st *arBitfield2Val, int nBitfield2Val,
-	... // more [arBitfield2Val, nBitfield2Val] pairs, end with [nullptr, nullptr]
-	) // most generic ctor, combine two sets of input
+	va_list args // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, nullptr]
+	)
 {
 	_reset(valfmt);
+
+	va_list args_copy;
+	va_copy(args_copy, args); // save a copy for 2nd-iteration
+
+
+	//// 1st iteration ////
 
 	// check quantity of input bitfields chunks >>>
 
 	int nBitfieldsChunk = 0; // debug
 	int nBitfieldsAll = 0;
-	if(1)
+
+	for(; ; nBitfieldsChunk++)
 	{
-		va_list args;
-		va_start(args, nGroups);
+		const SingleBit2Val_st *p = va_arg(args, const SingleBit2Val_st *);
+		int n = va_arg(args, int);
+		
+		if(!p)
+			break;
 
-		for(; ; nBitfieldsChunk++)
-		{
-			const SingleBit2Val_st *p = va_arg(args, const SingleBit2Val_st *);
-			int n = va_arg(args, int);
-
-			if(!p)
-				break;
-
-			nBitfieldsAll += n;
-		}
-
-		va_end(args);
+		nBitfieldsAll += n;
 	}
 
 	// check quantity of input bitfields chunks <<< 
-	// Result in nBitfieldsAll.
+	// (Result in nBitfieldsAll.)
 
 	m_nGroups = nGroups + nBitfieldsAll;
 
 	m_arGroups = new ItcGroup_st[m_nGroups];
 	if(!m_arGroups)
 		return;
+
+	//// 2nd iteration ////
+
+	// Copy input Enum-groups to internal buffer.
 
 	for(int i=0; i<nGroups; i++)
 	{
@@ -218,8 +227,8 @@ CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 		m_arGroups[i].nEnum2Val  = arGroups[i].nEnum2Val;
 	}
 
-	va_list args;
-	va_start(args, nGroups);
+	// Copy input bitfields to internal buffer.
+
 	int bfall_verify = 0;
 
 	int advGroup = nGroups;
@@ -228,8 +237,8 @@ CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 	{
 		assert(bfall_verify<=nBitfieldsAll);
 
-		const SingleBit2Val_st *pBF = va_arg(args, const SingleBit2Val_st *);
-		int nBF = va_arg(args, int);
+		const SingleBit2Val_st *pBF = va_arg(args_copy, const SingleBit2Val_st *);
+		int nBF = va_arg(args_copy, int);
 
 		if(!pBF)
 			break;
@@ -247,7 +256,7 @@ CInterpretConst::CInterpretConst(const TCHAR *valfmt,
 
 	assert(bfall_verify==nBitfieldsAll);
 
-	va_end(args);
+	va_end(args_copy);
 
 	m_dtor_delete_groups = true;
 

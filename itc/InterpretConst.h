@@ -270,9 +270,41 @@ public:
 
 	CInterpretConst(const TCHAR *valfmt,
 		const EnumGroup_st *arGroups, int nGroups, 
-		const SingleBit2Val_st *arBitfield2Val, int nBitfield2Val,
-		... // more [arBitfield2Val, nBitfield2Val] pairs, end with [nullptr, 0]
-		);
+		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
+		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
+		) // VK1
+	{
+		va_list args;
+		va_start(args, nGroups); // yes, start from `nGroups`
+		_ctor(valfmt, arGroups, nGroups, args);
+		va_end(args);
+	}
+
+	CInterpretConst(const TCHAR *valfmt,
+		const Enum2Val_st *arEnum2Val, int nEnum2Val, 
+		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
+		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
+		) // VK2
+	{
+		// This is a simplified version of VK1.
+
+		// auto-calculate the mask for Enum2Val-s.
+		CONSTVAL_t enum_mask = 0;
+		for(int i=0; i<nEnum2Val; i++)
+		{
+			enum_mask |= arEnum2Val[i].ConstVal;
+		}
+
+		EnumGroup_st eg = { enum_mask, arEnum2Val, nEnum2Val };
+		// -- this object will get a copy inside the following _ctor()
+
+		va_list args;
+		va_start(args, nEnum2Val); // yes, start from `nGroups`
+
+		_ctor(valfmt, &eg, 1, args);
+
+		va_end(args);
+	}
 
 	////
 
@@ -299,6 +331,11 @@ private:
 
 	void _ctor(const EnumGroup_st *arGroups, int nGroups, 
 		const TCHAR *valfmt);
+
+	void _ctor(const TCHAR *valfmt,
+		const EnumGroup_st *arGroups, int nGroups, 
+		va_list args  // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, nullptr]
+		); // most generic ctor, combine two sets of input
 
 private:
 	void _reset(const TCHAR *valfmt);

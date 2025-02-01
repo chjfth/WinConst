@@ -253,6 +253,19 @@ public:
 		_ctor(ar, eles, valfmt);
 	}
 
+	template<size_t eles1, size_t eles2>
+	CInterpretConst(
+		const SingleBit2Val_st (&ar1)[eles1],
+		const SingleBit2Val_st (&ar2)[eles2],
+		const TCHAR *valfmt=nullptr)
+	{
+		// A facility ctor that combines two SingleBit2Val_st-s
+		_ctor(valfmt, 
+			nullptr, 0, // no Enum2Val_st
+			ar1, eles1,  ar2, eles2,
+			nullptr, 0);
+	}
+
 	//
 
 	CInterpretConst(const EnumGroup_st *arGroups, int nGroups, const TCHAR *valfmt=nullptr)
@@ -336,6 +349,18 @@ private:
 		const EnumGroup_st *arGroups, int nGroups, 
 		va_list args  // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, nullptr]
 		); // most generic ctor, combine two sets of input
+
+	void _ctor(const TCHAR *valfmt,
+		const EnumGroup_st *arGroups, int nGroups, 
+		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
+		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
+		)
+	{
+		va_list args;
+		va_start(args, nGroups); // yes, start from `nGroups`
+		_ctor(valfmt, arGroups, nGroups, args);
+		va_end(args);
+	}
 
 private:
 	void _reset(const TCHAR *valfmt);

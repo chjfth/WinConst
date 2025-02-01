@@ -181,7 +181,7 @@ void CInterpretConst::_ctor(const ItcGroup_st *arGroups, int nGroups,
 void CInterpretConst::_ctor(const TCHAR *valfmt,
 	const EnumGroup_st *arGroups, int nGroups, 
 	va_list args // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, nullptr]
-	)
+	) // {most generic initor}
 {
 	_reset(valfmt);
 

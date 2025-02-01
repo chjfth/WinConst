@@ -792,7 +792,6 @@ const SingleBit2Val_st b2v_WS_xxx_Edit[] =
 	ITC_NAMEPAIR(ES_NUMBER), // 0x2000L
 };
 CInterpretConst WS_xxx_Edit(ITCF_HEX4B,
-	nullptr, 0, 
 	b2v_WS_xxx_Edit, ARRAYSIZE(b2v_WS_xxx_Edit),
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
@@ -873,7 +872,6 @@ const SingleBit2Val_st b2v_WS_xxx_ListBox[] =
 	ITC_NAMEPAIR(LBS_COMBOBOX),          // 0x8000L
 };
 CInterpretConst WS_xxx_ListBox(ITCF_HEX4B,
-	nullptr, 0,
 	b2v_WS_xxx_ListBox,  ARRAYSIZE(b2v_WS_xxx_ListBox),  // 16 bits
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
@@ -899,7 +897,6 @@ const SingleBit2Val_st b2v_WS_xxx_ComboBox[] =
 	ITC_NAMEPAIR(CBS_LOWERCASE),         // 0x4000L
 };
 CInterpretConst WS_xxx_ComboBox(ITCF_HEX4B, 
-	nullptr, 0,
 	b2v_WS_xxx_ComboBox, ARRAYSIZE(b2v_WS_xxx_ComboBox), // 12 bits
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);

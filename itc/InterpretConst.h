@@ -282,6 +282,17 @@ public:
 	//
 
 	CInterpretConst(const TCHAR *valfmt,
+		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
+		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
+		) // VK0
+	{
+		va_list args;
+		va_start(args, valfmt);
+		_ctor(valfmt, nullptr, 0, args); // call to the {most generic initor}
+		va_end(args);
+	}
+
+	CInterpretConst(const TCHAR *valfmt,
 		const EnumGroup_st *arGroups, int nGroups, 
 		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
 		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
@@ -348,7 +359,7 @@ private:
 	void _ctor(const TCHAR *valfmt,
 		const EnumGroup_st *arGroups, int nGroups, 
 		va_list args  // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, nullptr]
-		); // most generic ctor, combine two sets of input
+		); // {most generic initor}, combine two sets of input
 
 	void _ctor(const TCHAR *valfmt,
 		const EnumGroup_st *arGroups, int nGroups, 

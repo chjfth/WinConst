@@ -134,7 +134,6 @@ const SingleBit2Val_st b2v_WS_xxx_SysTreeView32[] =
 	ITC_NAMEPAIR(TVS_NOHSCROLL),           // 0x8000  // TVS_NOSCROLL overrides this
 };
 CInterpretConst WS_xxx_SysTreeView32(ITCF_HEX4B,
-	nullptr, 0,
 	b2v_WS_xxx_SysTreeView32, ARRAYSIZE(b2v_WS_xxx_SysTreeView32),
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
@@ -178,12 +177,10 @@ const SingleBit2Val_st b2v_WS_xxx_tooltips_class32[] =
 //#endif
 };
 CInterpretConst WS_xxx_tooltips_class32_toplevel(ITCF_HEX4B,
-	nullptr, 0,
 	b2v_WS_xxx_tooltips_class32, ARRAYSIZE(b2v_WS_xxx_tooltips_class32),
 	b2v_WS_xxx_toplevel, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 CInterpretConst WS_xxx_tooltips_class32_childwnd(ITCF_HEX4B,
-	nullptr, 0,
 	b2v_WS_xxx_tooltips_class32, ARRAYSIZE(b2v_WS_xxx_tooltips_class32),
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);

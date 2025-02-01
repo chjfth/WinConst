@@ -273,7 +273,7 @@ CInterpretConst NM_xxx_ListView(
 	new Enum2Val_merge(
 		e2v_NM_xxx_Generic,  ARRAYSIZE(e2v_NM_xxx_Generic),
 		e2v_NM_xxx_ListView, ARRAYSIZE(e2v_NM_xxx_ListView),
-		nullptr, 0) // this Enum2Val_merge will not be deleted, by design
+		nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
 	, ITCF_SINT
 	); 
 

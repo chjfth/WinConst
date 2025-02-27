@@ -17,11 +17,13 @@ const Enum2Val_st _e2v_DBT_xxx[] =
 	ITC_NAMEPAIR(DBT_DEVICETYPESPECIFIC      ), // 0x8005  // type specific event
 	
 	ITC_NAMEPAIR(DBT_CUSTOMEVENT             ), // 0x8006  // user-defined event
-	
+
+#ifdef DBT_DEVINSTENUMERATED // These 4 exists in Win7SDK, not disappears in Win10SDK.
 	ITC_NAMEPAIR(DBT_DEVINSTENUMERATED       ), // 0x8007  // system detected a new device
 	ITC_NAMEPAIR(DBT_DEVINSTSTARTED          ), // 0x8008  // device installed and started
 	ITC_NAMEPAIR(DBT_DEVINSTREMOVED          ), // 0x8009  // device removed from system
 	ITC_NAMEPAIR(DBT_DEVINSTPROPERTYCHANGED  ), // 0x800A  // a property on the device changed
+#endif
 };
 CInterpretConst DBT_xxx(_e2v_DBT_xxx, ITCF_HEX2B);
 

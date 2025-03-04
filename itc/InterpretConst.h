@@ -260,6 +260,8 @@ public:
 		const TCHAR *valfmt=nullptr)
 	{
 		// A facility ctor that combines two SingleBit2Val_st-s
+		// Example: winnt.itc: FileRights, DirectoryRights
+
 		_ctor(valfmt, 
 			nullptr, 0, // no Enum2Val_st
 			ar1, eles1,  ar2, eles2,

@@ -9,6 +9,7 @@ extern CInterpretConst SidTypeXXX;
 
 extern CInterpretConst FileRights;
 extern CInterpretConst DirectoryRights;
+extern CInterpretConst TokenRights;
 
 extern CInterpretConst xxx_SECURITY_INFORMATION;
 

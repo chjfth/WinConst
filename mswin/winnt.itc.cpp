@@ -21,7 +21,7 @@ const Enum2Val_st e2v_SidType[] =
 CInterpretConst SidTypeXXX(e2v_SidType, ARRAYSIZE(e2v_SidType), ITCF_SINT);
 
 
-const SingleBit2Val_st b2v_StandardRight[] =
+const SingleBit2Val_st _b2v_StandardRight[] =
 {
 	ITC_NAMEPAIR(DELETE),       //   (0x00010000L)
 	ITC_NAMEPAIR(READ_CONTROL), //   (0x00020000L)
@@ -30,7 +30,7 @@ const SingleBit2Val_st b2v_StandardRight[] =
 	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
 };
 
-const SingleBit2Val_st b2v_FileRight[] =
+const SingleBit2Val_st _b2v_FileRight[] =
 {
 	ITC_NAMEPAIR(FILE_READ_DATA),   // 0x0001
 	ITC_NAMEPAIR(FILE_WRITE_DATA),  // 0x0002
@@ -42,7 +42,7 @@ const SingleBit2Val_st b2v_FileRight[] =
 	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0X0100
 };
 
-const SingleBit2Val_st b2v_DirectoryRight[] =
+const SingleBit2Val_st _b2v_DirectoryRight[] =
 {
 	ITC_NAMEPAIR(FILE_LIST_DIRECTORY), // 0x0001
 	ITC_NAMEPAIR(FILE_ADD_FILE),       // 0x0002
@@ -55,8 +55,23 @@ const SingleBit2Val_st b2v_DirectoryRight[] =
 	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0X0100
 };
 
-CInterpretConst FileRights(b2v_FileRight, b2v_StandardRight, ITCF_HEX1B);
-CInterpretConst DirectoryRights(b2v_DirectoryRight, b2v_StandardRight, ITCF_HEX1B);
+CInterpretConst FileRights(_b2v_FileRight, _b2v_StandardRight, ITCF_HEX1B);
+CInterpretConst DirectoryRights(_b2v_DirectoryRight, _b2v_StandardRight, ITCF_HEX1B);
+
+const SingleBit2Val_st _b2v_TokenRight[] =
+{
+	ITC_NAMEPAIR(TOKEN_ASSIGN_PRIMARY), //   (0x0001)
+	ITC_NAMEPAIR(TOKEN_DUPLICATE),      //   (0x0002)
+	ITC_NAMEPAIR(TOKEN_IMPERSONATE),    //   (0x0004)
+	ITC_NAMEPAIR(TOKEN_QUERY),          //   (0x0008)
+	ITC_NAMEPAIR(TOKEN_QUERY_SOURCE),   //   (0x0010)
+	ITC_NAMEPAIR(TOKEN_ADJUST_PRIVILEGES), //(0x0020)
+	ITC_NAMEPAIR(TOKEN_ADJUST_GROUPS),  //   (0x0040)
+	ITC_NAMEPAIR(TOKEN_ADJUST_DEFAULT), //   (0x0080)
+	ITC_NAMEPAIR(TOKEN_ADJUST_SESSIONID),  //(0x0100)
+};
+
+CInterpretConst TokenRights(_b2v_TokenRight, _b2v_StandardRight, ITCF_HEX1B);
 
 
 const SingleBit2Val_st _b2v_xxx_SECURITY_INFORMATION[] =

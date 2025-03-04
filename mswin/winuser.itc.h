@@ -12,6 +12,9 @@ namespace itc {
 
 // Chj memo: Place b2v_WS_xxx_toplevel definition in .itc.h instead of in .itc.cpp
 // bcz commctrl.itc.cpp needs it.
+//
+// [2025-03-04] Alternative method: Keep the array in .itc.h, but `extern` it and 
+// `extern` an N_xxx to tell the array size. Example: _b2v_StandardRight[] and N_b2v_StandardRight.
 
 const SingleBit2Val_st b2v_WS_xxx_toplevel[] =
 {
@@ -98,7 +101,7 @@ const SingleBit2Val_st b2v_WS_EX_xxx[] =
 
 	ITC_NAMEPAIR(WS_EX_LAYERED),        // 0x00080000
 
-	ITC_NAMEPAIR(WS_EX_NOINHERITLAYOUT),// 0x00100000L // Disable inheritence of mirroring by children
+	ITC_NAMEPAIR(WS_EX_NOINHERITLAYOUT),// 0x00100000L // Disable inheritance of mirroring by children
 	ITC_NAMEPAIR(WS_EX_LAYOUTRTL),      // 0x00400000L // Right to left mirroring
 	ITC_NAMEPAIR(WS_EX_COMPOSITED),     // 0x02000000L
 
@@ -121,6 +124,13 @@ extern CInterpretConst WS_xxx_ListBox;
 extern CInterpretConst WS_xxx_ComboBox;
 
 extern CInterpretConst CBN_xxx_ComboBox;
+
+
+
+
+
+extern CInterpretConst DesktopRights;
+extern CInterpretConst WinstationRights;
 
 
 } // namespace itc

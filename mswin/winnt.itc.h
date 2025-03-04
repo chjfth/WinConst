@@ -13,6 +13,9 @@ extern const int N_b2v_StandardRight; // needed by WinSvc.itc.cpp etc.
 extern CInterpretConst FileRights;
 extern CInterpretConst DirectoryRights;
 extern CInterpretConst TokenRights;
+extern CInterpretConst ProcessRights;
+extern CInterpretConst ThreadRights;
+extern CInterpretConst JobRights;
 
 extern CInterpretConst xxx_SECURITY_INFORMATION;
 

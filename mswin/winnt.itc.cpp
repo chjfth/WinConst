@@ -29,6 +29,7 @@ const SingleBit2Val_st _b2v_StandardRight[] =
 	ITC_NAMEPAIR(WRITE_OWNER),  //   (0x00080000L)
 	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
 };
+const int N_b2v_StandardRight = ARRAYSIZE(_b2v_StandardRight);
 
 const SingleBit2Val_st _b2v_FileRight[] =
 {
@@ -41,6 +42,7 @@ const SingleBit2Val_st _b2v_FileRight[] =
 	ITC_NAMEPAIR(FILE_READ_ATTRIBUTES), // 0x0080
 	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0X0100
 };
+CInterpretConst FileRights(_b2v_FileRight, _b2v_StandardRight, ITCF_HEX1B);
 
 const SingleBit2Val_st _b2v_DirectoryRight[] =
 {
@@ -54,8 +56,6 @@ const SingleBit2Val_st _b2v_DirectoryRight[] =
 	ITC_NAMEPAIR(FILE_READ_ATTRIBUTES), // 0x0080
 	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0X0100
 };
-
-CInterpretConst FileRights(_b2v_FileRight, _b2v_StandardRight, ITCF_HEX1B);
 CInterpretConst DirectoryRights(_b2v_DirectoryRight, _b2v_StandardRight, ITCF_HEX1B);
 
 const SingleBit2Val_st _b2v_TokenRight[] =
@@ -70,7 +70,6 @@ const SingleBit2Val_st _b2v_TokenRight[] =
 	ITC_NAMEPAIR(TOKEN_ADJUST_DEFAULT), //   (0x0080)
 	ITC_NAMEPAIR(TOKEN_ADJUST_SESSIONID),  //(0x0100)
 };
-
 CInterpretConst TokenRights(_b2v_TokenRight, _b2v_StandardRight, ITCF_HEX1B);
 
 

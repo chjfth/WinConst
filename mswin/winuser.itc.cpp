@@ -1,6 +1,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
+#include "winnt.itc.h"
 #include "winuser.itc.h"
 
 namespace itc {

@@ -21,7 +21,7 @@ const Enum2Val_st e2v_SidType[] =
 CInterpretConst SidTypeXXX(e2v_SidType, ARRAYSIZE(e2v_SidType), ITCF_SINT);
 
 
-const SingleBit2Val_st b2v_StandardRight[] =
+const SingleBit2Val_st _b2v_StandardRight[] =
 {
 	ITC_NAMEPAIR(DELETE),       //   (0x00010000L)
 	ITC_NAMEPAIR(READ_CONTROL), //   (0x00020000L)
@@ -29,8 +29,10 @@ const SingleBit2Val_st b2v_StandardRight[] =
 	ITC_NAMEPAIR(WRITE_OWNER),  //   (0x00080000L)
 	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
 };
+const int N_b2v_StandardRight = ARRAYSIZE(_b2v_StandardRight);
 
-const SingleBit2Val_st b2v_FileRight[] =
+
+const SingleBit2Val_st _b2v_FileRight[] =
 {
 	ITC_NAMEPAIR(FILE_READ_DATA),   // 0x0001
 	ITC_NAMEPAIR(FILE_WRITE_DATA),  // 0x0002
@@ -41,8 +43,10 @@ const SingleBit2Val_st b2v_FileRight[] =
 	ITC_NAMEPAIR(FILE_READ_ATTRIBUTES), // 0x0080
 	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0X0100
 };
+CInterpretConst FileRights(_b2v_FileRight, _b2v_StandardRight, ITCF_HEX1B);
 
-const SingleBit2Val_st b2v_DirectoryRight[] =
+
+const SingleBit2Val_st _b2v_DirectoryRight[] =
 {
 	ITC_NAMEPAIR(FILE_LIST_DIRECTORY), // 0x0001
 	ITC_NAMEPAIR(FILE_ADD_FILE),       // 0x0002
@@ -54,9 +58,70 @@ const SingleBit2Val_st b2v_DirectoryRight[] =
 	ITC_NAMEPAIR(FILE_READ_ATTRIBUTES), // 0x0080
 	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0X0100
 };
+CInterpretConst DirectoryRights(_b2v_DirectoryRight, _b2v_StandardRight, ITCF_HEX1B);
 
-CInterpretConst FileRights(b2v_FileRight, b2v_StandardRight, ITCF_HEX1B);
-CInterpretConst DirectoryRights(b2v_DirectoryRight, b2v_StandardRight, ITCF_HEX1B);
+
+const SingleBit2Val_st _b2v_TokenRight[] =
+{
+	ITC_NAMEPAIR(TOKEN_ASSIGN_PRIMARY), //   (0x0001)
+	ITC_NAMEPAIR(TOKEN_DUPLICATE),      //   (0x0002)
+	ITC_NAMEPAIR(TOKEN_IMPERSONATE),    //   (0x0004)
+	ITC_NAMEPAIR(TOKEN_QUERY),          //   (0x0008)
+	ITC_NAMEPAIR(TOKEN_QUERY_SOURCE),   //   (0x0010)
+	ITC_NAMEPAIR(TOKEN_ADJUST_PRIVILEGES), //(0x0020)
+	ITC_NAMEPAIR(TOKEN_ADJUST_GROUPS),  //   (0x0040)
+	ITC_NAMEPAIR(TOKEN_ADJUST_DEFAULT), //   (0x0080)
+	ITC_NAMEPAIR(TOKEN_ADJUST_SESSIONID),  //(0x0100)
+};
+CInterpretConst TokenRights(_b2v_TokenRight, _b2v_StandardRight, ITCF_HEX1B);
+
+
+const SingleBit2Val_st _b2v_ProcessRight[] =
+{
+	ITC_NAMEPAIR(PROCESS_TERMINATE), //                  (0x0001)  
+	ITC_NAMEPAIR(PROCESS_CREATE_THREAD), //              (0x0002)  
+	ITC_NAMEPAIR(PROCESS_SET_SESSIONID), //              (0x0004)  
+	ITC_NAMEPAIR(PROCESS_VM_OPERATION), //               (0x0008)  
+	ITC_NAMEPAIR(PROCESS_VM_READ), //                    (0x0010)  
+	ITC_NAMEPAIR(PROCESS_VM_WRITE), //                   (0x0020)  
+	ITC_NAMEPAIR(PROCESS_DUP_HANDLE), //                 (0x0040)  
+	ITC_NAMEPAIR(PROCESS_CREATE_PROCESS), //             (0x0080)  
+	ITC_NAMEPAIR(PROCESS_SET_QUOTA), //                  (0x0100)  
+	ITC_NAMEPAIR(PROCESS_SET_INFORMATION), //            (0x0200)  
+	ITC_NAMEPAIR(PROCESS_QUERY_INFORMATION), //          (0x0400)  
+	ITC_NAMEPAIR(PROCESS_SUSPEND_RESUME), //             (0x0800)  
+	ITC_NAMEPAIR(PROCESS_QUERY_LIMITED_INFORMATION), //  (0x1000)  
+};
+CInterpretConst ProcessRights(_b2v_ProcessRight, _b2v_StandardRight, ITCF_HEX1B);
+
+
+const SingleBit2Val_st _b2v_ThreadRight[] =
+{
+	ITC_NAMEPAIR(THREAD_TERMINATE), //                 (0x0001)  
+	ITC_NAMEPAIR(THREAD_SUSPEND_RESUME), //            (0x0002)  
+	ITC_NAMEPAIR(THREAD_GET_CONTEXT), //               (0x0008)  
+	ITC_NAMEPAIR(THREAD_SET_CONTEXT), //               (0x0010)  
+	ITC_NAMEPAIR(THREAD_QUERY_INFORMATION), //         (0x0040)  
+	ITC_NAMEPAIR(THREAD_SET_INFORMATION), //           (0x0020)  
+	ITC_NAMEPAIR(THREAD_SET_THREAD_TOKEN), //          (0x0080)
+	ITC_NAMEPAIR(THREAD_IMPERSONATE), //               (0x0100)
+	ITC_NAMEPAIR(THREAD_DIRECT_IMPERSONATION), //      (0x0200)
+	ITC_NAMEPAIR(THREAD_SET_LIMITED_INFORMATION), //   (0x0400)  // winnt
+	ITC_NAMEPAIR(THREAD_QUERY_LIMITED_INFORMATION), // (0x0800)  // winnt
+};
+CInterpretConst ThreadRights(_b2v_ThreadRight, _b2v_StandardRight, ITCF_HEX1B);
+
+
+const SingleBit2Val_st _b2v_JobRight[] =
+{
+	ITC_NAMEPAIR(JOB_OBJECT_ASSIGN_PROCESS), //           (0x0001)
+	ITC_NAMEPAIR(JOB_OBJECT_SET_ATTRIBUTES), //           (0x0002)
+	ITC_NAMEPAIR(JOB_OBJECT_QUERY), //                    (0x0004)
+	ITC_NAMEPAIR(JOB_OBJECT_TERMINATE), //                (0x0008)
+	ITC_NAMEPAIR(JOB_OBJECT_SET_SECURITY_ATTRIBUTES), //  (0x0010)
+};
+CInterpretConst JobRights(_b2v_JobRight, _b2v_StandardRight, ITCF_HEX1B);
+
 
 
 const SingleBit2Val_st _b2v_xxx_SECURITY_INFORMATION[] =

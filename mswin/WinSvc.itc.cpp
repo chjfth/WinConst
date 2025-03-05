@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <WinSvc.h>
 
+#include "winnt.itc.h"  // need for _b2v_StandardRight
 #include "WinSvc.itc.h"
 
 namespace itc {
@@ -29,7 +30,22 @@ const Enum2Val_st _e2v_SERVICE_CONTROL_xxx[] =
 };
 CInterpretConst SERVICE_CONTROL_xxx(_e2v_SERVICE_CONTROL_xxx, ITCF_UINT);
 
-
+const SingleBit2Val_st _b2v_ServiceRight[] = {
+	
+	ITC_NAMEPAIR(SERVICE_QUERY_CONFIG), //           0x0001
+	ITC_NAMEPAIR(SERVICE_CHANGE_CONFIG), //          0x0002
+	ITC_NAMEPAIR(SERVICE_QUERY_STATUS), //           0x0004
+	ITC_NAMEPAIR(SERVICE_ENUMERATE_DEPENDENTS), //   0x0008
+	ITC_NAMEPAIR(SERVICE_START), //                  0x0010
+	ITC_NAMEPAIR(SERVICE_STOP), //                   0x0020
+	ITC_NAMEPAIR(SERVICE_PAUSE_CONTINUE), //         0x0040
+	ITC_NAMEPAIR(SERVICE_INTERROGATE), //            0x0080
+	ITC_NAMEPAIR(SERVICE_USER_DEFINED_CONTROL), //   0x0100
+};
+CInterpretConst ServiceRights(ITCF_HEX1B,
+	_b2v_ServiceRight, ARRAYSIZE(_b2v_ServiceRight),  
+	_b2v_StandardRight, N_b2v_StandardRight,
+	nullptr, 0);
 
 
 } //namespace itc

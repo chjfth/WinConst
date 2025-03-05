@@ -924,4 +924,44 @@ CInterpretConst CBN_xxx_ComboBox(e2v_CBN_xxx_ComboBox, ITCF_SINT);
 
 
 
+
+
+
+const SingleBit2Val_st _b2v_DesktopRight[] = 
+{
+	ITC_NAMEPAIR(DESKTOP_READOBJECTS), //         0x0001L
+	ITC_NAMEPAIR(DESKTOP_CREATEWINDOW), //        0x0002L
+	ITC_NAMEPAIR(DESKTOP_CREATEMENU), //          0x0004L
+	ITC_NAMEPAIR(DESKTOP_HOOKCONTROL), //         0x0008L
+	ITC_NAMEPAIR(DESKTOP_JOURNALRECORD), //       0x0010L
+	ITC_NAMEPAIR(DESKTOP_JOURNALPLAYBACK), //     0x0020L
+	ITC_NAMEPAIR(DESKTOP_ENUMERATE), //           0x0040L
+	ITC_NAMEPAIR(DESKTOP_WRITEOBJECTS), //        0x0080L
+	ITC_NAMEPAIR(DESKTOP_SWITCHDESKTOP), //       0x0100L
+};
+CInterpretConst DesktopRights(ITCF_HEX1B,
+	_b2v_DesktopRight, ARRAYSIZE(_b2v_DesktopRight),  
+	_b2v_StandardRight, N_b2v_StandardRight,
+	nullptr, 0);
+
+
+const SingleBit2Val_st _b2v_WinstationRight[] = 
+{
+	ITC_NAMEPAIR(WINSTA_ENUMDESKTOPS), //         0x0001L
+	ITC_NAMEPAIR(WINSTA_READATTRIBUTES), //       0x0002L
+	ITC_NAMEPAIR(WINSTA_ACCESSCLIPBOARD), //      0x0004L
+	ITC_NAMEPAIR(WINSTA_CREATEDESKTOP), //        0x0008L
+	ITC_NAMEPAIR(WINSTA_WRITEATTRIBUTES), //      0x0010L
+	ITC_NAMEPAIR(WINSTA_ACCESSGLOBALATOMS), //    0x0020L
+	ITC_NAMEPAIR(WINSTA_EXITWINDOWS), //          0x0040L
+	ITC_NAMEPAIR(WINSTA_ENUMERATE), //            0x0100L
+	ITC_NAMEPAIR(WINSTA_READSCREEN), //           0x0200L
+};
+CInterpretConst WinstationRights(ITCF_HEX1B,
+	_b2v_WinstationRight, ARRAYSIZE(_b2v_WinstationRight),  
+	_b2v_StandardRight, N_b2v_StandardRight,
+	nullptr, 0);
+
+
+
 } //namespace itc

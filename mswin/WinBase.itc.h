@@ -5,9 +5,7 @@
 namespace itc {
 
 
-extern CInterpretConst SERVICE_CONTROL_xxx;
-
-extern CInterpretConst ServiceRights;
+extern CInterpretConst FilemapRights;
 
 
 } // namespace itc

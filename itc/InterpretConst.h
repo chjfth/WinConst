@@ -132,6 +132,8 @@ enum DisplayFormat_et
 	DF_NameOnly = 1,
 	DF_NameAndValue = 2, // name(value)
 	DF_ValueAndName = 3, // value(name)
+
+	DF_NVAuto = 8 // If enum-trait, value(name); if bitfield-trait, name(valud) 
 };
 
 class String // this is inside itc namespace
@@ -413,7 +415,7 @@ private:
 
 #define ITCSvn(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName).get()
 
-#define ITCSv ITCSnv 
+#define ITCSv(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NVAuto).get()
 
 
 #define ITCF_UINT _T("%u") // unsigned int (default)

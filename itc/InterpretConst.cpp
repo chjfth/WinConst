@@ -350,6 +350,9 @@ const TCHAR *CInterpretConst::Interpret(
 	if(bufsize<=0)
 		return NULL;
 
+	if(dispfmt==DF_NVAuto)
+		dispfmt = m_nGroups==1 ? DF_ValueAndName : DF_NameAndValue;
+
 	buf[0] = 0;
 
 	CONSTVAL_t remain_val = input_val;

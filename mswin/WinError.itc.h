@@ -10,4 +10,4 @@ extern CInterpretConst WinError;
 
 } // namespace itc
 
-#define ITCS_WinError ITCSv(GetLastError(), itc::WinError)
+#define ITCS_WinError ITCSvn(GetLastError(), itc::WinError)

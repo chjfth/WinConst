@@ -128,8 +128,10 @@ struct EnumSeg_st : public ItcSeg_st
 	
 enum DisplayFormat_et
 {
-	DF_NameOnly = 0,
-	DF_NameAndValue = 1,
+	DF_ValueOnly = 0,
+	DF_NameOnly = 1,
+	DF_NameAndValue = 2, // name(value)
+	DF_ValueAndName = 3, // value(name)
 };
 
 class String // this is inside itc namespace
@@ -407,7 +409,11 @@ private:
 // -- the "return" of ITCS() macro can be passed as snprintf's variadic params
 // Note: ITCS() cannot be used in __try{} block, otherwise we'll get Compiler Error C2712.
 
-#define ITCSv(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue).get()
+#define ITCSnv(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue).get()
+
+#define ITCSvn(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName).get()
+
+#define ITCSv ITCSnv 
 
 
 #define ITCF_UINT _T("%u") // unsigned int (default)

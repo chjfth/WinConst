@@ -309,18 +309,35 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 	const TCHAR *szVal, CONSTVAL_t val, DisplayFormat_et dispfmt, 
 	TCHAR obuf[], int obufsize)
 {
-	_sntprintf_s(obuf, obufsize, _TRUNCATE, _T("%s"), szVal);
-	int len1 = (int)_tcslen(obuf);
-
-	assert(len1<obufsize);
-
-	if(dispfmt==DF_NameAndValue)
+	if(dispfmt==DF_NameOnly)
 	{
-		// Add brackets to value, let "0x3F" shown as "(0x3F)"
-		TCHAR _valfmt_[FmtSpecMaxChars+2] = {};
-		_sntprintf_s(_valfmt_, _TRUNCATE, _T("(%s)"), displayfmt());
+		// Example: ERROR_PRIVILEGE_NOT_HELD
 
-		_sntprintf_s(obuf+len1, obufsize-len1, _TRUNCATE, _valfmt_, val);
+		_sntprintf_s(obuf, obufsize, _TRUNCATE, _T("%s"), szVal);
+	}
+	else if(dispfmt==DF_NameAndValue)
+	{
+		// Example: ERROR_PRIVILEGE_NOT_HELD(1314)
+
+		TCHAR _fmt_[FmtSpecMaxChars+2] = {};
+		_sntprintf_s(_fmt_, _TRUNCATE, _T("%%s(%s)"), displayfmt());
+
+		_sntprintf_s(obuf, obufsize, _TRUNCATE, _fmt_, szVal, val);
+	}
+	else if(dispfmt==DF_ValueAndName)
+	{
+		// Example: 1314(ERROR_PRIVILEGE_NOT_HELD)
+
+		TCHAR _fmt_[FmtSpecMaxChars+2] = {};
+		_sntprintf_s(_fmt_, _TRUNCATE, _T("%s(%%s)"), displayfmt());
+
+		_sntprintf_s(obuf, obufsize, _TRUNCATE, _fmt_, val, szVal);
+	}
+	else // consider it DF_ValueOnly
+	{
+		// Example: 1314
+
+		_sntprintf_s(obuf, obufsize, _TRUNCATE, displayfmt(), val);
 	}
 
 	return obuf;
@@ -354,7 +371,7 @@ const TCHAR *CInterpretConst::Interpret(
 					_sntprintf_s(buf, bufsize, _TRUNCATE, _T("%s%s|"), 
 						buf, 
 						FormatOneDisplay(c2v[i].EnumName, c2v[i].ConstVal, 
-						dispfmt, szbuf, ARRAYSIZE(szbuf))
+							dispfmt, szbuf, ARRAYSIZE(szbuf))
 						);
 				}
 

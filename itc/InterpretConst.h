@@ -347,7 +347,7 @@ public:
 
 private:
 	enum { 
-		WholeDisplayMaxChars = 400,
+		WholeDisplayMaxChars = 2000,
 		OneDisplayMaxChars = 100,
 		FmtSpecMaxChars = 10,
 	};

@@ -339,9 +339,9 @@ public:
 	////
 
 	const TCHAR *Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt,
-		TCHAR *buf, int bufsize);
+		TCHAR *buf, int bufsize) const;
 
-	String Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt=DF_NameOnly);
+	String Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt=DF_NameOnly) const;
 
 	bool SetValFmt(const TCHAR *fmt);
 
@@ -381,14 +381,14 @@ private:
 
 private:
 	void _reset(const TCHAR *valfmt);
-	bool is_enum_ctor(){ return m_arGroups==&m_EnumC2V; };
+	bool is_enum_ctor() const { return m_arGroups==&m_EnumC2V; };
 	static bool is_unique_mask(CONSTVAL_t oldmasks, CONSTVAL_t newmask);
 	bool ensure_unique_masks();
 
-	const TCHAR *displayfmt();
+	const TCHAR *displayfmt() const;
 
 	TCHAR *FormatOneDisplay(const TCHAR *szVal, CONSTVAL_t val, DisplayFormat_et dispfmt,
-		TCHAR obuf[], int obufsize);
+		TCHAR obuf[], int obufsize) const;
 
 private:
 	EnumGroup_st m_EnumC2V; // in the case of a single group

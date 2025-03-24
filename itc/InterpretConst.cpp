@@ -293,7 +293,7 @@ bool CInterpretConst::ensure_unique_masks()
 	return true;
 }
 
-const TCHAR* CInterpretConst::displayfmt()
+const TCHAR* CInterpretConst::displayfmt() const
 {
 	const TCHAR *pfmt = m_valfmt;
 
@@ -307,7 +307,7 @@ const TCHAR* CInterpretConst::displayfmt()
 
 TCHAR* CInterpretConst::FormatOneDisplay(
 	const TCHAR *szVal, CONSTVAL_t val, DisplayFormat_et dispfmt, 
-	TCHAR obuf[], int obufsize)
+	TCHAR obuf[], int obufsize) const
 {
 	if(dispfmt==DF_NameOnly)
 	{
@@ -345,7 +345,7 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 
 const TCHAR *CInterpretConst::Interpret(
 	CONSTVAL_t input_val, DisplayFormat_et dispfmt,
-	TCHAR *buf, int bufsize)
+	TCHAR *buf, int bufsize) const
 {
 	if(bufsize<=0)
 		return NULL;
@@ -425,7 +425,7 @@ const TCHAR *CInterpretConst::Interpret(
 }
 
 String CInterpretConst::Interpret(
-	CONSTVAL_t input_val, DisplayFormat_et dispfmt)
+	CONSTVAL_t input_val, DisplayFormat_et dispfmt) const
 {
 	String itcs(WholeDisplayMaxChars);
 	Interpret(input_val, dispfmt, itcs.get(), itcs.bufsize());

@@ -7,8 +7,14 @@ namespace itc {
 
 extern CInterpretConst SidTypeXXX;
 
+extern const SingleBit2Val_st _b2v_GenericRight[];
+extern const int N_b2v_GenericRight;
+
 extern const SingleBit2Val_st _b2v_StandardRight[];
 extern const int N_b2v_StandardRight; // needed by WinSvc.itc.cpp etc.
+
+extern const SingleBit2Val_st _b2v_GenericAndStandardRight[];
+extern const int N_b2v_GenericAndStandardRight;
 
 extern CInterpretConst FileRights;
 extern CInterpretConst DirectoryRights;

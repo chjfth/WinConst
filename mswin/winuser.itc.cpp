@@ -943,6 +943,7 @@ const SingleBit2Val_st _b2v_DesktopRight[] =
 CInterpretConst DesktopRights(ITCF_HEX1B,
 	_b2v_DesktopRight, ARRAYSIZE(_b2v_DesktopRight),  
 	_b2v_StandardRight, N_b2v_StandardRight,
+	_b2v_GenericRight, N_b2v_GenericRight,
 	nullptr, 0);
 
 
@@ -961,6 +962,7 @@ const SingleBit2Val_st _b2v_WinstationRight[] =
 CInterpretConst WinstationRights(ITCF_HEX1B,
 	_b2v_WinstationRight, ARRAYSIZE(_b2v_WinstationRight),  
 	_b2v_StandardRight, N_b2v_StandardRight,
+	_b2v_GenericRight, N_b2v_GenericRight,
 	nullptr, 0);
 
 

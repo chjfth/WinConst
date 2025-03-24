@@ -21,6 +21,15 @@ const Enum2Val_st e2v_SidType[] =
 CInterpretConst SidTypeXXX(e2v_SidType, ARRAYSIZE(e2v_SidType), ITCF_SINT);
 
 
+const SingleBit2Val_st _b2v_GenericRight[] =
+{
+	ITC_NAMEPAIR(GENERIC_READ),    // (0x80000000L)
+	ITC_NAMEPAIR(GENERIC_WRITE),   // (0x40000000L)
+	ITC_NAMEPAIR(GENERIC_EXECUTE), // (0x20000000L)
+	ITC_NAMEPAIR(GENERIC_ALL),     // (0x10000000L)	
+};
+const int N_b2v_GenericRight = ARRAYSIZE(_b2v_GenericRight);
+
 const SingleBit2Val_st _b2v_StandardRight[] =
 {
 	ITC_NAMEPAIR(DELETE),       //   (0x00010000L)
@@ -30,6 +39,21 @@ const SingleBit2Val_st _b2v_StandardRight[] =
 	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
 };
 const int N_b2v_StandardRight = ARRAYSIZE(_b2v_StandardRight);
+
+const SingleBit2Val_st _b2v_GenericAndStandardRight[] =
+{
+	ITC_NAMEPAIR(GENERIC_READ),    // (0x80000000L)
+	ITC_NAMEPAIR(GENERIC_WRITE),   // (0x40000000L)
+	ITC_NAMEPAIR(GENERIC_EXECUTE), // (0x20000000L)
+	ITC_NAMEPAIR(GENERIC_ALL),     // (0x10000000L)	
+
+	ITC_NAMEPAIR(DELETE),       //   (0x00010000L)
+	ITC_NAMEPAIR(READ_CONTROL), //   (0x00020000L)
+	ITC_NAMEPAIR(WRITE_DAC),    //   (0x00040000L)
+	ITC_NAMEPAIR(WRITE_OWNER),  //   (0x00080000L)
+	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
+};
+const int N_b2v_GenericAndStandardRight = ARRAYSIZE(_b2v_GenericAndStandardRight);
 
 
 const SingleBit2Val_st _b2v_FileRight[] =
@@ -41,9 +65,9 @@ const SingleBit2Val_st _b2v_FileRight[] =
 	ITC_NAMEPAIR(FILE_WRITE_EA),    // 0x0010
 	ITC_NAMEPAIR(FILE_EXECUTE),     // 0x0020
 	ITC_NAMEPAIR(FILE_READ_ATTRIBUTES), // 0x0080
-	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0X0100
+	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0x0100
 };
-CInterpretConst FileRights(_b2v_FileRight, _b2v_StandardRight, ITCF_HEX1B);
+CInterpretConst FileRights(_b2v_FileRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
 
 
 const SingleBit2Val_st _b2v_DirectoryRight[] =
@@ -56,9 +80,9 @@ const SingleBit2Val_st _b2v_DirectoryRight[] =
 	ITC_NAMEPAIR(FILE_TRAVERSE),    // 0x0020
 	ITC_NAMEPAIR(FILE_DELETE_CHILD),// 0x0040
 	ITC_NAMEPAIR(FILE_READ_ATTRIBUTES), // 0x0080
-	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0X0100
+	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0x0100
 };
-CInterpretConst DirectoryRights(_b2v_DirectoryRight, _b2v_StandardRight, ITCF_HEX1B);
+CInterpretConst DirectoryRights(_b2v_DirectoryRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
 
 
 const SingleBit2Val_st _b2v_TokenRight[] =
@@ -73,7 +97,7 @@ const SingleBit2Val_st _b2v_TokenRight[] =
 	ITC_NAMEPAIR(TOKEN_ADJUST_DEFAULT), //   (0x0080)
 	ITC_NAMEPAIR(TOKEN_ADJUST_SESSIONID),  //(0x0100)
 };
-CInterpretConst TokenRights(_b2v_TokenRight, _b2v_StandardRight, ITCF_HEX1B);
+CInterpretConst TokenRights(_b2v_TokenRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
 
 
 const SingleBit2Val_st _b2v_ProcessRight[] =
@@ -92,7 +116,7 @@ const SingleBit2Val_st _b2v_ProcessRight[] =
 	ITC_NAMEPAIR(PROCESS_SUSPEND_RESUME), //             (0x0800)  
 	ITC_NAMEPAIR(PROCESS_QUERY_LIMITED_INFORMATION), //  (0x1000)  
 };
-CInterpretConst ProcessRights(_b2v_ProcessRight, _b2v_StandardRight, ITCF_HEX1B);
+CInterpretConst ProcessRights(_b2v_ProcessRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
 
 
 const SingleBit2Val_st _b2v_ThreadRight[] =
@@ -109,7 +133,7 @@ const SingleBit2Val_st _b2v_ThreadRight[] =
 	ITC_NAMEPAIR(THREAD_SET_LIMITED_INFORMATION), //   (0x0400)  // winnt
 	ITC_NAMEPAIR(THREAD_QUERY_LIMITED_INFORMATION), // (0x0800)  // winnt
 };
-CInterpretConst ThreadRights(_b2v_ThreadRight, _b2v_StandardRight, ITCF_HEX1B);
+CInterpretConst ThreadRights(_b2v_ThreadRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
 
 
 const SingleBit2Val_st _b2v_JobRight[] =
@@ -120,7 +144,7 @@ const SingleBit2Val_st _b2v_JobRight[] =
 	ITC_NAMEPAIR(JOB_OBJECT_TERMINATE), //                (0x0008)
 	ITC_NAMEPAIR(JOB_OBJECT_SET_SECURITY_ATTRIBUTES), //  (0x0010)
 };
-CInterpretConst JobRights(_b2v_JobRight, _b2v_StandardRight, ITCF_HEX1B);
+CInterpretConst JobRights(_b2v_JobRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
 
 
 

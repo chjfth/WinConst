@@ -272,6 +272,21 @@ public:
 			nullptr, 0);
 	}
 
+	template<size_t eles1, size_t eles2, size_t eles3>
+	CInterpretConst(
+		const SingleBit2Val_st (&ar1)[eles1],
+		const SingleBit2Val_st (&ar2)[eles2],
+		const SingleBit2Val_st (&ar3)[eles3],
+		const TCHAR *valfmt=nullptr)
+	{
+		// A facility ctor that combines three SingleBit2Val_st-s
+
+		_ctor(valfmt, 
+			nullptr, 0, // no Enum2Val_st
+			ar1, eles1,  ar2, eles2, ar3, eles3,
+			nullptr, 0);
+	}
+
 	//
 
 	CInterpretConst(const EnumGroup_st *arGroups, int nGroups, const TCHAR *valfmt=nullptr)

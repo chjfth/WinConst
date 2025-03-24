@@ -30,5 +30,10 @@ extern CInterpretConst xxx_ACE_flags;
 
 extern CInterpretConst SE_xxx_sdControl;
 
+extern CInterpretConst dwShareMode;
+extern CInterpretConst dwCreationDisposition;
+extern CInterpretConst dwFlagsAndAttributes;
+
+
 
 } // namespace itc

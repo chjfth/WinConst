@@ -274,5 +274,24 @@ const SingleBit2Val_st _b2v_dwFlagsAndAttributes[] =
 CInterpretConst dwFlagsAndAttributes(_b2v_dwFlagsAndAttributes, ITCF_HEX4B);
 
 
+const Enum2Val_st _e2v_SECURITY_IMPERSONATION_LEVEL[] =
+{
+	ITC_NAMEPAIR(SecurityAnonymous),
+	ITC_NAMEPAIR(SecurityIdentification),
+	ITC_NAMEPAIR(SecurityImpersonation),
+	ITC_NAMEPAIR(SecurityDelegation),
+};
+CInterpretConst SecurityXXX_ImpersonationLevel(_e2v_SECURITY_IMPERSONATION_LEVEL, ITCF_SINT);
+
+
+const Enum2Val_st _e2v_TOKEN_ELEVATION_TYPE[] =
+{
+	ITC_NAMEPAIR(TokenElevationTypeDefault), // = 1,
+	ITC_NAMEPAIR(TokenElevationTypeFull),
+	ITC_NAMEPAIR(TokenElevationTypeLimited)
+};
+CInterpretConst TokenElevationTypeXXX(_e2v_TOKEN_ELEVATION_TYPE, ITCF_SINT);
+
+
 
 } //namespace itc

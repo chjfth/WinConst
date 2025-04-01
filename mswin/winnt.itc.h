@@ -34,6 +34,9 @@ extern CInterpretConst dwShareMode;
 extern CInterpretConst dwCreationDisposition;
 extern CInterpretConst dwFlagsAndAttributes;
 
+extern CInterpretConst SecurityXXX_ImpersonationLevel;
+extern CInterpretConst TokenElevationTypeXXX;
+
 
 
 } // namespace itc

@@ -5,7 +5,7 @@
 
 namespace itc {
 
-const Enum2Val_st e2v_WinError[] =
+const Enum2Val_st _e2v_WinError[] =
 {
 	ITC_NAMEPAIR(ERROR_SUCCESS), // 0L
 	ITC_NAMEPAIR(ERROR_INVALID_FUNCTION), // 1L
@@ -2195,7 +2195,7 @@ const Enum2Val_st e2v_WinError[] =
 	ITC_NAMEPAIR(ERROR_HASH_NOT_SUPPORTED), // 15300L
 	ITC_NAMEPAIR(ERROR_HASH_NOT_PRESENT), // 15301L
 };
-CInterpretConst WinError(e2v_WinError, ITCF_SINT);
+CInterpretConst WinError(_e2v_WinError, ITCF_SINT);
 
 
 } //namespace itc

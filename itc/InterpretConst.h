@@ -3,6 +3,7 @@
 
 #include <tchar.h> // for TCHAR & _T
 #include <stdio.h>
+#include <stdarg.h>
 
 
 namespace itc {

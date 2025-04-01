@@ -29,5 +29,15 @@ const Enum2Val_st _e2v_SECURITY_LOGON_TYPE[] =
 CInterpretConst SECURITY_LOGON_TYPE(_e2v_SECURITY_LOGON_TYPE, ITCF_SINT);
 
 
+const SingleBit2Val_st _b2v_LogonUserFlags[] =
+{
+	ITC_NAMEPAIR(LOGON_OPTIMIZED),
+	ITC_NAMEPAIR(LOGON_WINLOGON),    
+	ITC_NAMEPAIR(LOGON_PKINIT),      
+	ITC_NAMEPAIR(LOGON_NO_OPTIMIZED),
+};
+CInterpretConst LOGON_xxx_UserFlags(_b2v_LogonUserFlags, ITCF_HEX2B);
+
+
 
 } //namespace itc

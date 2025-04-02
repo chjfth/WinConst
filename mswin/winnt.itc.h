@@ -35,9 +35,14 @@ extern CInterpretConst dwCreationDisposition;
 extern CInterpretConst dwFlagsAndAttributes;
 
 extern CInterpretConst SecurityXXX_ImpersonationLevel;
+extern CInterpretConst itc_SECURITY_IMPERSONATION_LEVEL;
+
 extern CInterpretConst TokenElevationTypeXXX;
 
 extern CInterpretConst SE_GROUP_xxx;
+
+extern CInterpretConst itc_TOKEN_TYPE;
+
 
 
 } // namespace itc

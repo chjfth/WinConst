@@ -282,6 +282,7 @@ const Enum2Val_st _e2v_SECURITY_IMPERSONATION_LEVEL[] =
 	ITC_NAMEPAIR(SecurityDelegation),
 };
 CInterpretConst SecurityXXX_ImpersonationLevel(_e2v_SECURITY_IMPERSONATION_LEVEL, ITCF_SINT);
+CInterpretConst itc_SECURITY_IMPERSONATION_LEVEL(_e2v_SECURITY_IMPERSONATION_LEVEL);
 
 
 const Enum2Val_st _e2v_TOKEN_ELEVATION_TYPE[] =
@@ -306,6 +307,15 @@ const SingleBit2Val_st _b2v_SE_GROUP_xxx[] =
 	ITC_NAMEPAIR(SE_GROUP_RESOURCE          ), // (0x20000000L)
 };
 CInterpretConst SE_GROUP_xxx(_b2v_SE_GROUP_xxx, ITCF_HEX1B);
+
+
+const Enum2Val_st _e2v_TOKEN_TYPE[] =
+{
+	ITC_NAMEPAIR(TokenPrimary), // = 1
+	ITC_NAMEPAIR(TokenImpersonation), // = 2
+};
+CInterpretConst itc_TOKEN_TYPE(_e2v_TOKEN_TYPE);
+
 
 
 

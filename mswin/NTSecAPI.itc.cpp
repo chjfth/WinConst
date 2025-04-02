@@ -26,7 +26,7 @@ const Enum2Val_st _e2v_SECURITY_LOGON_TYPE[] =
     ITC_NAMEPAIR(CachedRemoteInteractive), // Same as RemoteInteractive, this is used internally for auditing purpose
     ITC_NAMEPAIR(CachedUnlock),        // Cached Unlock workstation
 };
-CInterpretConst SECURITY_LOGON_TYPE(_e2v_SECURITY_LOGON_TYPE, ITCF_SINT);
+CInterpretConst itc_SECURITY_LOGON_TYPE(_e2v_SECURITY_LOGON_TYPE, ITCF_SINT);
 
 
 const SingleBit2Val_st _b2v_LogonUserFlags[] =

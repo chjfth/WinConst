@@ -421,7 +421,7 @@ private:
 };
 
 
-#define ITC_NAMEPAIR(macroname) { _T( #macroname ) , macroname }
+#define ITC_NAMEPAIR(macroname) { _T( #macroname ) , (CONSTVAL_t)macroname }
 
 #define ITCS(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameOnly).get()
 // -- the "return" of ITCS() macro can be passed as snprintf's variadic params

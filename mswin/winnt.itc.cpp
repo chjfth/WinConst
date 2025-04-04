@@ -185,7 +185,8 @@ const Enum2Val_st _e2v_xxx_ACE_TYPE[] =
 	ITC_NAMEPAIR(SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE   ), // 16
 	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_ACE_TYPE         ), // 17
 };
-CInterpretConst xxx_ACE_TYPE(_e2v_xxx_ACE_TYPE, ITCF_SINT);
+CInterpretConst xxx_ACE_TYPE(_e2v_xxx_ACE_TYPE, ITCF_SINT); // oldname
+CInterpretConst AceType(_e2v_xxx_ACE_TYPE, ITCF_SINT);
 
 const SingleBit2Val_st _b2v_ACE_flags[] =
 {
@@ -197,7 +198,8 @@ const SingleBit2Val_st _b2v_ACE_flags[] =
 	ITC_NAMEPAIR(SUCCESSFUL_ACCESS_ACE_FLAG ), // 0x40
 	ITC_NAMEPAIR(FAILED_ACCESS_ACE_FLAG     ), // 0x80
 };
-CInterpretConst xxx_ACE_flags(_b2v_ACE_flags, ITCF_HEX1B);
+CInterpretConst xxx_ACE_flags(_b2v_ACE_flags, ITCF_HEX1B); // oldname
+CInterpretConst AceFlags(_b2v_ACE_flags, ITCF_HEX1B);
 
 
 const SingleBit2Val_st _b2v_SECURITY_DESCRIPTOR_control[] =

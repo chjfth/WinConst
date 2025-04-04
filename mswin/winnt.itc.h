@@ -25,8 +25,10 @@ extern CInterpretConst JobRights;
 
 extern CInterpretConst xxx_SECURITY_INFORMATION;
 
-extern CInterpretConst xxx_ACE_TYPE;
-extern CInterpretConst xxx_ACE_flags;
+extern CInterpretConst xxx_ACE_TYPE; // oldname
+extern CInterpretConst AceType;
+extern CInterpretConst xxx_ACE_flags; // oldname
+extern CInterpretConst AceFlags;
 
 extern CInterpretConst SE_xxx_sdControl;
 

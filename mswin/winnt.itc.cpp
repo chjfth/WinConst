@@ -222,6 +222,15 @@ const SingleBit2Val_st _b2v_SECURITY_DESCRIPTOR_control[] =
 CInterpretConst SE_xxx_sdControl(_b2v_SECURITY_DESCRIPTOR_control, ITCF_HEX2B);
 
 
+const SingleBit2Val_st _b2v_SYSTEM_MANDATORY_LABEL_NO_xxx[] =
+{
+	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_WRITE_UP), //         0x1
+	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_READ_UP), //          0x2
+	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP) //       0x4
+};
+CInterpretConst SYSTEM_MANDATORY_LABEL_NO_xxx(_b2v_SYSTEM_MANDATORY_LABEL_NO_xxx, ITCF_HEX1B);
+
+
 const SingleBit2Val_st _b2v_dwShareMode[] =
 {
 	ITC_NAMEPAIR(FILE_SHARE_READ),   // 0x01

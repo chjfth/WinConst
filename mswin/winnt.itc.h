@@ -32,6 +32,8 @@ extern CInterpretConst AceFlags;
 
 extern CInterpretConst SE_xxx_sdControl;
 
+extern CInterpretConst SYSTEM_MANDATORY_LABEL_NO_xxx;
+
 extern CInterpretConst dwShareMode;
 extern CInterpretConst dwCreationDisposition;
 extern CInterpretConst dwFlagsAndAttributes;

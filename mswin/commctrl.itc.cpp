@@ -11,7 +11,7 @@ namespace itc {
 // Window style for "SysListView32"
 //
 
-const Enum2Val_st e2v_WS_xxx_SysListView32_TYPE[] =
+const Enum2Val_st _e2v_WS_xxx_SysListView32_TYPE[] =
 {
 //	ITC_NAMEPAIR(LVS_TYPEMASK),            // 0x0003 (mask)
 
@@ -22,7 +22,7 @@ const Enum2Val_st e2v_WS_xxx_SysListView32_TYPE[] =
 };
 
 
-const Enum2Val_st e2v_WS_xxx_SysListView32_ALIGN[] =
+const Enum2Val_st _e2v_WS_xxx_SysListView32_ALIGN[] =
 {
 //	ITC_NAMEPAIR(LVS_ALIGNMASK),           // 0x0c00 (mask)
 
@@ -33,7 +33,7 @@ const Enum2Val_st e2v_WS_xxx_SysListView32_ALIGN[] =
 };
 
 
-const SingleBit2Val_st b2v_WS_xxx_SysListView32[] =
+const SingleBit2Val_st _b2v_WS_xxx_SysListView32[] =
 {
 	ITC_NAMEPAIR(LVS_SINGLESEL),           // 0x0004
 	ITC_NAMEPAIR(LVS_SHOWSELALWAYS),       // 0x0008
@@ -53,19 +53,19 @@ const SingleBit2Val_st b2v_WS_xxx_SysListView32[] =
 
 const EnumGroup_st egs_WS_xxx_SysListView32[] = 
 {
-	{ LVS_TYPEMASK,  e2v_WS_xxx_SysListView32_TYPE,  ARRAYSIZE(e2v_WS_xxx_SysListView32_TYPE)  },
-	{ LVS_ALIGNMASK, e2v_WS_xxx_SysListView32_ALIGN, ARRAYSIZE(e2v_WS_xxx_SysListView32_ALIGN) },
+	{ LVS_TYPEMASK,  _e2v_WS_xxx_SysListView32_TYPE,  ARRAYSIZE(_e2v_WS_xxx_SysListView32_TYPE)  },
+	{ LVS_ALIGNMASK, _e2v_WS_xxx_SysListView32_ALIGN, ARRAYSIZE(_e2v_WS_xxx_SysListView32_ALIGN) },
 };
 CInterpretConst WS_xxx_SysListView32(ITCF_HEX4B,
 	egs_WS_xxx_SysListView32, ARRAYSIZE(egs_WS_xxx_SysListView32),
-	b2v_WS_xxx_SysListView32, ARRAYSIZE(b2v_WS_xxx_SysListView32), 
+	_b2v_WS_xxx_SysListView32, ARRAYSIZE(_b2v_WS_xxx_SysListView32), 
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
 
 // Extended-style for "SysListView32"
 //
-const SingleBit2Val_st b2v_LVS_EX_xxx[] =
+const SingleBit2Val_st _b2v_LVS_EX_xxx[] =
 {
 	ITC_NAMEPAIR(LVS_EX_GRIDLINES),        // 0x00000001
 	ITC_NAMEPAIR(LVS_EX_SUBITEMIMAGES),    // 0x00000002
@@ -104,14 +104,14 @@ const SingleBit2Val_st b2v_LVS_EX_xxx[] =
 	ITC_NAMEPAIR(LVS_EX_COLUMNOVERFLOW),   // 0x80000000
 //#endif
 };
-CInterpretConst LVS_EX_xxx(b2v_LVS_EX_xxx, ITCF_HEX4B);
+CInterpretConst LVS_EX_xxx(_b2v_LVS_EX_xxx, ITCF_HEX4B);
 
 
 //
 // Window style for "SysTreeView32"
 //
 
-const SingleBit2Val_st b2v_WS_xxx_SysTreeView32[] =
+const SingleBit2Val_st _b2v_WS_xxx_SysTreeView32[] =
 {
 	ITC_NAMEPAIR(TVS_HASBUTTONS),          // 0x0001
 	ITC_NAMEPAIR(TVS_HASLINES),            // 0x0002
@@ -134,14 +134,14 @@ const SingleBit2Val_st b2v_WS_xxx_SysTreeView32[] =
 	ITC_NAMEPAIR(TVS_NOHSCROLL),           // 0x8000  // TVS_NOSCROLL overrides this
 };
 CInterpretConst WS_xxx_SysTreeView32(ITCF_HEX4B,
-	b2v_WS_xxx_SysTreeView32, ARRAYSIZE(b2v_WS_xxx_SysTreeView32),
+	_b2v_WS_xxx_SysTreeView32, ARRAYSIZE(_b2v_WS_xxx_SysTreeView32),
 	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
 
 // Extended-style for "SysTreeView32"
 //
-const SingleBit2Val_st b2v_TVS_EX_xxx[] =
+const SingleBit2Val_st _b2v_TVS_EX_xxx[] =
 {
 //#if (_WIN32_WINNT >= 0x0600)
 	ITC_NAMEPAIR(TVS_EX_MULTISELECT),          // 0x0002 (not implemented)
@@ -156,7 +156,7 @@ const SingleBit2Val_st b2v_TVS_EX_xxx[] =
 	ITC_NAMEPAIR(TVS_EX_DRAWIMAGEASYNC),       // 0x0400
 //#endif
 };
-CInterpretConst TVS_EX_xxx(b2v_TVS_EX_xxx, ITCF_HEX4B);
+CInterpretConst TVS_EX_xxx(_b2v_TVS_EX_xxx, ITCF_HEX4B);
 
 
 //
@@ -190,7 +190,7 @@ CInterpretConst WS_xxx_tooltips_class32_childwnd(ITCF_HEX4B,
 // CommCtrl Notification code
 //
 
-const Enum2Val_st e2v_NM_xxx_Generic[] =
+const Enum2Val_st _e2v_NM_xxx_Generic[] =
 {
 	ITC_NAMEPAIR(NM_OUTOFMEMORY         ), // -1
 	ITC_NAMEPAIR(NM_CLICK               ), // -2
@@ -219,12 +219,12 @@ const Enum2Val_st e2v_NM_xxx_Generic[] =
 	ITC_NAMEPAIR(NM_CUSTOMTEXT          ), // -24
 //	ITC_NAMEPAIR(NM_TVSTATEIMAGECHANGING), // -24 (looks not generic)
 };
-CInterpretConst NM_xxx_Generic(e2v_NM_xxx_Generic, ITCF_SINT);
+CInterpretConst NM_xxx_Generic(_e2v_NM_xxx_Generic, ITCF_SINT);
 
 
 // + ListView NM_xxx
 
-const Enum2Val_st e2v_NM_xxx_ListView[]=
+const Enum2Val_st _e2v_NM_xxx_ListView[]=
 {
 	ITC_NAMEPAIR(LVN_ITEMCHANGING       ), // -100
 	ITC_NAMEPAIR(LVN_ITEMCHANGED        ), // -101
@@ -268,8 +268,8 @@ const Enum2Val_st e2v_NM_xxx_ListView[]=
 };
 CInterpretConst NM_xxx_ListView(
 	new Enum2Val_merge(
-		e2v_NM_xxx_Generic,  ARRAYSIZE(e2v_NM_xxx_Generic),
-		e2v_NM_xxx_ListView, ARRAYSIZE(e2v_NM_xxx_ListView),
+		_e2v_NM_xxx_Generic,  ARRAYSIZE(_e2v_NM_xxx_Generic),
+		_e2v_NM_xxx_ListView, ARRAYSIZE(_e2v_NM_xxx_ListView),
 		nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
 	, ITCF_SINT
 	); 

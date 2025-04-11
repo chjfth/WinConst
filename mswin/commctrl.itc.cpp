@@ -181,7 +181,7 @@ CInterpretConst WS_xxx_tooltips_class32_toplevel(ITCF_HEX4B,
 	_b2v_WS_xxx_toplevel, ARRAYSIZE(_b2v_WS_xxx_childwnd),
 	nullptr, 0);
 CInterpretConst WS_xxx_tooltips_class32_childwnd(ITCF_HEX4B,
-	b2v_WS_xxx_tooltips_class32, ARRAYSIZE(b2v_WS_xxx_tooltips_class32),
+	_b2v_WS_xxx_tooltips_class32, ARRAYSIZE(_b2v_WS_xxx_tooltips_class32),
 	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
 	nullptr, 0);
 

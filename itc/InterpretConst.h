@@ -1,5 +1,5 @@
-#ifndef __InterpretConst_h_
-#define __InterpretConst_h_
+#ifndef __InterpretConst_h_20250411_
+#define __InterpretConst_h_20250411_
 
 #include <tchar.h> // for TCHAR & _T
 #include <stdio.h>
@@ -373,6 +373,15 @@ public:
 	String Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt=DF_NameOnly) const;
 
 	bool SetValFmt(const TCHAR *fmt);
+
+	TCHAR *DumpText(TCHAR buf[], int nbufchars, int *pReqBufsize=nullptr);
+
+	template<size_t eles>
+	TCHAR *DumpText(TCHAR (&ar)[eles])
+	{
+		return DumpText(ar, eles, nullptr);
+	}
+
 
 private:
 	enum { 

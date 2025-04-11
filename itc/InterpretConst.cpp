@@ -432,5 +432,76 @@ String CInterpretConst::Interpret(
 	return itcs;
 }
 
+TCHAR * 
+CInterpretConst::DumpText(TCHAR userbuf[], int nbufchars, int *pReqBufsize)
+{
+	// Return userbuf.
+
+	TCHAR tbuf[WholeDisplayMaxChars+500] = _T("");
+
+	int i, j;
+	TCHAR szfmt[40] = _T("");
+
+	// First scan: pick out only SingleBit2Val
+
+	for(i=0; i<m_nGroups; i++)
+	{
+		ItcGroup_st &nowgroup = m_arGroups[i];
+
+		if(nowgroup.nEnum2Val==1)
+		{
+			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s%s %%s\r\n"), displayfmt());
+
+			_sntprintf_s(tbuf, _TRUNCATE, szfmt, tbuf,
+				nowgroup.arEnum2Val[0].ConstVal, nowgroup.arEnum2Val[0].EnumName);
+		}
+	}
+
+	// Second scan: check how many true-EnumGroups .
+	int true_enumgroups = 0;
+
+	for(i=0; i<m_nGroups; i++)
+	{
+		if(m_arGroups[i].nEnum2Val>1)
+			true_enumgroups++;
+	}
+
+	// Third scan: pick out those true-EnumGroups .
+
+	for(i=0; i<m_nGroups; i++)
+	{
+		ItcGroup_st &nowgroup = m_arGroups[i];
+
+		if(nowgroup.nEnum2Val==1)
+			continue;
+
+		if(true_enumgroups>1)
+		{
+			// and I'll prepend a mask-value text line.
+
+			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s\r\n[Mask: %s]\r\n"), displayfmt());
+
+			_sntprintf_s(tbuf, _TRUNCATE, szfmt, tbuf,
+				nowgroup.GroupMask);
+		}
+
+		for(j=0; j<nowgroup.nEnum2Val; j++)
+		{
+			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s%s %%s\r\n"), displayfmt());
+
+			_sntprintf_s(tbuf, _TRUNCATE, szfmt, tbuf,
+				nowgroup.arEnum2Val[j].ConstVal, nowgroup.arEnum2Val[j].EnumName);
+		}
+	}
+
+	int textlen = (int)_tcslen(tbuf);
+	if(pReqBufsize)
+		*pReqBufsize = textlen;
+
+	_sntprintf_s(userbuf, nbufchars, _TRUNCATE, _T("%s"), tbuf);
+	return userbuf;
+}
+
+
 
 } // namespace itc

@@ -51,15 +51,15 @@ const SingleBit2Val_st _b2v_WS_xxx_SysListView32[] =
 };
 
 
-const EnumGroup_st egs_WS_xxx_SysListView32[] = 
+const EnumGroup_st _egs_WS_xxx_SysListView32[] = 
 {
 	{ LVS_TYPEMASK,  _e2v_WS_xxx_SysListView32_TYPE,  ARRAYSIZE(_e2v_WS_xxx_SysListView32_TYPE)  },
 	{ LVS_ALIGNMASK, _e2v_WS_xxx_SysListView32_ALIGN, ARRAYSIZE(_e2v_WS_xxx_SysListView32_ALIGN) },
 };
 CInterpretConst WS_xxx_SysListView32(ITCF_HEX4B,
-	egs_WS_xxx_SysListView32, ARRAYSIZE(egs_WS_xxx_SysListView32),
+	_egs_WS_xxx_SysListView32, ARRAYSIZE(_egs_WS_xxx_SysListView32),
 	_b2v_WS_xxx_SysListView32, ARRAYSIZE(_b2v_WS_xxx_SysListView32), 
-	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
+	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
 
@@ -135,7 +135,7 @@ const SingleBit2Val_st _b2v_WS_xxx_SysTreeView32[] =
 };
 CInterpretConst WS_xxx_SysTreeView32(ITCF_HEX4B,
 	_b2v_WS_xxx_SysTreeView32, ARRAYSIZE(_b2v_WS_xxx_SysTreeView32),
-	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
+	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
 
@@ -163,7 +163,7 @@ CInterpretConst TVS_EX_xxx(_b2v_TVS_EX_xxx, ITCF_HEX4B);
 // Window style for "tooltips_class32"
 //
 
-const SingleBit2Val_st b2v_WS_xxx_tooltips_class32[] =
+const SingleBit2Val_st _b2v_WS_xxx_tooltips_class32[] =
 {
 	ITC_NAMEPAIR(TTS_ALWAYSTIP),           // 0x01
 	ITC_NAMEPAIR(TTS_NOPREFIX),            // 0x02
@@ -177,12 +177,12 @@ const SingleBit2Val_st b2v_WS_xxx_tooltips_class32[] =
 //#endif
 };
 CInterpretConst WS_xxx_tooltips_class32_toplevel(ITCF_HEX4B,
-	b2v_WS_xxx_tooltips_class32, ARRAYSIZE(b2v_WS_xxx_tooltips_class32),
-	b2v_WS_xxx_toplevel, ARRAYSIZE(b2v_WS_xxx_childwnd),
+	_b2v_WS_xxx_tooltips_class32, ARRAYSIZE(_b2v_WS_xxx_tooltips_class32),
+	_b2v_WS_xxx_toplevel, ARRAYSIZE(_b2v_WS_xxx_childwnd),
 	nullptr, 0);
 CInterpretConst WS_xxx_tooltips_class32_childwnd(ITCF_HEX4B,
 	b2v_WS_xxx_tooltips_class32, ARRAYSIZE(b2v_WS_xxx_tooltips_class32),
-	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd),
+	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
 	nullptr, 0);
 
 

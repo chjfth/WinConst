@@ -1,4 +1,3 @@
-#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 #include "winnt.itc.h"
@@ -10,7 +9,7 @@ namespace itc {
 // WM_xxx : Windows GUI messages , VS2010
 ///////////////////////////////////////////////////////////////////////////
 
-const Enum2Val_st E2v_WM_xxx[] =
+const Enum2Val_st _e2v_WM_xxx[] =
 {
 	ITC_NAMEPAIR(WM_NULL),
 
@@ -327,7 +326,7 @@ const Enum2Val_st E2v_WM_xxx[] =
 	ITC_NAMEPAIR(WM_PENWINLAST), // 0x038F
 
 };
-CInterpretConst WM_xxx(E2v_WM_xxx, ITCF_HEX1B);
+CInterpretConst WM_xxx(_e2v_WM_xxx, ITCF_HEX1B);
 
 ///////////////////////////////////////////////////////////////////////////
 // VK_xxx : Virtual Keycode , VS2010
@@ -371,7 +370,7 @@ CInterpretConst WM_xxx(E2v_WM_xxx, ITCF_HEX1B);
 #define VK_Y 'Y'
 #define VK_Z 'Z'
 
-const Enum2Val_st E2v_VK_xxx[] =
+const Enum2Val_st _e2v_VK_xxx[] =
 {
 /*
  * Virtual Keys, Standard Set
@@ -666,7 +665,7 @@ const Enum2Val_st E2v_VK_xxx[] =
 	ITC_NAMEPAIR(VK_PA1), // 0xFD
 	ITC_NAMEPAIR(VK_OEM_CLEAR), // 0xFE
 };
-CInterpretConst VK_xxx(E2v_VK_xxx, ITCF_HEX1B);
+CInterpretConst VK_xxx(_e2v_VK_xxx, ITCF_HEX1B);
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -678,7 +677,7 @@ CInterpretConst VK_xxx(E2v_VK_xxx, ITCF_HEX1B);
 #define LLKHF_LOWER_IL_INJECTED 0x2 // since Win8+
 #endif
 
-const SingleBit2Val_st b2v_LLKHF_xxx[] =
+const SingleBit2Val_st _b2v_LLKHF_xxx[] =
 {
 	ITC_NAMEPAIR(LLKHF_EXTENDED), // (KF_EXTENDED >> 8) // bit 0, 0x01
 	ITC_NAMEPAIR(LLKHF_LOWER_IL_INJECTED),              // bit 1, 0x02
@@ -686,19 +685,19 @@ const SingleBit2Val_st b2v_LLKHF_xxx[] =
 	ITC_NAMEPAIR(LLKHF_ALTDOWN),  // (KF_ALTDOWN >> 8)  // bit 5, 0x20
 	ITC_NAMEPAIR(LLKHF_UP),       // (KF_UP >> 8)       // bit 7, 0x80 true=key-up
 };
-CInterpretConst LLKHF_xxx(b2v_LLKHF_xxx, ITCF_HEX1B);
+CInterpretConst LLKHF_xxx(_b2v_LLKHF_xxx, ITCF_HEX1B);
 
-CInterpretConst WS_xxx_toplevel(b2v_WS_xxx_toplevel, ITCF_HEX4B);
+CInterpretConst WS_xxx_toplevel(_b2v_WS_xxx_toplevel, ITCF_HEX4B);
 
-CInterpretConst WS_xxx_childwnd(b2v_WS_xxx_childwnd, ITCF_HEX4B);
+CInterpretConst WS_xxx_childwnd(_b2v_WS_xxx_childwnd, ITCF_HEX4B);
 
-CInterpretConst WS_EX_xxx(b2v_WS_EX_xxx, ITCF_HEX4B);
+CInterpretConst WS_EX_xxx(_b2v_WS_EX_xxx, ITCF_HEX4B);
 
 //
 // Window style for "Static"
 //
 
-const Enum2Val_st e2v_WS_xxx_Static_TYPE[] =
+const Enum2Val_st _e2v_WS_xxx_Static_TYPE[] =
 {
 //	#define SS_TYPEMASK         0x0000001FL
 
@@ -724,7 +723,7 @@ const Enum2Val_st e2v_WS_xxx_Static_TYPE[] =
 };
 
 #define SS_NO_ELLIPSIS 0 // Chj
-const Enum2Val_st e2v_WS_xxx_Static_ELLIPSIS[] =
+const Enum2Val_st _e2v_WS_xxx_Static_ELLIPSIS[] =
 {
 //	#define SS_ELLIPSISMASK     0x0000C000L
 
@@ -734,7 +733,7 @@ const Enum2Val_st e2v_WS_xxx_Static_ELLIPSIS[] =
 	ITC_NAMEPAIR(SS_WORDELLIPSIS), // 0x0000C000L
 };
 
-const SingleBit2Val_st b2v_WS_xxx_Static[] = 
+const SingleBit2Val_st _b2v_WS_xxx_Static[] = 
 {
 	ITC_NAMEPAIR(SS_REALSIZECONTROL), // 0x00000040L
 	ITC_NAMEPAIR(SS_NOPREFIX), // 0x00000080L Don't do "&" character translation 
@@ -746,19 +745,19 @@ const SingleBit2Val_st b2v_WS_xxx_Static[] =
 	ITC_NAMEPAIR(SS_EDITCONTROL), // 0x00002000L
 };
 
-const EnumGroup_st egs_WS_xxx_Static[] =
+const EnumGroup_st _egs_WS_xxx_Static[] =
 {
-	{ SS_TYPEMASK,     e2v_WS_xxx_Static_TYPE, ARRAYSIZE(e2v_WS_xxx_Static_TYPE) },
-	{ SS_ELLIPSISMASK, e2v_WS_xxx_Static_ELLIPSIS, ARRAYSIZE(e2v_WS_xxx_Static_ELLIPSIS) },
+	{ SS_TYPEMASK,     _e2v_WS_xxx_Static_TYPE, ARRAYSIZE(_e2v_WS_xxx_Static_TYPE) },
+	{ SS_ELLIPSISMASK, _e2v_WS_xxx_Static_ELLIPSIS, ARRAYSIZE(_e2v_WS_xxx_Static_ELLIPSIS) },
 };
 CInterpretConst WS_xxx_Static(ITCF_HEX4B, 
-	egs_WS_xxx_Static, ARRAYSIZE(egs_WS_xxx_Static),
-	b2v_WS_xxx_Static, ARRAYSIZE(b2v_WS_xxx_Static),     // 8 bits
-	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
+	_egs_WS_xxx_Static, ARRAYSIZE(_egs_WS_xxx_Static),
+	_b2v_WS_xxx_Static, ARRAYSIZE(_b2v_WS_xxx_Static),     // 8 bits
+	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
 // -- Chj memo:
 // For a "static"-class(or "button"-class etc) window, high 16-bits of it window-style
-// can be interpret as b2v_WS_xxx_toplevel or b2v_WS_xxx_childwnd, who have two-bits
+// can be interpret as _b2v_WS_xxx_toplevel or _b2v_WS_xxx_childwnd, who have two-bits
 // of different meaning(e.g. WS_MINIMIZEBOX vs WS_GROUP). For strictness, we should have
 // defined WS_xxx_static_toplevel and WS_xxx_static_childwnd. But, since a "static"/"button"
 // is rarely created as a toplevel window, so WS_xxx_static_toplevel is omitted here.
@@ -769,13 +768,13 @@ CInterpretConst WS_xxx_Static(ITCF_HEX4B,
 // One rare case is: Win7 Desktop [Start] button is created as toplevel.
 //
 // Another exception is for <tooltips_class32>, this wndclass is almost created as toplevel,
-// so I define WS_xxx_tooltips_class32_toplevel in commctrl.itc.cpp, using b2v_WS_xxx_toplevel.
+// so I define WS_xxx_tooltips_class32_toplevel in commctrl.itc.cpp, using _b2v_WS_xxx_toplevel.
 
 //
 // Window style for "Edit"
 //
 
-const SingleBit2Val_st b2v_WS_xxx_Edit[] =
+const SingleBit2Val_st _b2v_WS_xxx_Edit[] =
 {
 //	ITC_NAMEPAIR(ES_LEFT), // 0x0000L
 	ITC_NAMEPAIR(ES_CENTER), // 0x0001L
@@ -793,15 +792,15 @@ const SingleBit2Val_st b2v_WS_xxx_Edit[] =
 	ITC_NAMEPAIR(ES_NUMBER), // 0x2000L
 };
 CInterpretConst WS_xxx_Edit(ITCF_HEX4B,
-	b2v_WS_xxx_Edit, ARRAYSIZE(b2v_WS_xxx_Edit),
-	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
+	_b2v_WS_xxx_Edit, ARRAYSIZE(_b2v_WS_xxx_Edit),
+	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
 
 //
 // Window style for "Button"
 //
 
-const Enum2Val_st e2v_WS_xxx_Button_TYPE[] = 
+const Enum2Val_st _e2v_WS_xxx_Button_TYPE[] = 
 {
 //	ITC_NAMEPAIR(BS_TYPEMASK),         // 0x0000000FL (mask)
 
@@ -839,21 +838,21 @@ const SingleBit2Val_st b2v_WS_xxx_Button[] =
 //	ITC_NAMEPAIR(BS_RIGHTBUTTON),      // BS_LEFTTEXT
 };
 
-const EnumGroup_st egs_WS_xxx_Button[] =
+const EnumGroup_st _egs_WS_xxx_Button[] =
 {
-	{ BS_TYPEMASK, e2v_WS_xxx_Button_TYPE, ARRAYSIZE(e2v_WS_xxx_Button_TYPE) },
+	{ BS_TYPEMASK, _e2v_WS_xxx_Button_TYPE, ARRAYSIZE(_e2v_WS_xxx_Button_TYPE) },
 };
 CInterpretConst WS_xxx_Button(ITCF_HEX4B,
-	egs_WS_xxx_Button, ARRAYSIZE(egs_WS_xxx_Button),
+	_egs_WS_xxx_Button, ARRAYSIZE(_egs_WS_xxx_Button),
 	b2v_WS_xxx_Button, ARRAYSIZE(b2v_WS_xxx_Button),     // 10 bits
-	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
+	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
 
 //
 // Window style for "ListBox"
 //
 
-const SingleBit2Val_st b2v_WS_xxx_ListBox[] = 
+const SingleBit2Val_st _b2v_WS_xxx_ListBox[] = 
 {
 	ITC_NAMEPAIR(LBS_NOTIFY),            // 0x0001L
 	ITC_NAMEPAIR(LBS_SORT),              // 0x0002L
@@ -873,15 +872,15 @@ const SingleBit2Val_st b2v_WS_xxx_ListBox[] =
 	ITC_NAMEPAIR(LBS_COMBOBOX),          // 0x8000L
 };
 CInterpretConst WS_xxx_ListBox(ITCF_HEX4B,
-	b2v_WS_xxx_ListBox,  ARRAYSIZE(b2v_WS_xxx_ListBox),  // 16 bits
-	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
+	_b2v_WS_xxx_ListBox,  ARRAYSIZE(_b2v_WS_xxx_ListBox),  // 16 bits
+	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
 
 //
 // Window style for "ComboBox"
 //
 
-const SingleBit2Val_st b2v_WS_xxx_ComboBox[] =
+const SingleBit2Val_st _b2v_WS_xxx_ComboBox[] =
 {
 	ITC_NAMEPAIR(CBS_SIMPLE),            // 0x0001L
 	ITC_NAMEPAIR(CBS_DROPDOWN),          // 0x0002L
@@ -898,15 +897,15 @@ const SingleBit2Val_st b2v_WS_xxx_ComboBox[] =
 	ITC_NAMEPAIR(CBS_LOWERCASE),         // 0x4000L
 };
 CInterpretConst WS_xxx_ComboBox(ITCF_HEX4B, 
-	b2v_WS_xxx_ComboBox, ARRAYSIZE(b2v_WS_xxx_ComboBox), // 12 bits
-	b2v_WS_xxx_childwnd, ARRAYSIZE(b2v_WS_xxx_childwnd), // 17 bits
+	_b2v_WS_xxx_ComboBox, ARRAYSIZE(_b2v_WS_xxx_ComboBox), // 12 bits
+	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
 
 //
 // WM_COMMAND.codeNotify for ComboBox
 //
 
-const Enum2Val_st e2v_CBN_xxx_ComboBox[]=
+const Enum2Val_st _e2v_CBN_xxx_ComboBox[]=
 {
 	ITC_NAMEPAIR(CBN_ERRSPACE      ), //  (-1)
 	ITC_NAMEPAIR(CBN_SELCHANGE     ), //  1
@@ -920,7 +919,7 @@ const Enum2Val_st e2v_CBN_xxx_ComboBox[]=
 	ITC_NAMEPAIR(CBN_SELENDOK      ), //  9
 	ITC_NAMEPAIR(CBN_SELENDCANCEL  ), //  10
 };
-CInterpretConst CBN_xxx_ComboBox(e2v_CBN_xxx_ComboBox, ITCF_SINT);
+CInterpretConst CBN_xxx_ComboBox(_e2v_CBN_xxx_ComboBox, ITCF_SINT);
 
 
 

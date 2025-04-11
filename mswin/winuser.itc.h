@@ -10,13 +10,13 @@ namespace itc {
 
 #define WS_HIWORD_MASK 0xFFFF0000 // those generic bits that all window classes share
 
-// Chj memo: Place b2v_WS_xxx_toplevel definition in .itc.h instead of in .itc.cpp
+// Chj memo: Place _b2v_WS_xxx_toplevel definition in .itc.h instead of in .itc.cpp
 // bcz commctrl.itc.cpp needs it.
 //
 // [2025-03-04] Alternative method: Keep the array in .itc.h, but `extern` it and 
 // `extern` an N_xxx to tell the array size. Example: _b2v_StandardRight[] and N_b2v_StandardRight.
 
-const SingleBit2Val_st b2v_WS_xxx_toplevel[] =
+const SingleBit2Val_st _b2v_WS_xxx_toplevel[] =
 {
 //	ITC_NAMEPAIR(WS_OVERLAPPED),  // 0x00000000L (reject 0 value, invalid bitfield)
 	ITC_NAMEPAIR(WS_POPUP),       // 0x80000000L
@@ -44,7 +44,7 @@ const SingleBit2Val_st b2v_WS_xxx_toplevel[] =
 // window style for child window : WS_xxx
 ///////////////////////////////////////////////////////////////////////////
 
-const SingleBit2Val_st b2v_WS_xxx_childwnd[] =
+const SingleBit2Val_st _b2v_WS_xxx_childwnd[] =
 {
 //	ITC_NAMEPAIR(WS_OVERLAPPED),   // 0x00000000L (reject 0 value, invalid bitfield)
 	ITC_NAMEPAIR(WS_POPUP),        // 0x80000000L
@@ -72,7 +72,7 @@ const SingleBit2Val_st b2v_WS_xxx_childwnd[] =
 // Extended-window styles: WS_EX_xxx
 ///////////////////////////////////////////////////////////////////////////
 
-const SingleBit2Val_st b2v_WS_EX_xxx[] = 
+const SingleBit2Val_st _b2v_WS_EX_xxx[] = 
 {
 	ITC_NAMEPAIR(WS_EX_DLGMODALFRAME),  // 0x00000001L
 	ITC_NAMEPAIR(WS_EX_NOPARENTNOTIFY), // 0x00000004L

@@ -1,4 +1,3 @@
-#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 #include "winnt.itc.h"
@@ -28,6 +27,7 @@ const SingleBit2Val_st _b2v_GenericRight[] =
 	ITC_NAMEPAIR(GENERIC_EXECUTE), // (0x20000000L)
 	ITC_NAMEPAIR(GENERIC_ALL),     // (0x10000000L)	
 };
+CInterpretConst GenericRight(_b2v_GenericRight, ITCF_HEX4B);
 const int N_b2v_GenericRight = ARRAYSIZE(_b2v_GenericRight);
 
 const SingleBit2Val_st _b2v_StandardRight[] =
@@ -38,6 +38,7 @@ const SingleBit2Val_st _b2v_StandardRight[] =
 	ITC_NAMEPAIR(WRITE_OWNER),  //   (0x00080000L)
 	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
 };
+CInterpretConst StandardRight(_b2v_StandardRight, ITCF_HEX4B);
 const int N_b2v_StandardRight = ARRAYSIZE(_b2v_StandardRight);
 
 const SingleBit2Val_st _b2v_GenericAndStandardRight[] =
@@ -53,6 +54,7 @@ const SingleBit2Val_st _b2v_GenericAndStandardRight[] =
 	ITC_NAMEPAIR(WRITE_OWNER),  //   (0x00080000L)
 	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
 };
+CInterpretConst GenericAndStandardRight(_b2v_GenericAndStandardRight, ITCF_HEX4B);
 const int N_b2v_GenericAndStandardRight = ARRAYSIZE(_b2v_GenericAndStandardRight);
 
 
@@ -240,19 +242,11 @@ const SingleBit2Val_st _b2v_dwShareMode[] =
 CInterpretConst dwShareMode(_b2v_dwShareMode, ITCF_HEX1B);
 
 
-const Enum2Val_st _e2v_dwCreationDisposition[] =
-{
-	ITC_NAMEPAIR(CREATE_NEW), //          1
-	ITC_NAMEPAIR(CREATE_ALWAYS), //       2
-	ITC_NAMEPAIR(OPEN_EXISTING), //       3
-	ITC_NAMEPAIR(OPEN_ALWAYS), //         4
-	ITC_NAMEPAIR(TRUNCATE_EXISTING), //   5
-};
-CInterpretConst dwCreationDisposition(_e2v_dwCreationDisposition, ITCF_UINT);
 
-
-const SingleBit2Val_st _b2v_dwFlagsAndAttributes[] =
+const SingleBit2Val_st _b2v_FILE_ATTRIBUTE_xxx[] = 
 {
+	// used as GetFileAttributes()'s return, and CreateFile()'s dwFlagsAndAttributes.
+
 	ITC_NAMEPAIR(FILE_ATTRIBUTE_READONLY), //             0x00000001  
 	ITC_NAMEPAIR(FILE_ATTRIBUTE_HIDDEN), //               0x00000002  
 	ITC_NAMEPAIR(FILE_ATTRIBUTE_SYSTEM), //               0x00000004  
@@ -268,22 +262,9 @@ const SingleBit2Val_st _b2v_dwFlagsAndAttributes[] =
 	ITC_NAMEPAIR(FILE_ATTRIBUTE_NOT_CONTENT_INDEXED), //  0x00002000  
 	ITC_NAMEPAIR(FILE_ATTRIBUTE_ENCRYPTED), //            0x00004000  
 	ITC_NAMEPAIR(FILE_ATTRIBUTE_VIRTUAL), //              0x00010000  
-
-	// these are from winbase.h :
-	ITC_NAMEPAIR(FILE_FLAG_WRITE_THROUGH), //         0x80000000
-	ITC_NAMEPAIR(FILE_FLAG_OVERLAPPED), //            0x40000000
-	ITC_NAMEPAIR(FILE_FLAG_NO_BUFFERING), //          0x20000000
-	ITC_NAMEPAIR(FILE_FLAG_RANDOM_ACCESS), //         0x10000000
-	ITC_NAMEPAIR(FILE_FLAG_SEQUENTIAL_SCAN), //       0x08000000
-	ITC_NAMEPAIR(FILE_FLAG_DELETE_ON_CLOSE), //       0x04000000
-	ITC_NAMEPAIR(FILE_FLAG_BACKUP_SEMANTICS), //      0x02000000
-	ITC_NAMEPAIR(FILE_FLAG_POSIX_SEMANTICS), //       0x01000000
-	ITC_NAMEPAIR(FILE_FLAG_OPEN_REPARSE_POINT), //    0x00200000
-	ITC_NAMEPAIR(FILE_FLAG_OPEN_NO_RECALL), //        0x00100000
-	ITC_NAMEPAIR(FILE_FLAG_FIRST_PIPE_INSTANCE), //   0x00080000
 };
-CInterpretConst dwFlagsAndAttributes(_b2v_dwFlagsAndAttributes, ITCF_HEX4B);
-
+CInterpretConst FILE_ATTRIBUTE_xxx(_b2v_FILE_ATTRIBUTE_xxx, ITCF_HEX2B);
+const int N_b2v_FILE_ATTRIBUTE_xxx = ARRAYSIZE(_b2v_FILE_ATTRIBUTE_xxx);
 
 const Enum2Val_st _e2v_SECURITY_IMPERSONATION_LEVEL[] =
 {

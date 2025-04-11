@@ -8,13 +8,21 @@ namespace itc {
 extern CInterpretConst SidTypeXXX;
 
 extern const SingleBit2Val_st _b2v_GenericRight[];
+extern CInterpretConst GenericRight;
 extern const int N_b2v_GenericRight;
 
 extern const SingleBit2Val_st _b2v_StandardRight[];
+extern CInterpretConst StandardRight;
 extern const int N_b2v_StandardRight; // needed by WinSvc.itc.cpp etc.
 
 extern const SingleBit2Val_st _b2v_GenericAndStandardRight[];
+extern CInterpretConst GenericAndStandardRight;
 extern const int N_b2v_GenericAndStandardRight;
+
+extern const SingleBit2Val_st _b2v_FILE_ATTRIBUTE_xxx[];
+extern CInterpretConst FILE_ATTRIBUTE_xxx;
+extern const int N_b2v_FILE_ATTRIBUTE_xxx; // used by WinBase dwFlagsAndAttributes
+
 
 extern CInterpretConst FileRights;
 extern CInterpretConst DirectoryRights;
@@ -35,8 +43,6 @@ extern CInterpretConst SE_xxx_sdControl;
 extern CInterpretConst SYSTEM_MANDATORY_LABEL_NO_xxx;
 
 extern CInterpretConst dwShareMode;
-extern CInterpretConst dwCreationDisposition;
-extern CInterpretConst dwFlagsAndAttributes;
 
 extern CInterpretConst SecurityXXX_ImpersonationLevel;
 extern CInterpretConst itc_SECURITY_IMPERSONATION_LEVEL;

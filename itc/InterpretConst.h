@@ -240,6 +240,19 @@ public:
 		_ctor(ar, eles, valfmt);
 	}
 
+	template<size_t eles1, size_t eles2>
+	CInterpretConst(
+		const Enum2Val_st (&ar1)[eles1], 
+		const Enum2Val_st (&ar2)[eles2],
+		const TCHAR *valfmt=nullptr)
+	{
+		// to-test
+		Enum2Val_merge *ar_e2vmerge = new Enum2Val_merge(
+			ar1, eles1,  ar2, eles2,
+			nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
+		_ctor(ar_e2vmerge->get_array(), ar_e2vmerge->count(), valfmt);
+	}
+
 	CInterpretConst(const Enum2Val_merge *ar_e2vmerge, const TCHAR *valfmt=nullptr)
 	{
 		_ctor(ar_e2vmerge->get_array(), ar_e2vmerge->count(), valfmt);

@@ -53,6 +53,7 @@ extern CInterpretConst SE_GROUP_xxx;
 
 extern CInterpretConst itc_TOKEN_TYPE;
 
+extern CInterpretConst SECURITY_MANDATORY_xxx;
 
 
 } // namespace itc

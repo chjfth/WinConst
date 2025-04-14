@@ -2195,6 +2195,7 @@ const Enum2Val_st _e2v_WinError[] =
 	ITC_NAMEPAIR(ERROR_HASH_NOT_SUPPORTED), // 15300L
 	ITC_NAMEPAIR(ERROR_HASH_NOT_PRESENT), // 15301L
 };
+const int N_e2v_WinError = ARRAYSIZE(_e2v_WinError);
 CInterpretConst WinError(_e2v_WinError, ITCF_SINT);
 
 

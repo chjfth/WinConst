@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <NTSecAPI.h>
 
-#include "AccCtrl.itc.h"
+#include "NTSecAPI.itc.h"
 
 namespace itc {
 

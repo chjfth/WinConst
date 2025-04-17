@@ -205,6 +205,9 @@ CInterpretConst xxx_ACE_flags(_b2v_ACE_flags, ITCF_HEX1B); // oldname
 CInterpretConst AceFlags(_b2v_ACE_flags, ITCF_HEX1B);
 
 
+#define SE_DACL_UNTRUSTED                (0x0040)
+#define SE_SERVER_SECURITY               (0x0080) // these two from WDK ntifs.h
+//
 const SingleBit2Val_st _b2v_SECURITY_DESCRIPTOR_control[] =
 {
 	ITC_NAMEPAIR(SE_OWNER_DEFAULTED      ), // 0x0001
@@ -213,6 +216,8 @@ const SingleBit2Val_st _b2v_SECURITY_DESCRIPTOR_control[] =
 	ITC_NAMEPAIR(SE_DACL_DEFAULTED       ), // 0x0008
 	ITC_NAMEPAIR(SE_SACL_PRESENT         ), // 0x0010
 	ITC_NAMEPAIR(SE_SACL_DEFAULTED       ), // 0x0020
+	ITC_NAMEPAIR(SE_DACL_UNTRUSTED),
+	ITC_NAMEPAIR(SE_SERVER_SECURITY),
 	ITC_NAMEPAIR(SE_DACL_AUTO_INHERIT_REQ), // 0x0100
 	ITC_NAMEPAIR(SE_SACL_AUTO_INHERIT_REQ), // 0x0200
 	ITC_NAMEPAIR(SE_DACL_AUTO_INHERITED  ), // 0x0400

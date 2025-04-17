@@ -369,7 +369,7 @@ public:
 
 	////
 
-	const TCHAR *Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt,
+	const TCHAR *Interpret_i1(CONSTVAL_t val, DisplayFormat_et dispfmt,
 		TCHAR *buf, int bufsize) const;
 
 	String Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt=DF_NameOnly) const;

@@ -148,7 +148,7 @@ void CInterpretConst::_ctor(const SingleBit2Val_st *arBitfield2Val, int nBitfiel
 	int i;
 	for(i=0; i<nBitfield2Val; i++)
 	{
-		assert(arBitfield2Val[i].ConstVal != 0); // a common input mistake
+//		assert(arBitfield2Val[i].ConstVal != 0); // move this assert into Interpret_i1()
 
 		m_arGroups[i].GroupMask = arBitfield2Val[i].ConstVal;
 		m_arGroups[i].arEnum2Val = reinterpret_cast<const Enum2Val_st*>(arBitfield2Val+i);
@@ -343,7 +343,7 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 	return obuf;
 }
 
-const TCHAR *CInterpretConst::Interpret(
+const TCHAR *CInterpretConst::Interpret_i1(
 	CONSTVAL_t input_val, DisplayFormat_et dispfmt,
 	TCHAR *buf, int bufsize) const
 {
@@ -366,6 +366,13 @@ const TCHAR *CInterpretConst::Interpret(
 		CONSTVAL_t sec_val = input_val & nowgroup.GroupMask;
 
 		auto c2v = nowgroup.arEnum2Val;
+
+		if(nowgroup.nEnum2Val==1)
+		{
+			// [2025-04-17] User must not pass in 0 value when defining a SingleBit2Val_st[]
+			assert(c2v[0].ConstVal != 0); // TODO: need improvement
+		}
+
 		int i;
 		for(i=0; i<nowgroup.nEnum2Val; i++)
 		{
@@ -431,7 +438,7 @@ String CInterpretConst::Interpret(
 	CONSTVAL_t input_val, DisplayFormat_et dispfmt) const
 {
 	String itcs(WholeDisplayMaxChars);
-	Interpret(input_val, dispfmt, itcs.get(), itcs.bufsize());
+	Interpret_i1(input_val, dispfmt, itcs.get(), itcs.bufsize());
 	return itcs;
 }
 

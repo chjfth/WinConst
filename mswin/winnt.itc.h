@@ -55,5 +55,7 @@ extern CInterpretConst itc_TOKEN_TYPE;
 
 extern CInterpretConst SECURITY_MANDATORY_xxx;
 
+extern CInterpretConst TOKEN_MANDATORY_POLICY_xxx;
+
 
 } // namespace itc

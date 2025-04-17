@@ -1,5 +1,5 @@
-#ifndef __InterpretConst_h_20250411_
-#define __InterpretConst_h_20250411_
+#ifndef __InterpretConst_h_20250417_
+#define __InterpretConst_h_20250417_
 
 #include <tchar.h> // for TCHAR & _T
 #include <stdio.h>
@@ -28,6 +28,8 @@ struct EnumGroup_st
 	CONSTVAL_t GroupMask;
 	const Enum2Val_st *arEnum2Val;
 	int nEnum2Val; // element count of arEnum2Val[]
+	
+	// const TCHAR *zvName; // const-name for zero-value, points to arEnum2Val[x].BitfieldName . (unimplemented yet)
 };
 
 typedef EnumGroup_st ItcGroup_st;

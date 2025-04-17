@@ -358,15 +358,18 @@ const TCHAR *CInterpretConst::Interpret(
 	CONSTVAL_t remain_val = input_val;
 
 	int sec = 0;
-	for(sec=0; sec<m_nGroups; sec++)
+	for(sec=0; sec<m_nGroups; sec++) // iterate each section(group)
 	{
-		CONSTVAL_t secval = input_val & m_arGroups[sec].GroupMask;
+		// Process each group.
+		const ItcGroup_st &nowgroup = m_arGroups[sec];
 
-		auto c2v = m_arGroups[sec].arEnum2Val;
+		CONSTVAL_t sec_val = input_val & nowgroup.GroupMask;
+
+		auto c2v = nowgroup.arEnum2Val;
 		int i;
-		for(i=0; i<m_arGroups[sec].nEnum2Val; i++)
+		for(i=0; i<nowgroup.nEnum2Val; i++)
 		{
-			if(c2v[i].ConstVal==secval)
+			if(c2v[i].ConstVal==sec_val)
 			{
 				if(c2v[i].EnumName)
 				{
@@ -382,24 +385,24 @@ const TCHAR *CInterpretConst::Interpret(
 			}
 		}
 
-		if(i==m_arGroups[sec].nEnum2Val)
+		if(i==nowgroup.nEnum2Val)
 		{
 			// No designated name exists, we consider it an unrecognized value from
 			// ITC interpreter's knowledge, so should present its HEXRR instead of mute on it.
 
-			if( secval!=0 || i>1 )
+			if( sec_val!=0 || i>1 )
 			{
 				TCHAR szfmt_concat[20] = {};
 				_sntprintf_s(szfmt_concat, _TRUNCATE, _T("%%s%s"), displayfmt());
 				
-				_sntprintf_s(buf, bufsize, _TRUNCATE, szfmt_concat, buf, secval);
+				_sntprintf_s(buf, bufsize, _TRUNCATE, szfmt_concat, buf, sec_val);
 			}
 			else
 			{
 				// It's a single-bit group and secval==0, 
 				// this 0-value is of course not considered unrecognized, so mute it here. 
 
-				assert(secval==0);
+				assert(sec_val==0);
 			}
 		}
 

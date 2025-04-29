@@ -6,6 +6,7 @@ namespace itc {
 
 
 extern CInterpretConst SidTypeXXX;
+extern const CInterpretConst itc_SID_NAME_USE;
 
 extern const SingleBit2Val_st _b2v_GenericRight[];
 extern CInterpretConst GenericRight;

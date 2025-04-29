@@ -1,9 +1,17 @@
-#ifndef __InterpretConst_h_20250417_
-#define __InterpretConst_h_20250417_
+#ifndef __InterpretConst_h_20250429_
+#define __InterpretConst_h_20250429_
 
 #include <tchar.h> // for TCHAR & _T
 #include <stdio.h>
 #include <stdarg.h>
+
+
+
+#ifdef InterpretConst_DEBUG
+#undef  vaDBG      // revoke empty effect
+#else
+#define vaDBG(...) // make vaDBG empty, no debugging message
+#endif
 
 
 namespace itc {
@@ -139,37 +147,52 @@ enum DisplayFormat_et
 	DF_NVAuto = 8 // If enum-trait, value(name); if bitfield-trait, name(valud) 
 };
 
+
 class String // this is inside itc namespace
 {
 public:
 	String(int need_chars)
 	{
-#ifdef ITC_DEBUG_PRINT
-		_tprintf(_T("[%p]CItcString() ctor: %d\n"), this, need_chars);
-#endif // ITC_DEBUG_PRINT
+//		vaDBG(_T("[@%p]itc::String() ctor: %d chars"), this, need_chars);
 
 		m_chars = need_chars;
 		m_str = new TCHAR[m_chars];
 	}
 
-	String(const String &itc)
+	String(const String& itcs)
 	{
-#ifdef ITC_DEBUG_PRINT
-		_tprintf(_T("[%p]CItcString() ctor= %s\n"), this, itc.m_str);
-#endif // ITC_DEBUG_PRINT
+//		vaDBG(_T("[@%p]itc::String() copy-ctor= %s"), this, itcs.m_str);
 
-		m_chars = itc.m_chars;
+		m_chars = itcs.m_chars;
 		m_str = new TCHAR[m_chars];
-		_sntprintf_s(m_str, m_chars, _TRUNCATE, _T("%s"), itc.m_str);
+		_sntprintf_s(m_str, m_chars, _TRUNCATE, _T("%s"), itcs.m_str);
+	}
+
+	String(String&& old) // move-ctor
+	{
+//		vaDBG(_T("[@%p]itc::String() move-ctor= %s"), this, old.m_str);
+
+		_steal_from_old(old);
+	}
+
+	String& operator=(String&& old) // move-assign
+	{
+		vaDBG(_T("[@%p]itc::String() move-assign= %s"), this, old.m_str);
+
+		if(this != &old)
+		{
+			delete this->m_str;
+			_steal_from_old(old);
+		}
+		return *this;
 	}
 
 	~String()
 	{
-#ifdef ITC_DEBUG_PRINT
-		_tprintf(_T("[%p]CItcString() dtor: %s\n"), this, m_str);
-#endif // ITC_DEBUG_PRINT
+//		vaDBG(_T("[%p]itc::String() dtor: %s"), this, m_str);
+
 		delete m_str;
-		m_str = 0;
+		m_str = nullptr;
 		m_chars = 0;
 	}
 
@@ -185,7 +208,18 @@ public:
 
 	int bufsize(){ return m_chars; }
 
-	operator TCHAR *(){ return m_str; }
+	operator TCHAR*(){ return m_str; }
+	operator const TCHAR*() const { return m_str; }
+
+private:
+	void _steal_from_old(String& old)
+	{
+		this->m_str = old.m_str;
+		this->m_chars = old.m_chars;
+
+		old.m_str = nullptr;
+		old.m_chars = 0;
+	}
 
 private:
 	TCHAR *m_str;
@@ -465,27 +499,6 @@ private:
 #define ITCF_HEX2B _T("0x%04X")
 #define ITCF_HEX4B _T("0x%08X")
 
-
-/*
-class CEngine
-{
-public:
-	CEngine();
-	virtual ~CEngine();
-
-	void InitZerones(int nZerones, const ZeroneSeg_st *arZerones);
-
-	void InitEnums(int nEnumSegs, const EnumSeg_st *arEnumSegs);
-	
-private:
-
-	int m_nzerones;
-	ZeroneSeg_st* mar_zerones;
-
-	int m_nenum_segs;
-	EnumSeg_st* mar_enum_segs;
-};
-*/
 
 	
 } // namespace itc

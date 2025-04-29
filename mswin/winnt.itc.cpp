@@ -19,6 +19,7 @@ const Enum2Val_st e2v_SidType[] =
 	ITC_NAMEPAIR(SidTypeLabel),    // 10
 };
 CInterpretConst SidTypeXXX(e2v_SidType, ARRAYSIZE(e2v_SidType), ITCF_SINT);
+const CInterpretConst itc_SID_NAME_USE = SidTypeXXX;
 
 
 const SingleBit2Val_st _b2v_GenericRight[] =

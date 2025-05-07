@@ -83,59 +83,6 @@ struct DisplayTrait_st
 
 const DisplayTrait_st disp_default0 = {};
 	
-/*
-struct ItcSeg_st
-{
-	// This describes an Itc-Segment, a base class.
-
-	const TCHAR* segname;	// (optional) segment name
-	CONSTVAL_t segmask;		// bitmask of this segment
-
-	DisplayTrait_st disp;
-
-	ItcSeg_st(const TCHAR* i_segname, CONSTVAL_t i_segmask, DisplayTrait_st i_disp)
-	{
-		segname = i_segname;
-		segmask = i_segmask;
-		disp = i_disp;
-	}
-};
-
-struct ZeroneSeg_st : public ItcSeg_st
-{
-	// 'Zerone' implies: No matter how many bits this segment involves,
-	// it contains only two meaningful values, all bits are zero, or all bits are one.
-	// For example, a ZeroneSeg_st has .segmask=0x3, then 0x0 and 0x3 are its
-	// only two valid values, 0x1 and 0x2 are invalid.
-	
-	const TCHAR* pos_valname; // (optional) positive value-name, default to segname
-	const TCHAR* neg_valname; // (optional) negative value-name, default to "-pos_valname".
-
-	ZeroneSeg_st(const TCHAR* i_segname, CONSTVAL_t i_segmask, DisplayTrait_st i_disp,
-		const TCHAR *i_pos_valname=nullptr, const TCHAR* i_neg_valname=nullptr)
-		:
-		ItcSeg_st(i_segname, i_segmask, i_disp),
-		pos_valname(i_pos_valname),
-		neg_valname(i_neg_valname)
-	{
-		// TODO: check null name case
-	}
-};
-
-struct EnumSeg_st : public ItcSeg_st
-{
-	// This is segment that can hold multiple values(normally >2).
-	// The Itc-designer enumerates(vt. Enum) meaningful values
-	// inside this segment.
-
-	int nEnum2Val;
-	const Enum2Val_st* arEnum2Val;
-
-	// [2025-01-25] 
-	// TODO: warning C4510: 'itc::EnumSeg_st' : default constructor could not be generated
-};
-*/
-
 	
 enum DisplayFormat_et
 {

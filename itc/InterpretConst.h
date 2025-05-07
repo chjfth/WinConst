@@ -1,5 +1,5 @@
-#ifndef __InterpretConst_h_20250507_
-#define __InterpretConst_h_20250507_
+#ifndef __InterpretConst_h_20250508_
+#define __InterpretConst_h_20250508_
 
 #include <tchar.h> // for TCHAR & _T
 #include <stdio.h>
@@ -83,6 +83,7 @@ struct DisplayTrait_st
 
 const DisplayTrait_st disp_default0 = {};
 	
+/*
 struct ItcSeg_st
 {
 	// This describes an Itc-Segment, a base class.
@@ -121,7 +122,6 @@ struct ZeroneSeg_st : public ItcSeg_st
 	}
 };
 
-/*
 struct EnumSeg_st : public ItcSeg_st
 {
 	// This is segment that can hold multiple values(normally >2).
@@ -427,6 +427,8 @@ public:
 		return DumpText(ar, eles, nullptr);
 	}
 
+	CONSTVAL_t NamesToVal(const TCHAR *names, bool *p_is_err=nullptr); // names separated by |
+	CONSTVAL_t OneNameToVal(const TCHAR *name, bool *p_is_err=nullptr); 
 
 private:
 	enum { 

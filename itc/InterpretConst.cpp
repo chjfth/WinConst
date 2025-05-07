@@ -2,7 +2,9 @@
 #include <windows.h>
 #include <assert.h>
 #include <stdio.h>
+#include <StringHelper.h>
 #include "InterpretConst.h"
+
 
 namespace itc {
 
@@ -510,6 +512,69 @@ CInterpretConst::DumpText(TCHAR userbuf[], int nbufchars, int *pReqBufsize)
 
 	_sntprintf_s(userbuf, nbufchars, _TRUNCATE, _T("%s"), tbuf);
 	return userbuf;
+}
+
+
+CONSTVAL_t CInterpretConst::OneNameToVal(const TCHAR *name, bool *p_is_err)
+{
+	CONSTVAL_t retval = 0;
+	
+	bool is_err = false;
+	if(!p_is_err)
+		p_is_err = &is_err;
+
+	int i, j;
+	for(i=0; i<m_nGroups; i++)
+	{
+		ItcGroup_st &nowgroup = m_arGroups[i];
+
+		for(j=0; j<nowgroup.nEnum2Val; j++)
+		{
+			if( _tcscmp(name, nowgroup.arEnum2Val[j].EnumName)==0 )
+			{
+				*p_is_err = false;
+				return nowgroup.arEnum2Val[j].ConstVal;
+			}
+		}
+	}
+
+	*p_is_err = true;
+	return 0;
+}
+
+inline bool IsPipeChar(int charval)
+{
+	return charval=='|' ? true : false;
+}
+
+CONSTVAL_t CInterpretConst::NamesToVal(const TCHAR *names, bool *p_is_err)
+{
+	StringSplitter<decltype(names), IsPipeChar, StringSplitter_TrimSpacechar> sp(names);
+	CONSTVAL_t retval = 0;
+
+	bool is_err = false;
+	if(!p_is_err)
+		p_is_err = &is_err;
+	*p_is_err = false;
+
+	for(;;)
+	{
+		int len = 0;
+		int offset = sp.next(&len);
+		if(offset==-1)
+			break;
+
+		TCHAR onename[80] = _T("");
+		_sntprintf_s(onename, _TRUNCATE, _T("%.*s"), len, names+offset);
+
+		bool one_err = false;
+		CONSTVAL_t oneval = OneNameToVal(onename, &one_err);
+		
+		retval |= oneval;
+		*p_is_err |= one_err;
+	}
+
+	return retval;
 }
 
 

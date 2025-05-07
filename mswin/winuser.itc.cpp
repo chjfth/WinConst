@@ -922,6 +922,37 @@ const Enum2Val_st _e2v_CBN_xxx_ComboBox[]=
 CInterpretConst CBN_xxx_ComboBox(_e2v_CBN_xxx_ComboBox, ITCF_SINT);
 
 
+const Enum2Val_st _e2v_HTxxx_HitTest[] = 
+{
+	ITC_NAMEPAIR(HTERROR), //             (-2)
+	ITC_NAMEPAIR(HTTRANSPARENT), //       (-1)
+	ITC_NAMEPAIR(HTNOWHERE), //           0
+	ITC_NAMEPAIR(HTCLIENT), //            1
+	ITC_NAMEPAIR(HTCAPTION), //           2
+	ITC_NAMEPAIR(HTSYSMENU), //           3
+	ITC_NAMEPAIR(HTGROWBOX), //           4
+	ITC_NAMEPAIR(HTMENU), //              5
+	ITC_NAMEPAIR(HTHSCROLL), //           6
+	ITC_NAMEPAIR(HTVSCROLL), //           7
+	ITC_NAMEPAIR(HTMINBUTTON), //         8
+	ITC_NAMEPAIR(HTMAXBUTTON), //         9
+	ITC_NAMEPAIR(HTLEFT), //              10
+	ITC_NAMEPAIR(HTRIGHT), //             11
+	ITC_NAMEPAIR(HTTOP), //               12
+	ITC_NAMEPAIR(HTTOPLEFT), //           13
+	ITC_NAMEPAIR(HTTOPRIGHT), //          14
+	ITC_NAMEPAIR(HTBOTTOM), //            15
+	ITC_NAMEPAIR(HTBOTTOMLEFT), //        16
+	ITC_NAMEPAIR(HTBOTTOMRIGHT), //       17
+	ITC_NAMEPAIR(HTBORDER), //            18
+	ITC_NAMEPAIR(HTOBJECT), //            19
+	ITC_NAMEPAIR(HTCLOSE), //             20
+	ITC_NAMEPAIR(HTHELP), //              21
+};
+CInterpretConst HTxxx_HitTest(_e2v_HTxxx_HitTest, ITCF_SINT);
+
+
+
 
 
 
@@ -963,6 +994,7 @@ CInterpretConst WinstationRights(ITCF_HEX1B,
 	_b2v_StandardRight, N_b2v_StandardRight,
 	_b2v_GenericRight, N_b2v_GenericRight,
 	nullptr, 0);
+
 
 
 

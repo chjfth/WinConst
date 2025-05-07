@@ -438,7 +438,7 @@ String CInterpretConst::Interpret(
 	CONSTVAL_t input_val, DisplayFormat_et dispfmt) const
 {
 	String itcs(WholeDisplayMaxChars);
-	Interpret_i1(input_val, dispfmt, itcs.get(), itcs.bufsize());
+	Interpret_i1(input_val, dispfmt, itcs.getbuf(), itcs.bufsize());
 	return itcs;
 }
 

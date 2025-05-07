@@ -1,5 +1,5 @@
-#ifndef __InterpretConst_h_20250429_
-#define __InterpretConst_h_20250429_
+#ifndef __InterpretConst_h_20250507_
+#define __InterpretConst_h_20250507_
 
 #include <tchar.h> // for TCHAR & _T
 #include <stdio.h>
@@ -159,6 +159,13 @@ public:
 		m_str = new TCHAR[m_chars];
 	}
 
+	String(const TCHAR *instr)
+	{
+		m_chars = (int)_tcslen(instr) + 1;
+		m_str = new TCHAR[m_chars];
+		_tcscpy_s(m_str, m_chars, instr);
+	}
+
 	String(const String& itcs)
 	{
 //		vaDBG(_T("[@%p]itc::String() copy-ctor= %s"), this, itcs.m_str);
@@ -196,7 +203,9 @@ public:
 		m_chars = 0;
 	}
 
-	TCHAR *get(){ return m_str; }
+	const TCHAR* get(){ return m_str; }
+
+	TCHAR* getbuf(){ return m_str; }
 
 	void put(const TCHAR *pstr)
 	{

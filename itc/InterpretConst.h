@@ -1,5 +1,5 @@
-#ifndef __InterpretConst_h_20250508_
-#define __InterpretConst_h_20250508_
+#ifndef __InterpretConst_h_20250513_
+#define __InterpretConst_h_20250513_
 
 #include <tchar.h> // for TCHAR & _T
 #include <stdio.h>
@@ -309,8 +309,7 @@ public:
 	//
 
 	CInterpretConst(const TCHAR *valfmt,
-		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
-		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
+		... // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
 		) // VK0
 	{
 		va_list args;
@@ -321,20 +320,18 @@ public:
 
 	CInterpretConst(const TCHAR *valfmt,
 		const EnumGroup_st *arGroups, int nGroups, 
-		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
-		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
+		... // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
 		) // VK1
 	{
 		va_list args;
-		va_start(args, nGroups); // yes, start from `nGroups`
+		va_start(args, nGroups);
 		_ctor(valfmt, arGroups, nGroups, args);
 		va_end(args);
 	}
 
 	CInterpretConst(const TCHAR *valfmt,
 		const Enum2Val_st *arEnum2Val, int nEnum2Val, 
-		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
-		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
+		... // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
 		) // VK2
 	{
 		// This is a simplified version of VK1.
@@ -350,7 +347,7 @@ public:
 		// -- this object will get a copy inside the following _ctor()
 
 		va_list args;
-		va_start(args, nEnum2Val); // yes, start from `nGroups`
+		va_start(args, nEnum2Val);
 
 		_ctor(valfmt, &eg, 1, args);
 
@@ -401,12 +398,11 @@ private:
 
 	void _ctor(const TCHAR *valfmt,
 		const EnumGroup_st *arGroups, int nGroups, 
-		const SingleBit2Val_st *arSinglebit2Val, int nSinglebit2Val,
-		... // more [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
+		... // [arSinglebit2Val, nSinglebit2Val] pairs, end with [nullptr, 0]
 		)
 	{
 		va_list args;
-		va_start(args, nGroups); // yes, start from `nGroups`
+		va_start(args, nGroups);
 		_ctor(valfmt, arGroups, nGroups, args);
 		va_end(args);
 	}

@@ -7,9 +7,7 @@
 
 
 
-#ifdef InterpretConst_DEBUG
-#undef  vaDBG      // revoke empty effect
-#else
+#ifndef InterpretConst_DEBUG
 #define vaDBG(...) // make vaDBG empty, no debugging message
 #endif
 
@@ -131,7 +129,7 @@ public:
 
 	String& operator=(String&& old) // move-assign
 	{
-		vaDBG(_T("[@%p]itc::String() move-assign= %s"), this, old.m_str);
+//		vaDBG(_T("[@%p]itc::String() move-assign= %s"), this, old.m_str);
 
 		if(this != &old)
 		{
@@ -453,6 +451,10 @@ private:
 #define ITCF_HEX2B _T("0x%04X")
 #define ITCF_HEX4B _T("0x%08X")
 
+
+#ifndef InterpretConst_DEBUG
+#undef vaDBG       // revoke empty effect
+#endif
 
 	
 } // namespace itc

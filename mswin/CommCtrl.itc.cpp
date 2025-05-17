@@ -275,7 +275,7 @@ CInterpretConst NM_xxx_ListView(
 	); 
 
 
-const Enum2Val_st _e2v_TTF_xxx[] =
+const SingleBit2Val_st _b2v_TTF_xxx[] =
 {
 	ITC_NAMEPAIR(TTF_IDISHWND), //            0x0001
 	ITC_NAMEPAIR(TTF_CENTERTIP), //           0x0002
@@ -287,7 +287,7 @@ const Enum2Val_st _e2v_TTF_xxx[] =
 	ITC_NAMEPAIR(TTF_PARSELINKS), //          0x1000
 	ITC_NAMEPAIR(TTF_DI_SETITEM), //          0x8000       // valid only on the TTN_NEEDTEXT callback
 };
-CInterpretConst TTF_xxx(_e2v_TTF_xxx, ITCF_HEX2B);
+CInterpretConst TTF_xxx(_b2v_TTF_xxx, ITCF_HEX2B);
 
 
 

@@ -275,4 +275,21 @@ CInterpretConst NM_xxx_ListView(
 	); 
 
 
+const Enum2Val_st _e2v_TTF_xxx[] =
+{
+	ITC_NAMEPAIR(TTF_IDISHWND), //            0x0001
+	ITC_NAMEPAIR(TTF_CENTERTIP), //           0x0002
+	ITC_NAMEPAIR(TTF_RTLREADING), //          0x0004
+	ITC_NAMEPAIR(TTF_SUBCLASS), //            0x0010
+	ITC_NAMEPAIR(TTF_TRACK), //               0x0020
+	ITC_NAMEPAIR(TTF_ABSOLUTE), //            0x0080
+	ITC_NAMEPAIR(TTF_TRANSPARENT), //         0x0100
+	ITC_NAMEPAIR(TTF_PARSELINKS), //          0x1000
+	ITC_NAMEPAIR(TTF_DI_SETITEM), //          0x8000       // valid only on the TTN_NEEDTEXT callback
+};
+CInterpretConst TTF_xxx(_e2v_TTF_xxx, ITCF_HEX2B);
+
+
+
+
 }; // namespace itc

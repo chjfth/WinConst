@@ -18,6 +18,8 @@ extern CInterpretConst NM_xxx_Generic;
 
 extern CInterpretConst NM_xxx_ListView;
 
+extern CInterpretConst TTF_xxx;
+
 
 } // namespace itc
 

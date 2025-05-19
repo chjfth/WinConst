@@ -16,9 +16,11 @@ extern CInterpretConst WS_xxx_tooltips_class32_childwnd;
 
 extern CInterpretConst NM_xxx_Generic;
 
-extern CInterpretConst NM_xxx_ListView;
+extern CInterpretConst LVN_xxx;
 
 extern CInterpretConst TTF_xxx;
+
+extern CInterpretConst TTN_xxx;
 
 
 } // namespace itc

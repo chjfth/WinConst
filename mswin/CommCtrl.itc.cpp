@@ -224,7 +224,7 @@ CInterpretConst NM_xxx_Generic(_e2v_NM_xxx_Generic, ITCF_SINT);
 
 // + ListView NM_xxx
 
-const Enum2Val_st _e2v_NM_xxx_ListView[]=
+const Enum2Val_st _e2v_LVN_xxx[]=
 {
 	ITC_NAMEPAIR(LVN_ITEMCHANGING       ), // -100
 	ITC_NAMEPAIR(LVN_ITEMCHANGED        ), // -101
@@ -266,16 +266,18 @@ const Enum2Val_st _e2v_NM_xxx_ListView[]=
 	ITC_NAMEPAIR(LVN_GETEMPTYMARKUP), // -187
 #endif
 };
-CInterpretConst NM_xxx_ListView(
+CInterpretConst LVN_xxx(
 	new Enum2Val_merge(
 		_e2v_NM_xxx_Generic,  ARRAYSIZE(_e2v_NM_xxx_Generic),
-		_e2v_NM_xxx_ListView, ARRAYSIZE(_e2v_NM_xxx_ListView),
+		_e2v_LVN_xxx, ARRAYSIZE(_e2v_LVN_xxx),
 		nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
 	, ITCF_SINT
 	); 
+// old name NM_xxx_ListView
 
 
-const SingleBit2Val_st _b2v_TTF_xxx[] =
+// Tooltip, TOOLINFO.uFlags :
+const SingleBit2Val_st _b2v_TTF_xxx[] = 
 {
 	ITC_NAMEPAIR(TTF_IDISHWND), //            0x0001
 	ITC_NAMEPAIR(TTF_CENTERTIP), //           0x0002
@@ -289,6 +291,16 @@ const SingleBit2Val_st _b2v_TTF_xxx[] =
 };
 CInterpretConst TTF_xxx(_b2v_TTF_xxx, ITCF_HEX2B);
 
+
+const Enum2Val_st _e2v_TTN_xxx[] =
+{
+	ITC_NAMEPAIR(TTN_NEEDTEXTA), //        (TTN_FIRST - 0)  // -520 (alias TTN_GETDISPINFOA)
+	ITC_NAMEPAIR(TTN_NEEDTEXTW), //        (TTN_FIRST - 10) // -530 (alias TTN_GETDISPINFOW)
+	ITC_NAMEPAIR(TTN_SHOW), //             (TTN_FIRST - 1)
+	ITC_NAMEPAIR(TTN_POP), //              (TTN_FIRST - 2)
+	ITC_NAMEPAIR(TTN_LINKCLICK), //        (TTN_FIRST - 3)
+};
+CInterpretConst TTN_xxx(_e2v_NM_xxx_Generic, _e2v_TTN_xxx, ITCF_SINT);
 
 
 

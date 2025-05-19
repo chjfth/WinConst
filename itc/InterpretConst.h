@@ -238,8 +238,8 @@ public:
 	{
 		// to-test
 		Enum2Val_merge *ar_e2vmerge = new Enum2Val_merge(
-			ar1, eles1,  ar2, eles2,
-			nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
+			ar1, eles1, ar2, eles2,
+			nullptr, 0); // this Enum2Val_merge object will not be deleted, by design
 		_ctor(ar_e2vmerge->get_array(), ar_e2vmerge->count(), valfmt);
 	}
 

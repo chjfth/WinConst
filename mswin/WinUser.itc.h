@@ -127,6 +127,9 @@ extern CInterpretConst CBN_xxx_ComboBox;
 
 extern CInterpretConst HTxxx_HitTest;
 
+extern CInterpretConst MK_xxx_mouse;
+
+
 
 
 extern CInterpretConst DesktopRights;

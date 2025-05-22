@@ -952,6 +952,21 @@ const Enum2Val_st _e2v_HTxxx_HitTest[] =
 CInterpretConst HTxxx_HitTest(_e2v_HTxxx_HitTest, ITCF_SINT);
 
 
+const SingleBit2Val_st _b2v_MK_xxx_mouse[] =
+{
+	ITC_NAMEPAIR(MK_LBUTTON), //          0x0001
+	ITC_NAMEPAIR(MK_RBUTTON), //          0x0002
+	ITC_NAMEPAIR(MK_SHIFT), //            0x0004
+	ITC_NAMEPAIR(MK_CONTROL), //          0x0008
+	ITC_NAMEPAIR(MK_MBUTTON), //          0x0010
+	ITC_NAMEPAIR(MK_XBUTTON1), //         0x0020
+	ITC_NAMEPAIR(MK_XBUTTON2), //         0x0040
+};
+CInterpretConst MK_xxx_mouse(_b2v_MK_xxx_mouse, ITCF_HEX2B);
+
+
+
+
 
 
 

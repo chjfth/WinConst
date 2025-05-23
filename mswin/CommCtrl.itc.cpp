@@ -291,7 +291,6 @@ const SingleBit2Val_st _b2v_TTF_xxx[] =
 };
 CInterpretConst TTF_xxx(_b2v_TTF_xxx, ITCF_HEX2B);
 
-
 const Enum2Val_st _e2v_TTN_xxx[] =
 {
 	ITC_NAMEPAIR(TTN_NEEDTEXTA), //        (TTN_FIRST - 0)  // -520 (alias TTN_GETDISPINFOA)
@@ -300,7 +299,62 @@ const Enum2Val_st _e2v_TTN_xxx[] =
 	ITC_NAMEPAIR(TTN_POP), //              (TTN_FIRST - 2)
 	ITC_NAMEPAIR(TTN_LINKCLICK), //        (TTN_FIRST - 3)
 };
-CInterpretConst TTN_xxx(_e2v_NM_xxx_Generic, _e2v_TTN_xxx, ITCF_SINT);
+CInterpretConst TTN_xxx(_e2v_TTN_xxx, _e2v_NM_xxx_Generic, ITCF_SINT);
+
+const Enum2Val_st _e2v_TTM_xxx[] = // tooltip window messages
+{
+	ITC_NAMEPAIR(TTM_ACTIVATE), //            (WM_USER + 1)
+	ITC_NAMEPAIR(TTM_SETDELAYTIME), //        (WM_USER + 3)
+	ITC_NAMEPAIR(TTM_ADDTOOLA), //            (WM_USER + 4)
+	ITC_NAMEPAIR(TTM_ADDTOOLW), //            (WM_USER + 50)
+	ITC_NAMEPAIR(TTM_DELTOOLA), //            (WM_USER + 5)
+	ITC_NAMEPAIR(TTM_DELTOOLW), //            (WM_USER + 51)
+	ITC_NAMEPAIR(TTM_NEWTOOLRECTA), //        (WM_USER + 6)
+	ITC_NAMEPAIR(TTM_NEWTOOLRECTW), //        (WM_USER + 52)
+	ITC_NAMEPAIR(TTM_RELAYEVENT), //          (WM_USER + 7) // Win7: wParam = GetMessageExtraInfo() when relaying WM_MOUSEMOVE
+	ITC_NAMEPAIR(TTM_GETTOOLINFOA), //        (WM_USER + 8)
+	ITC_NAMEPAIR(TTM_GETTOOLINFOW), //        (WM_USER + 53)
+	ITC_NAMEPAIR(TTM_SETTOOLINFOA), //        (WM_USER + 9)
+	ITC_NAMEPAIR(TTM_SETTOOLINFOW), //        (WM_USER + 54)
+	ITC_NAMEPAIR(TTM_HITTESTA), //            (WM_USER +10)
+	ITC_NAMEPAIR(TTM_HITTESTW), //            (WM_USER +55)
+	ITC_NAMEPAIR(TTM_GETTEXTA), //            (WM_USER +11)
+	ITC_NAMEPAIR(TTM_GETTEXTW), //            (WM_USER +56)
+	ITC_NAMEPAIR(TTM_UPDATETIPTEXTA), //      (WM_USER +12)
+	ITC_NAMEPAIR(TTM_UPDATETIPTEXTW), //      (WM_USER +57)
+	ITC_NAMEPAIR(TTM_GETTOOLCOUNT), //        (WM_USER +13)
+	ITC_NAMEPAIR(TTM_ENUMTOOLSA), //          (WM_USER +14)
+	ITC_NAMEPAIR(TTM_ENUMTOOLSW), //          (WM_USER +58)
+	ITC_NAMEPAIR(TTM_GETCURRENTTOOLA), //     (WM_USER + 15)
+	ITC_NAMEPAIR(TTM_GETCURRENTTOOLW), //     (WM_USER + 59)
+	ITC_NAMEPAIR(TTM_WINDOWFROMPOINT), //     (WM_USER + 16)
+	ITC_NAMEPAIR(TTM_TRACKACTIVATE), //       (WM_USER + 17)  // wParam = TRUE/FALSE start end  lparam = LPTOOLINFO
+	ITC_NAMEPAIR(TTM_TRACKPOSITION), //       (WM_USER + 18)  // lParam = dwPos
+	ITC_NAMEPAIR(TTM_SETTIPBKCOLOR), //       (WM_USER + 19)
+	ITC_NAMEPAIR(TTM_SETTIPTEXTCOLOR), //     (WM_USER + 20)
+	ITC_NAMEPAIR(TTM_GETDELAYTIME), //        (WM_USER + 21)
+	ITC_NAMEPAIR(TTM_GETTIPBKCOLOR), //       (WM_USER + 22)
+	ITC_NAMEPAIR(TTM_GETTIPTEXTCOLOR), //     (WM_USER + 23)
+	ITC_NAMEPAIR(TTM_SETMAXTIPWIDTH), //      (WM_USER + 24)
+	ITC_NAMEPAIR(TTM_GETMAXTIPWIDTH), //      (WM_USER + 25)
+	ITC_NAMEPAIR(TTM_SETMARGIN), //           (WM_USER + 26)  // lParam = lprc
+	ITC_NAMEPAIR(TTM_GETMARGIN), //           (WM_USER + 27)  // lParam = lprc
+	ITC_NAMEPAIR(TTM_POP), //                 (WM_USER + 28)
+	ITC_NAMEPAIR(TTM_UPDATE), //              (WM_USER + 29)
+	ITC_NAMEPAIR(TTM_GETBUBBLESIZE), //       (WM_USER + 30)
+	ITC_NAMEPAIR(TTM_ADJUSTRECT), //          (WM_USER + 31)
+	ITC_NAMEPAIR(TTM_SETTITLEA), //           (WM_USER + 32)  // wParam = TTI_*, lParam = char* szTitle
+	ITC_NAMEPAIR(TTM_SETTITLEW), //           (WM_USER + 33)  // wParam = TTI_*, lParam = wchar* szTitle
+	ITC_NAMEPAIR(TTM_POPUP), //               (WM_USER + 34)
+	ITC_NAMEPAIR(TTM_GETTITLE), //            (WM_USER + 35) // wParam = 0, lParam = TTGETTITLE*
+};
+CInterpretConst TTM_xxx_WM_xxx(
+	new Enum2Val_merge(
+		_e2v_TTM_xxx, ARRAYSIZE(_e2v_TTM_xxx),
+		_e2v_WM_xxx, N_e2v_WM_xxx,
+		nullptr, 0)
+	, ITCF_HEX1B);
+
 
 
 

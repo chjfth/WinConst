@@ -109,7 +109,10 @@ const SingleBit2Val_st _b2v_WS_EX_xxx[] =
 };
 
 
+extern const Enum2Val_st _e2v_WM_xxx[];
+extern const int N_e2v_WM_xxx;
 extern CInterpretConst WM_xxx;
+
 extern CInterpretConst VK_xxx;
 extern CInterpretConst LLKHF_xxx;
 

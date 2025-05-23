@@ -19,8 +19,8 @@ extern CInterpretConst NM_xxx_Generic;
 extern CInterpretConst LVN_xxx;
 
 extern CInterpretConst TTF_xxx;
-
 extern CInterpretConst TTN_xxx;
+extern CInterpretConst TTM_xxx_WM_xxx;
 
 
 } // namespace itc

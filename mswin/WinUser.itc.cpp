@@ -326,6 +326,7 @@ const Enum2Val_st _e2v_WM_xxx[] =
 	ITC_NAMEPAIR(WM_PENWINLAST), // 0x038F
 
 };
+const int N_e2v_WM_xxx = ARRAYSIZE(_e2v_WM_xxx);
 CInterpretConst WM_xxx(_e2v_WM_xxx, ITCF_HEX1B);
 
 ///////////////////////////////////////////////////////////////////////////

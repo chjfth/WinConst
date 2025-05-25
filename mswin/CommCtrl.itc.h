@@ -23,6 +23,10 @@ extern CInterpretConst TTN_xxx;
 extern CInterpretConst TTM_xxx_WM_xxx;
 
 
+extern CInterpretConst CDDS_xxx;
+extern CInterpretConst CDIS_xxx;
+
+
 } // namespace itc
 
 

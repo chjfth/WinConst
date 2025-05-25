@@ -132,7 +132,7 @@ extern CInterpretConst HTxxx_HitTest;
 
 extern CInterpretConst MK_xxx_mouse;
 
-
+extern CInterpretConst DT_xxx_DrawText;
 
 
 extern CInterpretConst DesktopRights;

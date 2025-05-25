@@ -966,6 +966,33 @@ const SingleBit2Val_st _b2v_MK_xxx_mouse[] =
 CInterpretConst MK_xxx_mouse(_b2v_MK_xxx_mouse, ITCF_HEX2B);
 
 
+const SingleBit2Val_st _b2v_DT_xxx_DrawText[] =
+{
+	ITC_NAMEPAIR(DT_CENTER), //                   0x00000001
+	ITC_NAMEPAIR(DT_RIGHT), //                    0x00000002
+	ITC_NAMEPAIR(DT_VCENTER), //                  0x00000004
+	ITC_NAMEPAIR(DT_BOTTOM), //                   0x00000008
+	ITC_NAMEPAIR(DT_WORDBREAK), //                0x00000010
+	ITC_NAMEPAIR(DT_SINGLELINE), //               0x00000020
+	ITC_NAMEPAIR(DT_EXPANDTABS), //               0x00000040
+	ITC_NAMEPAIR(DT_TABSTOP), //                  0x00000080
+	ITC_NAMEPAIR(DT_NOCLIP), //                   0x00000100
+	ITC_NAMEPAIR(DT_EXTERNALLEADING), //          0x00000200
+	ITC_NAMEPAIR(DT_CALCRECT), //                 0x00000400
+	ITC_NAMEPAIR(DT_NOPREFIX), //                 0x00000800
+	ITC_NAMEPAIR(DT_INTERNAL), //                 0x00001000
+	ITC_NAMEPAIR(DT_EDITCONTROL), //              0x00002000
+	ITC_NAMEPAIR(DT_PATH_ELLIPSIS), //            0x00004000
+	ITC_NAMEPAIR(DT_END_ELLIPSIS), //             0x00008000
+	ITC_NAMEPAIR(DT_MODIFYSTRING), //             0x00010000
+	ITC_NAMEPAIR(DT_RTLREADING), //               0x00020000
+	ITC_NAMEPAIR(DT_WORD_ELLIPSIS), //            0x00040000
+	ITC_NAMEPAIR(DT_NOFULLWIDTHCHARBREAK), //     0x00080000
+	ITC_NAMEPAIR(DT_HIDEPREFIX), //               0x00100000
+	ITC_NAMEPAIR(DT_PREFIXONLY), //               0x00200000
+};
+CInterpretConst DT_xxx_DrawText(_b2v_DT_xxx_DrawText, ITCF_HEX2B);
+
 
 
 

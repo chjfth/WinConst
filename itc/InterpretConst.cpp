@@ -445,7 +445,7 @@ String CInterpretConst::Interpret(
 }
 
 TCHAR * 
-CInterpretConst::DumpText(TCHAR userbuf[], int nbufchars, int *pReqBufsize)
+CInterpretConst::DumpText(TCHAR userbuf[], int nbufchars, int *pReqBufsize) const
 {
 	// Return userbuf.
 

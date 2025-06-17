@@ -361,10 +361,10 @@ public:
 
 	bool SetValFmt(const TCHAR *fmt);
 
-	TCHAR *DumpText(TCHAR buf[], int nbufchars, int *pReqBufsize=nullptr);
+	TCHAR *DumpText(TCHAR buf[], int nbufchars, int *pReqBufsize=nullptr) const;
 
 	template<size_t eles>
-	TCHAR *DumpText(TCHAR (&ar)[eles])
+	TCHAR *DumpText(TCHAR (&ar)[eles]) const
 	{
 		return DumpText(ar, eles, nullptr);
 	}

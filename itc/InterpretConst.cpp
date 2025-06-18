@@ -295,7 +295,7 @@ bool CInterpretConst::ensure_unique_masks()
 	return true;
 }
 
-const TCHAR* CInterpretConst::displayfmt() const
+const TCHAR* CInterpretConst::valuefmt() const
 {
 	const TCHAR *pfmt = m_valfmt;
 
@@ -322,7 +322,7 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 		// Example: ERROR_PRIVILEGE_NOT_HELD(1314)
 
 		TCHAR _fmt_[FmtSpecMaxChars+2] = {};
-		_sntprintf_s(_fmt_, _TRUNCATE, _T("%%s(%s)"), displayfmt());
+		_sntprintf_s(_fmt_, _TRUNCATE, _T("%%s(%s)"), valuefmt());
 
 		_sntprintf_s(obuf, obufsize, _TRUNCATE, _fmt_, szVal, val);
 	}
@@ -331,7 +331,7 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 		// Example: 1314(ERROR_PRIVILEGE_NOT_HELD)
 
 		TCHAR _fmt_[FmtSpecMaxChars+2] = {};
-		_sntprintf_s(_fmt_, _TRUNCATE, _T("%s(%%s)"), displayfmt());
+		_sntprintf_s(_fmt_, _TRUNCATE, _T("%s(%%s)"), valuefmt());
 
 		_sntprintf_s(obuf, obufsize, _TRUNCATE, _fmt_, val, szVal);
 	}
@@ -339,7 +339,7 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 	{
 		// Example: 1314
 
-		_sntprintf_s(obuf, obufsize, _TRUNCATE, displayfmt(), val);
+		_sntprintf_s(obuf, obufsize, _TRUNCATE, valuefmt(), val);
 	}
 
 	return obuf;
@@ -406,7 +406,7 @@ const TCHAR *CInterpretConst::Interpret_i1(
 			if( sec_val!=0 || i>1 )
 			{
 				TCHAR szfmt_concat[20] = {};
-				_sntprintf_s(szfmt_concat, _TRUNCATE, _T("%%s%s"), displayfmt());
+				_sntprintf_s(szfmt_concat, _TRUNCATE, _T("%%s%s"), valuefmt());
 				
 				_sntprintf_s(buf, bufsize, _TRUNCATE, szfmt_concat, buf, sec_val);
 			}
@@ -471,7 +471,7 @@ CInterpretConst::DumpText(TCHAR userbuf[], int nbufchars, int *pReqBufsize) cons
 
 		if(nowgroup.nEnum2Val==1)
 		{
-			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s%s %%s\r\n"), displayfmt());
+			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s%s %%s\r\n"), valuefmt());
 
 			_sntprintf_s(tbuf, _TRUNCATE, szfmt, tbuf,
 				nowgroup.arEnum2Val[0].ConstVal, nowgroup.arEnum2Val[0].EnumName);
@@ -500,7 +500,7 @@ CInterpretConst::DumpText(TCHAR userbuf[], int nbufchars, int *pReqBufsize) cons
 		{
 			// and I'll prepend a mask-value text line.
 
-			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s\r\n[Mask: %s]\r\n"), displayfmt());
+			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s\r\n[Mask: %s]\r\n"), valuefmt());
 
 			_sntprintf_s(tbuf, _TRUNCATE, szfmt, tbuf,
 				nowgroup.GroupMask);
@@ -508,7 +508,7 @@ CInterpretConst::DumpText(TCHAR userbuf[], int nbufchars, int *pReqBufsize) cons
 
 		for(j=0; j<nowgroup.nEnum2Val; j++)
 		{
-			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s%s %%s\r\n"), displayfmt());
+			_sntprintf_s(szfmt, _TRUNCATE, _T("%%s%s %%s\r\n"), valuefmt());
 
 			_sntprintf_s(tbuf, _TRUNCATE, szfmt, tbuf,
 				nowgroup.arEnum2Val[j].ConstVal, nowgroup.arEnum2Val[j].EnumName);

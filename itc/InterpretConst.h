@@ -414,7 +414,7 @@ private:
 	static bool is_unique_mask(CONSTVAL_t oldmasks, CONSTVAL_t newmask);
 	bool ensure_unique_masks();
 
-	const TCHAR *displayfmt() const;
+	const TCHAR *valuefmt() const;
 
 	TCHAR *FormatOneDisplay(const TCHAR *szVal, CONSTVAL_t val, DisplayFormat_et dispfmt,
 		TCHAR obuf[], int obufsize) const;

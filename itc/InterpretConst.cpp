@@ -304,13 +304,18 @@ const TCHAR* CInterpretConst::valuefmt() const
 		pfmt = is_enum_ctor() ? _T("%u") : _T("0x%X");
 	}
 
-	return pfmt; // always points to an persistent string
+	return pfmt; // always point to a persistent string
 }
 
 TCHAR* CInterpretConst::FormatOneDisplay(
 	const TCHAR *szVal, CONSTVAL_t val, DisplayFormat_et dispfmt, 
-	TCHAR obuf[], int obufsize) const
+	TCHAR obuf[], int obufsize,
+	const TCHAR *valfmt // to override valuefmt()
+	) const
 {
+	if(!valfmt || !valfmt[0])
+		valfmt = valuefmt(); // "0x%08X" etc
+
 	if(dispfmt==DF_NameOnly)
 	{
 		// Example: ERROR_PRIVILEGE_NOT_HELD
@@ -322,7 +327,7 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 		// Example: ERROR_PRIVILEGE_NOT_HELD(1314)
 
 		TCHAR _fmt_[FmtSpecMaxChars+2] = {};
-		_sntprintf_s(_fmt_, _TRUNCATE, _T("%%s(%s)"), valuefmt());
+		_sntprintf_s(_fmt_, _TRUNCATE, _T("%%s(%s)"), valfmt);
 
 		_sntprintf_s(obuf, obufsize, _TRUNCATE, _fmt_, szVal, val);
 	}
@@ -331,7 +336,7 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 		// Example: 1314(ERROR_PRIVILEGE_NOT_HELD)
 
 		TCHAR _fmt_[FmtSpecMaxChars+2] = {};
-		_sntprintf_s(_fmt_, _TRUNCATE, _T("%s(%%s)"), valuefmt());
+		_sntprintf_s(_fmt_, _TRUNCATE, _T("%s(%%s)"), valfmt);
 
 		_sntprintf_s(obuf, obufsize, _TRUNCATE, _fmt_, val, szVal);
 	}
@@ -339,7 +344,7 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 	{
 		// Example: 1314
 
-		_sntprintf_s(obuf, obufsize, _TRUNCATE, valuefmt(), val);
+		_sntprintf_s(obuf, obufsize, _TRUNCATE, valfmt, val);
 	}
 
 	return obuf;
@@ -347,10 +352,15 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 
 const TCHAR *CInterpretConst::Interpret_i1(
 	CONSTVAL_t input_val, DisplayFormat_et dispfmt,
-	TCHAR *buf, int bufsize, const TCHAR *sep) const
+	TCHAR *buf, int bufsize, 
+	const TCHAR *valfmt,
+	const TCHAR *sep) const
 {
 	if(bufsize<=0)
 		return NULL;
+
+	if(!valfmt || !valfmt[0])
+		valfmt = valuefmt(); // "0x%08X" etc
 
 	if(!sep || !sep[0])
 		sep = _T("|");
@@ -389,7 +399,7 @@ const TCHAR *CInterpretConst::Interpret_i1(
 					_sntprintf_s(buf, bufsize, _TRUNCATE, _T("%s%s%s"), 
 						buf, 
 						FormatOneDisplay(c2v[i].EnumName, c2v[i].ConstVal, 
-							dispfmt, szbuf, ARRAYSIZE(szbuf)),
+							dispfmt, szbuf, ARRAYSIZE(szbuf), valfmt),
 						sep
 						);
 				}
@@ -406,7 +416,7 @@ const TCHAR *CInterpretConst::Interpret_i1(
 			if( sec_val!=0 || i>1 )
 			{
 				TCHAR szfmt_concat[20] = {};
-				_sntprintf_s(szfmt_concat, _TRUNCATE, _T("%%s%s"), valuefmt());
+				_sntprintf_s(szfmt_concat, _TRUNCATE, _T("%%s%s"), valfmt);
 				
 				_sntprintf_s(buf, bufsize, _TRUNCATE, szfmt_concat, buf, sec_val);
 			}
@@ -445,11 +455,22 @@ const TCHAR *CInterpretConst::Interpret_i1(
 	return buf;
 }
 
-String CInterpretConst::Interpret(
-	CONSTVAL_t input_val, DisplayFormat_et dispfmt, const TCHAR *sep) const
+String CInterpretConst::Interpret(CONSTVAL_t input_val, 
+	DisplayFormat_et dispfmt, 
+	const TCHAR *valfmt,
+	const TCHAR *sep) const
 {
+/*
+	if(!valfmt)
+	{
+		// This assert() alerts the case that user unintentionally use `sep` as `valfmt`.
+		// In typical usage, user passes valfmt="0x%08X" or "%08X" and sep="\r\n".
+		assert(sep!=nullptr);
+	}
+*/
+
 	String itcs(WholeDisplayMaxChars);
-	Interpret_i1(input_val, dispfmt, itcs.getbuf(), itcs.bufsize(), sep);
+	Interpret_i1(input_val, dispfmt, itcs.getbuf(), itcs.bufsize(), valfmt, sep);
 	return itcs;
 }
 

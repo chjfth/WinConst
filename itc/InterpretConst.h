@@ -356,11 +356,15 @@ public:
 
 	const TCHAR *Interpret_i1(CONSTVAL_t val, DisplayFormat_et dispfmt,
 		TCHAR *buf, int bufsize,
-		const TCHAR *sep=nullptr // bit-field separator string, default is "|"
+		const TCHAR *valfmt=nullptr, // can be ITCF_HEX1B, ITCF_HEX4B etc
+		const TCHAR *sep=nullptr     // bit-field separator string, default is "|"
 		) const;
 
-	String Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt=DF_NameOnly,
-		const TCHAR *sep=nullptr) const;
+	String Interpret(CONSTVAL_t val, 
+		DisplayFormat_et dispfmt=DF_NameOnly,
+		const TCHAR *valfmt=nullptr, // can be ITCF_HEX1B, ITCF_HEX4B etc
+		const TCHAR *sep=nullptr     // bit-field separator string, default is "|"
+		) const;
 
 	bool SetValFmt(const TCHAR *fmt);
 
@@ -417,7 +421,7 @@ private:
 	const TCHAR *valuefmt() const;
 
 	TCHAR *FormatOneDisplay(const TCHAR *szVal, CONSTVAL_t val, DisplayFormat_et dispfmt,
-		TCHAR obuf[], int obufsize) const;
+		TCHAR obuf[], int obufsize, const TCHAR *valfmt=nullptr) const;
 
 private:
 	EnumGroup_st m_EnumC2V; // in the case of a single group
@@ -436,19 +440,27 @@ private:
 
 #define ITC_NAMEPAIR(macroname) { _T( #macroname ) , (CONSTVAL_t)macroname }
 
-#define ITCS( val, itcobj)      (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameOnly).get()
-#define ITCS_(val, itcobj, sep) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameOnly, sep).get()
+#define ITCS( val, itcobj) \
+	(itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameOnly).get()
+#define ITCS_(val, itcobj, valfmt, sep) \
+	(itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameOnly, valfmt, sep).get()
 // -- the "return" of ITCS() macro can be passed as snprintf's variadic params
 // Note: ITCS() cannot be used in __try{} block, otherwise we'll get Compiler Error C2712.
 
-#define ITCSnv( val, itcobj)      (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue).get()
-#define ITCSnv_(val, itcobj, sep) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue, sep).get()
+#define ITCSnv( val, itcobj) \
+	(itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue).get()
+#define ITCSnv_(val, itcobj, valfmt, sep) \
+	(itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue, valfmt, sep).get()
 
-#define ITCSvn( val, itcobj)      (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName).get()
-#define ITCSvn_(val, itcobj, sep) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName, sep).get()
+#define ITCSvn( val, itcobj) \
+	(itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName).get()
+#define ITCSvn_(val, itcobj, valfmt, sep) \
+	(itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName, valfmt, sep).get()
 
-#define ITCSv( val, itcobj)      (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NVAuto).get()
-#define ITCSv_(val, itcobj, sep) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NVAuto, sep).get()
+#define ITCSv( val, itcobj) \
+	(itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NVAuto).get()
+#define ITCSv_(val, itcobj, valfmt, sep) \
+	(itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NVAuto, valfmt, sep).get()
 
 
 

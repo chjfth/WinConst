@@ -347,10 +347,13 @@ TCHAR* CInterpretConst::FormatOneDisplay(
 
 const TCHAR *CInterpretConst::Interpret_i1(
 	CONSTVAL_t input_val, DisplayFormat_et dispfmt,
-	TCHAR *buf, int bufsize) const
+	TCHAR *buf, int bufsize, const TCHAR *sep) const
 {
 	if(bufsize<=0)
 		return NULL;
+
+	if(!sep || !sep[0])
+		sep = _T("|");
 
 	if(dispfmt==DF_NVAuto)
 		dispfmt = m_nGroups==1 ? DF_ValueAndName : DF_NameAndValue;
@@ -383,10 +386,11 @@ const TCHAR *CInterpretConst::Interpret_i1(
 				if(c2v[i].EnumName)
 				{
 					TCHAR szbuf[OneDisplayMaxChars] = {};
-					_sntprintf_s(buf, bufsize, _TRUNCATE, _T("%s%s|"), 
+					_sntprintf_s(buf, bufsize, _TRUNCATE, _T("%s%s%s"), 
 						buf, 
 						FormatOneDisplay(c2v[i].EnumName, c2v[i].ConstVal, 
-							dispfmt, szbuf, ARRAYSIZE(szbuf))
+							dispfmt, szbuf, ARRAYSIZE(szbuf)),
+						sep
 						);
 				}
 
@@ -421,15 +425,20 @@ const TCHAR *CInterpretConst::Interpret_i1(
 	if(remain_val)
 	{
 		// present unrecognized value to user
-		_sntprintf_s(buf, bufsize, _TRUNCATE, _T("%s0x%X|"), buf, remain_val);
+		_sntprintf_s(buf, bufsize, _TRUNCATE, _T("%s0x%X%s"), buf, remain_val, sep);
 	}
 
-	// Remove trailing '|'
+	// Remove trailing sep
 	int slen = (int)_tcslen(buf);
-	if(slen>0 && buf[slen-1]=='|')
-		buf[--slen] = '\0';
+	int seplen = (int)_tcslen(sep);
 
-	// If output string empty, fill a '0'.
+	if(slen>=seplen && _tcscmp(buf+slen-seplen, sep)==0)
+	{
+		slen -= seplen;
+		buf[slen] = '\0';
+	}
+
+	// If output string empty, fill a '0' to indicate zero value.
 	if(buf[0]=='\0' && bufsize>=2)
 		buf[0] = '0', buf[1] = 0;
 
@@ -437,10 +446,10 @@ const TCHAR *CInterpretConst::Interpret_i1(
 }
 
 String CInterpretConst::Interpret(
-	CONSTVAL_t input_val, DisplayFormat_et dispfmt) const
+	CONSTVAL_t input_val, DisplayFormat_et dispfmt, const TCHAR *sep) const
 {
 	String itcs(WholeDisplayMaxChars);
-	Interpret_i1(input_val, dispfmt, itcs.getbuf(), itcs.bufsize());
+	Interpret_i1(input_val, dispfmt, itcs.getbuf(), itcs.bufsize(), sep);
 	return itcs;
 }
 

@@ -1,5 +1,5 @@
-#ifndef __InterpretConst_h_20250513_
-#define __InterpretConst_h_20250513_
+#ifndef __InterpretConst_h_20250618_
+#define __InterpretConst_h_20250618_
 
 #include <tchar.h> // for TCHAR & _T
 #include <stdio.h>
@@ -355,9 +355,12 @@ public:
 	////
 
 	const TCHAR *Interpret_i1(CONSTVAL_t val, DisplayFormat_et dispfmt,
-		TCHAR *buf, int bufsize) const;
+		TCHAR *buf, int bufsize,
+		const TCHAR *sep=nullptr // bit-field separator string, default is "|"
+		) const;
 
-	String Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt=DF_NameOnly) const;
+	String Interpret(CONSTVAL_t val, DisplayFormat_et dispfmt=DF_NameOnly,
+		const TCHAR *sep=nullptr) const;
 
 	bool SetValFmt(const TCHAR *fmt);
 
@@ -433,15 +436,20 @@ private:
 
 #define ITC_NAMEPAIR(macroname) { _T( #macroname ) , (CONSTVAL_t)macroname }
 
-#define ITCS(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameOnly).get()
+#define ITCS( val, itcobj)      (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameOnly).get()
+#define ITCS_(val, itcobj, sep) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameOnly, sep).get()
 // -- the "return" of ITCS() macro can be passed as snprintf's variadic params
 // Note: ITCS() cannot be used in __try{} block, otherwise we'll get Compiler Error C2712.
 
-#define ITCSnv(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue).get()
+#define ITCSnv( val, itcobj)      (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue).get()
+#define ITCSnv_(val, itcobj, sep) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NameAndValue, sep).get()
 
-#define ITCSvn(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName).get()
+#define ITCSvn( val, itcobj)      (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName).get()
+#define ITCSvn_(val, itcobj, sep) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_ValueAndName, sep).get()
 
-#define ITCSv(val, itcobj) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NVAuto).get()
+#define ITCSv( val, itcobj)      (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NVAuto).get()
+#define ITCSv_(val, itcobj, sep) (itcobj).Interpret((itc::CONSTVAL_t)(val), itc::DF_NVAuto, sep).get()
+
 
 
 #define ITCF_UINT _T("%u") // unsigned int (default)

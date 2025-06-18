@@ -50,8 +50,8 @@ CInterpretConst FILE_FLAG_xxx(_b2v_FILE_FLAG_xxx, ITCF_HEX4B);
 
 
 CInterpretConst dwFlagsAndAttributes(ITCF_HEX4B,
-	_b2v_FILE_FLAG_xxx, ARRAYSIZE(_b2v_FILE_FLAG_xxx), 
 	_b2v_FILE_ATTRIBUTE_xxx, N_b2v_FILE_ATTRIBUTE_xxx,
+	_b2v_FILE_FLAG_xxx, ARRAYSIZE(_b2v_FILE_FLAG_xxx), 
 	nullptr, 0);
 
 

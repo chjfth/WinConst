@@ -5,6 +5,8 @@
 
 namespace itc {
 
+#define D3D_SDK_VERSION_lowbyte (D3D_SDK_VERSION && 0xFF) // will be 31 or 32
+
 
 extern CInterpretConst D3DERR;
 extern const Enum2Val_st _e2v_D3DERR[];

@@ -23,8 +23,9 @@ extern CInterpretConst DxErr;
 */
 // ++++++++++++++++++ Implementation Below ++++++++++++++++++
 //
-#if defined(d3d9_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_d3d9) // [IMPL]
+#if defined(directx_errors_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_directx_errors) // [IMPL]
 
+#include <WinError.itc.h>
 #include <DirectX\d3d9.itc.h>
 #include <DirectX\d3dx9.itc.h>
 
@@ -34,7 +35,7 @@ CInterpretConst DxErr(
 	new Enum2Val_merge(
 		_e2v_D3DXERR, N_e2v_D3DXERR,
 		_e2v_D3DERR,  N_e2v_D3DERR,
-		_e2v_WinError, N_e2v_WinError, // tofix
+		_e2v_WinError, N_e2v_WinError,
 		nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
 	, ITCF_HEX1B
 	);

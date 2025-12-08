@@ -1,0 +1,104 @@
+#ifndef __d3d9_h_20251208_
+#define __d3d9_h_20251208_
+
+#include <InterpretConst.h>
+
+namespace itc {
+
+
+extern CInterpretConst D3DERR;
+extern const Enum2Val_st _e2v_D3DERR[];
+extern const int        N_e2v_D3DERR;
+
+extern CInterpretConst D3DCREATE;
+
+
+
+/*
+////////////////////////////////////////////////////////////////////////////
+ ___                 _                           _        _   _             
+|_ _|_ __ ___  _ __ | | ___ _ __ ___   ___ _ __ | |_ __ _| |_(_) ___  _ __  
+ | || '_ ` _ \| '_ \| |/ _ \ '_ ` _ \ / _ \ '_ \| __/ _` | __| |/ _ \| '_ \ 
+ | || | | | | | |_) | |  __/ | | | | |  __/ | | | || (_| | |_| | (_) | | | |
+|___|_| |_| |_| .__/|_|\___|_| |_| |_|\___|_| |_|\__\__,_|\__|_|\___/|_| |_|
+              |_|                                                           
+////////////////////////////////////////////////////////////////////////////
+*/
+// ++++++++++++++++++ Implementation Below ++++++++++++++++++
+//
+#if defined(d3d9_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_d3d9) // [IMPL]
+
+#include <d3d9.h>
+
+const Enum2Val_st _e2v_D3DERR[] =
+{
+	ITC_NAMEPAIR(D3DERR_WRONGTEXTUREFORMAT               ), // MAKE_D3DHRESULT(2072)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDCOLOROPERATION        ), // MAKE_D3DHRESULT(2073)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDCOLORARG              ), // MAKE_D3DHRESULT(2074)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDALPHAOPERATION        ), // MAKE_D3DHRESULT(2075)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDALPHAARG              ), // MAKE_D3DHRESULT(2076)
+	ITC_NAMEPAIR(D3DERR_TOOMANYOPERATIONS                ), // MAKE_D3DHRESULT(2077)
+	ITC_NAMEPAIR(D3DERR_CONFLICTINGTEXTUREFILTER         ), // MAKE_D3DHRESULT(2078)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDFACTORVALUE           ), // MAKE_D3DHRESULT(2079)
+	ITC_NAMEPAIR(D3DERR_CONFLICTINGRENDERSTATE           ), // MAKE_D3DHRESULT(2081)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDTEXTUREFILTER         ), // MAKE_D3DHRESULT(2082)
+	ITC_NAMEPAIR(D3DERR_CONFLICTINGTEXTUREPALETTE        ), // MAKE_D3DHRESULT(2086)
+	ITC_NAMEPAIR(D3DERR_DRIVERINTERNALERROR              ), // MAKE_D3DHRESULT(2087)
+                                                         
+	ITC_NAMEPAIR(D3DERR_NOTFOUND                         ), // MAKE_D3DHRESULT(2150)
+	ITC_NAMEPAIR(D3DERR_MOREDATA                         ), // MAKE_D3DHRESULT(2151)
+	ITC_NAMEPAIR(D3DERR_DEVICELOST                       ), // MAKE_D3DHRESULT(2152)
+	ITC_NAMEPAIR(D3DERR_DEVICENOTRESET                   ), // MAKE_D3DHRESULT(2153)
+	ITC_NAMEPAIR(D3DERR_NOTAVAILABLE                     ), // MAKE_D3DHRESULT(2154)
+	ITC_NAMEPAIR(D3DERR_OUTOFVIDEOMEMORY                 ), // MAKE_D3DHRESULT(380)
+	ITC_NAMEPAIR(D3DERR_INVALIDDEVICE                    ), // MAKE_D3DHRESULT(2155)
+	ITC_NAMEPAIR(D3DERR_INVALIDCALL                      ), // MAKE_D3DHRESULT(2156)
+	ITC_NAMEPAIR(D3DERR_DRIVERINVALIDCALL                ), // MAKE_D3DHRESULT(2157)
+	ITC_NAMEPAIR(D3DERR_WASSTILLDRAWING                  ), // MAKE_D3DHRESULT(540)
+	ITC_NAMEPAIR(D3DOK_NOAUTOGEN                         ), // MAKE_D3DSTATUS(2159)
+                                                         
+	ITC_NAMEPAIR(D3DERR_DEVICEREMOVED                    ), // MAKE_D3DHRESULT(2160)
+	ITC_NAMEPAIR(S_NOT_RESIDENT                          ), // MAKE_D3DSTATUS(2165)
+	ITC_NAMEPAIR(S_RESIDENT_IN_SHARED_MEMORY             ), // MAKE_D3DSTATUS(2166)
+	ITC_NAMEPAIR(S_PRESENT_MODE_CHANGED                  ), // MAKE_D3DSTATUS(2167)
+	ITC_NAMEPAIR(S_PRESENT_OCCLUDED                      ), // MAKE_D3DSTATUS(2168)
+	ITC_NAMEPAIR(D3DERR_DEVICEHUNG                       ), // MAKE_D3DHRESULT(2164)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDOVERLAY               ), // MAKE_D3DHRESULT(2171)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDOVERLAYFORMAT         ), // MAKE_D3DHRESULT(2172)
+	ITC_NAMEPAIR(D3DERR_CANNOTPROTECTCONTENT             ), // MAKE_D3DHRESULT(2173)
+	ITC_NAMEPAIR(D3DERR_UNSUPPORTEDCRYPTO                ), // MAKE_D3DHRESULT(2174)
+	ITC_NAMEPAIR(D3DERR_PRESENT_STATISTICS_DISJOINT      ), // MAKE_D3DHRESULT(2180)
+};
+CInterpretConst D3DERR(_e2v_D3DERR, ITCF_HEX4B);
+const int N_e2v_D3DERR = ARRAYSIZE(_e2v_D3DERR);
+
+
+const SingleBit2Val_st _b2v_D3DCREATE[] = 
+{
+	ITC_NAMEPAIR(D3DCREATE_FPU_PRESERVE                  ), // 0x00000002L
+	ITC_NAMEPAIR(D3DCREATE_MULTITHREADED                 ), // 0x00000004L
+	ITC_NAMEPAIR(D3DCREATE_PUREDEVICE                    ), // 0x00000010L
+	ITC_NAMEPAIR(D3DCREATE_SOFTWARE_VERTEXPROCESSING     ), // 0x00000020L
+	ITC_NAMEPAIR(D3DCREATE_HARDWARE_VERTEXPROCESSING     ), // 0x00000040L
+	ITC_NAMEPAIR(D3DCREATE_MIXED_VERTEXPROCESSING        ), // 0x00000080L
+	ITC_NAMEPAIR(D3DCREATE_DISABLE_DRIVER_MANAGEMENT     ), // 0x00000100L
+	ITC_NAMEPAIR(D3DCREATE_ADAPTERGROUP_DEVICE           ), // 0x00000200L
+	ITC_NAMEPAIR(D3DCREATE_DISABLE_DRIVER_MANAGEMENT_EX  ), // 0x00000400L
+	ITC_NAMEPAIR(D3DCREATE_NOWINDOWCHANGES				 ), // 0x00000800L
+	ITC_NAMEPAIR(D3DCREATE_DISABLE_PSGP_THREADING        ), // 0x00002000L
+	ITC_NAMEPAIR(D3DCREATE_ENABLE_PRESENTSTATS           ), // 0x00004000L
+	ITC_NAMEPAIR(D3DCREATE_DISABLE_PRINTSCREEN           ), // 0x00008000L
+	ITC_NAMEPAIR(D3DCREATE_SCREENSAVER                   ), // 0x10000000L
+};
+CInterpretConst D3DCREATE(_b2v_D3DCREATE, ITCF_HEX1B);
+
+
+
+
+
+#endif // [IMPL]
+
+
+} // namespace itc
+
+#endif // __d3d9_h_20251208_

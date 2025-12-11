@@ -84,10 +84,12 @@ const Enum2Val_st _e2v_D3DFMT[] =
 	ITC_NAMEPAIR(D3DFMT_D32F_LOCKABLE        ), // = 82,
 	ITC_NAMEPAIR(D3DFMT_D24FS8               ), // = 83,
 
+	ITC_NAMEPAIR(D3DFMT_L16                  ), // = 81,
+
+#if D3D_SDK_VERSION>=32
 	ITC_NAMEPAIR(D3DFMT_D32_LOCKABLE         ), // = 84,
 	ITC_NAMEPAIR(D3DFMT_S8_LOCKABLE          ), // = 85,
-
-	ITC_NAMEPAIR(D3DFMT_L16                  ), // = 81,
+#endif
 
 	ITC_NAMEPAIR(D3DFMT_VERTEXDATA           ), // =100,
 	ITC_NAMEPAIR(D3DFMT_INDEX16              ), // =101,
@@ -107,12 +109,12 @@ const Enum2Val_st _e2v_D3DFMT[] =
 
 	ITC_NAMEPAIR(D3DFMT_CxV8U8               ), // = 117,
 
+#if D3D_SDK_VERSION>=32
 	ITC_NAMEPAIR(D3DFMT_A1                   ), // = 118,
-
 	ITC_NAMEPAIR(D3DFMT_A2B10G10R10_XR_BIAS  ), // = 119,
-
 	ITC_NAMEPAIR(D3DFMT_BINARYBUFFER         ), // = 199,
-	
+#endif
+
 	ITC_NAMEPAIR(D3DFMT_FORCE_DWORD          ), // =0x7fffffff
 };
 CInterpretConst D3DFMT(_e2v_D3DFMT, ITCF_SINT);

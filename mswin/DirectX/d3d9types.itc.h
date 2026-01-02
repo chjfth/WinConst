@@ -7,9 +7,10 @@ namespace itc {
 
 
 extern CInterpretConst D3DFMT;
+extern CInterpretConst D3DTEXTUREADDRESS;
 
 
-
+}
 
 /*
 ////////////////////////////////////////////////////////////////////////////
@@ -24,6 +25,9 @@ extern CInterpretConst D3DFMT;
 // ++++++++++++++++++ Implementation Below ++++++++++++++++++
 //
 #if defined(d3d9types_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_d3d9types) // [IMPL]
+
+
+namespace itc {
 
 // More ctor reference: My evclip 20250411.v1
 
@@ -119,6 +123,18 @@ const Enum2Val_st _e2v_D3DFMT[] =
 };
 CInterpretConst D3DFMT(_e2v_D3DFMT, ITCF_SINT);
 
+
+const Enum2Val_st _e2v_D3DTEXTUREADDRESS[] =
+{
+	ITC_NAMEPAIR(D3DTADDRESS_WRAP            ), //= 1,
+	ITC_NAMEPAIR(D3DTADDRESS_MIRROR          ), //= 2,
+	ITC_NAMEPAIR(D3DTADDRESS_CLAMP           ), //= 3,
+	ITC_NAMEPAIR(D3DTADDRESS_BORDER          ), //= 4,
+	ITC_NAMEPAIR(D3DTADDRESS_MIRRORONCE      ), //= 5,
+};
+CInterpretConst D3DTEXTUREADDRESS(_e2v_D3DTEXTUREADDRESS, ITCF_SINT);
+
+
 /*
 const SingleBit2Val_st _b2v_YYY[] =
 {
@@ -134,9 +150,9 @@ CInterpretConst YYY(_b2v_YYY, ITCF_HEX4B);
 */
 
 
+} // namespace itc
+
 #endif // [IMPL]
 
-
-} // namespace itc
 
 #endif // __d3d9types_h_20251208_

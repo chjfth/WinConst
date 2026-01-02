@@ -14,7 +14,7 @@ extern const int        N_e2v_D3DERR;
 
 extern CInterpretConst D3DCREATE;
 
-
+}
 
 /*
 ////////////////////////////////////////////////////////////////////////////
@@ -30,7 +30,11 @@ extern CInterpretConst D3DCREATE;
 //
 #if defined(d3d9_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_d3d9) // [IMPL]
 
+
 #include <d3d9.h>
+
+
+namespace itc {
 
 const Enum2Val_st _e2v_D3DERR[] =
 {
@@ -101,11 +105,10 @@ CInterpretConst D3DCREATE(_b2v_D3DCREATE, ITCF_HEX1B);
 
 
 
+} // namespace itc
 
 
 #endif // [IMPL]
 
-
-} // namespace itc
 
 #endif // __d3d9_h_20251208_

@@ -9,6 +9,7 @@ namespace itc {
 extern CInterpretConst D3DVTXPCAPS;
 
 
+}
 
 /*
 ////////////////////////////////////////////////////////////////////////////
@@ -24,6 +25,8 @@ extern CInterpretConst D3DVTXPCAPS;
 //
 #if defined(d3d9caps_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_d3d9caps) // [IMPL]
 
+
+namespace itc {
 
 /*
 
@@ -54,9 +57,9 @@ CInterpretConst D3DVTXPCAPS(_b2v_D3DVTXPCAPS, ITCF_HEX2B);
 
 
 
+} // namespace itc
+
 #endif // [IMPL]
 
-
-} // namespace itc
 
 #endif // __d3d9caps_h_20251208_

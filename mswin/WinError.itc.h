@@ -1,6 +1,7 @@
 #ifndef __WinError_h_20251208_
 #define __WinError_h_20251208_
 
+using namespace itc;
 
 #define ITCS_WinError ITCSvn(GetLastError(), itc::WinError)
 

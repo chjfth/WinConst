@@ -9,7 +9,7 @@ namespace itc {
 extern CInterpretConst DxErr;
 
 
-
+}
 
 /*
 ////////////////////////////////////////////////////////////////////////////
@@ -31,6 +31,9 @@ extern CInterpretConst DxErr;
 
 
 
+namespace itc {
+
+
 CInterpretConst DxErr(
 	new Enum2Val_merge(
 		_e2v_D3DXERR, N_e2v_D3DXERR,
@@ -44,9 +47,9 @@ CInterpretConst DxErr(
 
 
 
+} // namespace itc
+
 #endif // [IMPL]
 
-
-} // namespace itc
 
 #endif // __directx_errors_h_20251208_

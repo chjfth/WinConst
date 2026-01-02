@@ -10,7 +10,7 @@ extern CInterpretConst D3DXERR;
 extern const Enum2Val_st _e2v_D3DXERR[];
 extern const int        N_e2v_D3DXERR;
 
-
+}
 
 /*
 ////////////////////////////////////////////////////////////////////////////
@@ -28,6 +28,8 @@ extern const int        N_e2v_D3DXERR;
 
 #include <d3dx9.h>
 #include "d3d9.itc.h"
+
+namespace itc {
 
 const Enum2Val_st _e2v_D3DXERR[] =
 {
@@ -50,10 +52,8 @@ const int N_e2v_D3DXERR = ARRAYSIZE(_e2v_D3DXERR);
 
 
 
+} // namespace itc
 
 #endif // [IMPL]
-
-
-} // namespace itc
 
 #endif // __d3dx9_h_20251208_

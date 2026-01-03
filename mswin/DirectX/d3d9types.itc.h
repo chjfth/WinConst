@@ -34,6 +34,12 @@ extern CInterpretConst D3DBLENDOP;
 
 extern CInterpretConst D3DDEGREETYPE;
 
+extern CInterpretConst D3DTEXTUREOP;
+
+extern CInterpretConst D3DTA_xxx;
+
+extern CInterpretConst D3DTEXTURETRANSFORMFLAGS;
+
 }
 
 /*
@@ -320,6 +326,67 @@ const Enum2Val_st _e2v_D3DDEGREETYPE[] =
 	ITC_NAMEPAIR(D3DDEGREE_QUINTIC   ), // = 5,
 };
 CInterpretConst D3DDEGREETYPE(_e2v_D3DDEGREETYPE, ITCF_SINT);
+
+
+const Enum2Val_st _e2v_D3DTEXTUREOP[] = 
+{
+	ITC_NAMEPAIR(D3DTOP_DISABLE                   ), // = 1,
+	ITC_NAMEPAIR(D3DTOP_SELECTARG1                ), // = 2,
+	ITC_NAMEPAIR(D3DTOP_SELECTARG2                ), // = 3,
+	ITC_NAMEPAIR(D3DTOP_MODULATE                  ), // = 4,
+	ITC_NAMEPAIR(D3DTOP_MODULATE2X                ), // = 5,
+	ITC_NAMEPAIR(D3DTOP_MODULATE4X                ), // = 6,
+	ITC_NAMEPAIR(D3DTOP_ADD                       ), // = 7,
+	ITC_NAMEPAIR(D3DTOP_ADDSIGNED                 ), // = 8,
+	ITC_NAMEPAIR(D3DTOP_ADDSIGNED2X               ), // = 9,
+	ITC_NAMEPAIR(D3DTOP_SUBTRACT                  ), // = 10,
+	ITC_NAMEPAIR(D3DTOP_ADDSMOOTH                 ), // = 11,
+	ITC_NAMEPAIR(D3DTOP_BLENDDIFFUSEALPHA         ), // = 12,
+	ITC_NAMEPAIR(D3DTOP_BLENDTEXTUREALPHA         ), // = 13,
+	ITC_NAMEPAIR(D3DTOP_BLENDFACTORALPHA          ), // = 14,
+	ITC_NAMEPAIR(D3DTOP_BLENDTEXTUREALPHAPM       ), // = 15,
+	ITC_NAMEPAIR(D3DTOP_BLENDCURRENTALPHA         ), // = 16,
+	ITC_NAMEPAIR(D3DTOP_PREMODULATE               ), // = 17,
+	ITC_NAMEPAIR(D3DTOP_MODULATEALPHA_ADDCOLOR    ), // = 18,
+	ITC_NAMEPAIR(D3DTOP_MODULATECOLOR_ADDALPHA    ), // = 19,
+	ITC_NAMEPAIR(D3DTOP_MODULATEINVALPHA_ADDCOLOR ), // = 20,
+	ITC_NAMEPAIR(D3DTOP_MODULATEINVCOLOR_ADDALPHA ), // = 21,
+	ITC_NAMEPAIR(D3DTOP_BUMPENVMAP                ), // = 22,
+	ITC_NAMEPAIR(D3DTOP_BUMPENVMAPLUMINANCE       ), // = 23,
+	ITC_NAMEPAIR(D3DTOP_DOTPRODUCT3               ), // = 24,
+	ITC_NAMEPAIR(D3DTOP_MULTIPLYADD               ), // = 25,
+	ITC_NAMEPAIR(D3DTOP_LERP                      ), // = 26,
+};
+CInterpretConst D3DTEXTUREOP(_e2v_D3DTEXTUREOP, ITCF_SINT);
+
+
+const Enum2Val_st _e2v_D3DTA_xxx[] =
+{
+	ITC_NAMEPAIR(D3DTA_SELECTMASK      ), //  0x0000000f  // mask for arg selector
+	ITC_NAMEPAIR(D3DTA_DIFFUSE         ), //  0x00000000  // select diffuse color (read only)
+	ITC_NAMEPAIR(D3DTA_CURRENT         ), //  0x00000001  // select stage destination register (read/write)
+	ITC_NAMEPAIR(D3DTA_TEXTURE         ), //  0x00000002  // select texture color (read only)
+	ITC_NAMEPAIR(D3DTA_TFACTOR         ), //  0x00000003  // select D3DRS_TEXTUREFACTOR (read only)
+	ITC_NAMEPAIR(D3DTA_SPECULAR        ), //  0x00000004  // select specular color (read only)
+	ITC_NAMEPAIR(D3DTA_TEMP            ), //  0x00000005  // select temporary register color (read/write)
+	ITC_NAMEPAIR(D3DTA_CONSTANT        ), //  0x00000006  // select texture stage constant
+	ITC_NAMEPAIR(D3DTA_COMPLEMENT      ), //  0x00000010  // take 1.0 - x (read modifier)
+	ITC_NAMEPAIR(D3DTA_ALPHAREPLICATE  ), //  0x00000020  // replicate alpha to color components (read modifier)
+};
+CInterpretConst D3DTA_xxx(_e2v_D3DTA_xxx, ITCF_SINT);
+
+
+const Enum2Val_st _e2v_D3DTEXTURETRANSFORMFLAGS[] =
+{
+	ITC_NAMEPAIR(D3DTTFF_DISABLE     ), // = 0,
+	ITC_NAMEPAIR(D3DTTFF_COUNT1      ), // = 1,
+	ITC_NAMEPAIR(D3DTTFF_COUNT2      ), // = 2,
+	ITC_NAMEPAIR(D3DTTFF_COUNT3      ), // = 3,
+	ITC_NAMEPAIR(D3DTTFF_COUNT4      ), // = 4,
+	ITC_NAMEPAIR(D3DTTFF_PROJECTED   ), // = 256,
+};
+CInterpretConst D3DTEXTURETRANSFORMFLAGS(_e2v_D3DTEXTURETRANSFORMFLAGS, ITCF_SINT);
+
 
 /*
 const SingleBit2Val_st _b2v_YYY[] =

@@ -1,13 +1,88 @@
-#pragma once
+#ifndef CHHI__WinSvc_h_20260225_
+#define CHHI__WinSvc_h_20260225_
 
-#include "../itc/InterpretConst.h"
+#include <InterpretConst.h>
 
 namespace itc {
 
+extern const CInterpretConst SERVICE_CONTROL_xxx;
 
-extern CInterpretConst SERVICE_CONTROL_xxx;
-
-extern CInterpretConst ServiceRights;
+extern const CInterpretConst ServiceRights;
 
 
 } // namespace itc
+
+
+/*
+////////////////////////////////////////////////////////////////////////////
+ ___                 _                           _        _   _             
+|_ _|_ __ ___  _ __ | | ___ _ __ ___   ___ _ __ | |_ __ _| |_(_) ___  _ __  
+ | || '_ ` _ \| '_ \| |/ _ \ '_ ` _ \ / _ \ '_ \| __/ _` | __| |/ _ \| '_ \ 
+ | || | | | | | |_) | |  __/ | | | | |  __/ | | | || (_| | |_| | (_) | | | |
+|___|_| |_| |_| .__/|_|\___|_| |_| |_|\___|_| |_|\__\__,_|\__|_|\___/|_| |_|
+              |_|                                                           
+////////////////////////////////////////////////////////////////////////////
+*/
+// ++++++++++++++++++ Implementation Below ++++++++++++++++++
+//
+#if defined(WinSvc_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_WinSvc) // [IMPL] begin
+// [IMPL] //
+// [IMPL] //
+// Include system/OS headers here
+#define WinNT_IMPL
+#include "winnt.itc.h"  // need for _b2v_StandardRight
+//
+#include <WinSvc.h>
+// [IMPL] //
+// [IMPL] //
+namespace itc {
+
+// More ctor reference: My evclip 20250411.v1
+
+const Enum2Val_st _e2v_SERVICE_CONTROL_xxx[] =
+{
+	ITC_NAMEPAIR(SERVICE_CONTROL_STOP                   ), // 1
+	ITC_NAMEPAIR(SERVICE_CONTROL_PAUSE                  ), // 2
+	ITC_NAMEPAIR(SERVICE_CONTROL_CONTINUE               ), // 3
+	ITC_NAMEPAIR(SERVICE_CONTROL_INTERROGATE            ), // 4
+	ITC_NAMEPAIR(SERVICE_CONTROL_SHUTDOWN               ), // 5
+	ITC_NAMEPAIR(SERVICE_CONTROL_PARAMCHANGE            ), // 6
+	ITC_NAMEPAIR(SERVICE_CONTROL_NETBINDADD             ), // 7
+	ITC_NAMEPAIR(SERVICE_CONTROL_NETBINDREMOVE          ), // 8
+	ITC_NAMEPAIR(SERVICE_CONTROL_NETBINDENABLE          ), // 9
+	ITC_NAMEPAIR(SERVICE_CONTROL_NETBINDDISABLE         ), // 10
+	ITC_NAMEPAIR(SERVICE_CONTROL_DEVICEEVENT            ), // 11
+	ITC_NAMEPAIR(SERVICE_CONTROL_HARDWAREPROFILECHANGE  ), // 12
+	ITC_NAMEPAIR(SERVICE_CONTROL_POWEREVENT             ), // 13
+	ITC_NAMEPAIR(SERVICE_CONTROL_SESSIONCHANGE          ), // 14
+	ITC_NAMEPAIR(SERVICE_CONTROL_PRESHUTDOWN            ), // 15
+	ITC_NAMEPAIR(SERVICE_CONTROL_TIMECHANGE             ), // 16
+	ITC_NAMEPAIR(SERVICE_CONTROL_TRIGGEREVENT           ), // 17
+};
+const CInterpretConst SERVICE_CONTROL_xxx(_e2v_SERVICE_CONTROL_xxx, ITCF_UINT);
+
+const SingleBit2Val_st _b2v_ServiceRight[] = {
+	
+	ITC_NAMEPAIR(SERVICE_QUERY_CONFIG), //           0x0001
+	ITC_NAMEPAIR(SERVICE_CHANGE_CONFIG), //          0x0002
+	ITC_NAMEPAIR(SERVICE_QUERY_STATUS), //           0x0004
+	ITC_NAMEPAIR(SERVICE_ENUMERATE_DEPENDENTS), //   0x0008
+	ITC_NAMEPAIR(SERVICE_START), //                  0x0010
+	ITC_NAMEPAIR(SERVICE_STOP), //                   0x0020
+	ITC_NAMEPAIR(SERVICE_PAUSE_CONTINUE), //         0x0040
+	ITC_NAMEPAIR(SERVICE_INTERROGATE), //            0x0080
+	ITC_NAMEPAIR(SERVICE_USER_DEFINED_CONTROL), //   0x0100
+};
+const CInterpretConst ServiceRights(ITCF_HEX1B,
+	_b2v_ServiceRight, ARRAYSIZE(_b2v_ServiceRight),  
+	_b2v_StandardRight, N_b2v_StandardRight,
+	nullptr, 0);
+
+
+} // namespace itc
+// [IMPL] //
+// [IMPL] //
+#endif // [IMPL] end
+
+
+#endif // CHHI__WinSvc_h_20260225_

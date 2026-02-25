@@ -47,6 +47,8 @@ extern CInterpretConst CDIS_xxx;
 // Include system/OS headers here
 #define WinUser_IMPL
 #include "winuser.itc.h"
+//
+#include <CommCtrl.h>
 // [IMPL] //
 // [IMPL] //
 namespace itc {

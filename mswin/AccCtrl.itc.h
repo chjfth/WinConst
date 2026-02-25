@@ -28,7 +28,7 @@ extern const CInterpretConst SE_xxx_objectType;
 // [IMPL] //
 // [IMPL] //
 // Include system/OS headers here
-#include <stdio.h>
+#include <AccCtrl.h>
 // [IMPL] //
 // [IMPL] //
 namespace itc {

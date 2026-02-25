@@ -34,6 +34,8 @@ extern CInterpretConst Aclui_SI_PAGE_xxx;
 // Include system/OS headers here
 #define PrSht_IMPL
 #include "PrSht.itc.h"
+//
+#include <AclUI.h>
 // [IMPL] //
 // [IMPL] //
 namespace itc {

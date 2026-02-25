@@ -1,15 +1,17 @@
-#ifndef __WinError_h_20251208_
-#define __WinError_h_20251208_
+#ifndef CHHI__WinError_h_20260225_
+#define CHHI__WinError_h_20260225_
 
-using namespace itc;
+#include <InterpretConst.h>
 
 #define ITCS_WinError ITCSvn(GetLastError(), itc::WinError)
 
+namespace itc {
 
 extern const Enum2Val_st _e2v_WinError[];
 extern const int N_e2v_WinError;
 extern CInterpretConst WinError;
 
+} // namespace itc
 
 
 /*
@@ -25,7 +27,15 @@ extern CInterpretConst WinError;
 // ++++++++++++++++++ Implementation Below ++++++++++++++++++
 //
 #if defined(WinError_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_WinError) // [IMPL]
+// [IMPL] //
+// [IMPL] //
+// Include system/OS headers here
+// ...
+// [IMPL] //
+// [IMPL] //
+namespace itc {
 
+// More ctor reference: My evclip 20250411.v1
 
 const Enum2Val_st _e2v_WinError[] =
 {
@@ -4131,6 +4141,10 @@ const int N_e2v_WinError = ARRAYSIZE(_e2v_WinError);
 CInterpretConst WinError(_e2v_WinError, ITCF_SINT);
 
 
-#endif // [IMPL]
+} // namespace itc
+// [IMPL] //
+// [IMPL] //
+#endif // [IMPL] end
 
-#endif // __WinError_h_20251208_
+
+#endif // CHHI__WinError_h_20260225_

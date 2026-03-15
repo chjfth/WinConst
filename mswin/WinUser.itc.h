@@ -141,6 +141,11 @@ extern const Enum2Val_st _e2v_EM_xxx[];
 extern const int N_e2v_EM_xxx;
 extern const CInterpretConst EM_xxx; // Editbox messages (not including RichEdit yet)
 
+extern const Enum2Val_st _e2v_BM_xxx[];
+extern const int N_e2v_BM_xxx;
+extern const CInterpretConst BM_xxx; // Button messages
+
+
 } // namespace itc
 
 
@@ -1246,6 +1251,24 @@ const Enum2Val_st _e2v_EM_xxx[] =
 };
 const int N_e2v_EM_xxx = ARRAYSIZE(_e2v_EM_xxx);
 const CInterpretConst EM_xxx(_e2v_WM_xxx, _e2v_EM_xxx, ITCF_HEX2B);
+
+
+const Enum2Val_st _e2v_BM_xxx[] = 
+{
+	ITC_NAMEPAIR(BM_GETCHECK       ),  // 0x00F0
+	ITC_NAMEPAIR(BM_SETCHECK       ),  // 0x00F1
+	ITC_NAMEPAIR(BM_GETSTATE       ),  // 0x00F2
+	ITC_NAMEPAIR(BM_SETSTATE       ),  // 0x00F3
+	ITC_NAMEPAIR(BM_SETSTYLE       ),  // 0x00F4
+	ITC_NAMEPAIR(BM_CLICK          ),  // 0x00F5
+	ITC_NAMEPAIR(BM_GETIMAGE       ),  // 0x00F6
+	ITC_NAMEPAIR(BM_SETIMAGE       ),  // 0x00F7
+#ifdef BM_SETDONTCLICK
+	ITC_NAMEPAIR(BM_SETDONTCLICK   ),  // 0x00F8
+#endif
+};
+const int N_e2v_BM_xxx = ARRAYSIZE(_e2v_BM_xxx);
+const CInterpretConst BM_xxx(_e2v_WM_xxx, _e2v_BM_xxx, ITCF_HEX2B);
 
 
 

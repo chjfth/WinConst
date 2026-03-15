@@ -110,32 +110,32 @@ const SingleBit2Val_st _b2v_WS_EX_xxx[] =
 
 extern const Enum2Val_st _e2v_WM_xxx[];
 extern const int N_e2v_WM_xxx;
-extern CInterpretConst WM_xxx;
+extern const CInterpretConst WM_xxx;
 
-extern CInterpretConst VK_xxx;
-extern CInterpretConst LLKHF_xxx;
+extern const CInterpretConst VK_xxx;
+extern const CInterpretConst LLKHF_xxx;
 
-extern CInterpretConst WS_xxx_toplevel;
-extern CInterpretConst WS_xxx_childwnd;
-extern CInterpretConst WS_EX_xxx;
+extern const CInterpretConst WS_xxx_toplevel;
+extern const CInterpretConst WS_xxx_childwnd;
+extern const CInterpretConst WS_EX_xxx;
 
-extern CInterpretConst WS_xxx_Static;
-extern CInterpretConst WS_xxx_Edit;
-extern CInterpretConst WS_xxx_Button;
-extern CInterpretConst WS_xxx_ListBox;
-extern CInterpretConst WS_xxx_ComboBox;
+extern const CInterpretConst WS_xxx_Static;
+extern const CInterpretConst WS_xxx_Edit;
+extern const CInterpretConst WS_xxx_Button;
+extern const CInterpretConst WS_xxx_ListBox;
+extern const CInterpretConst WS_xxx_ComboBox;
 
-extern CInterpretConst CBN_xxx_ComboBox;
+extern const CInterpretConst CBN_xxx_ComboBox;
 
-extern CInterpretConst HTxxx_HitTest;
+extern const CInterpretConst HTxxx_HitTest;
 
-extern CInterpretConst MK_xxx_mouse;
+extern const CInterpretConst MK_xxx_mouse;
 
-extern CInterpretConst DT_xxx_DrawText;
+extern const CInterpretConst DT_xxx_DrawText;
 
 
-extern CInterpretConst DesktopRights;
-extern CInterpretConst WinstationRights;
+extern const CInterpretConst DesktopRights;
+extern const CInterpretConst WinstationRights;
 
 
 } // namespace itc
@@ -487,7 +487,7 @@ const Enum2Val_st _e2v_WM_xxx[] =
 
 };
 const int N_e2v_WM_xxx = ARRAYSIZE(_e2v_WM_xxx);
-CInterpretConst WM_xxx(_e2v_WM_xxx, ITCF_HEX1B);
+const CInterpretConst WM_xxx(_e2v_WM_xxx, ITCF_HEX1B);
 
 ///////////////////////////////////////////////////////////////////////////
 // VK_xxx : Virtual Keycode , VS2010
@@ -826,7 +826,7 @@ const Enum2Val_st _e2v_VK_xxx[] =
 	ITC_NAMEPAIR(VK_PA1), // 0xFD
 	ITC_NAMEPAIR(VK_OEM_CLEAR), // 0xFE
 };
-CInterpretConst VK_xxx(_e2v_VK_xxx, ITCF_HEX1B);
+const CInterpretConst VK_xxx(_e2v_VK_xxx, ITCF_HEX1B);
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -846,13 +846,13 @@ const SingleBit2Val_st _b2v_LLKHF_xxx[] =
 	ITC_NAMEPAIR(LLKHF_ALTDOWN),  // (KF_ALTDOWN >> 8)  // bit 5, 0x20
 	ITC_NAMEPAIR(LLKHF_UP),       // (KF_UP >> 8)       // bit 7, 0x80 true=key-up
 };
-CInterpretConst LLKHF_xxx(_b2v_LLKHF_xxx, ITCF_HEX1B);
+const CInterpretConst LLKHF_xxx(_b2v_LLKHF_xxx, ITCF_HEX1B);
 
-CInterpretConst WS_xxx_toplevel(_b2v_WS_xxx_toplevel, ITCF_HEX4B);
+const CInterpretConst WS_xxx_toplevel(_b2v_WS_xxx_toplevel, ITCF_HEX4B);
 
-CInterpretConst WS_xxx_childwnd(_b2v_WS_xxx_childwnd, ITCF_HEX4B);
+const CInterpretConst WS_xxx_childwnd(_b2v_WS_xxx_childwnd, ITCF_HEX4B);
 
-CInterpretConst WS_EX_xxx(_b2v_WS_EX_xxx, ITCF_HEX4B);
+const CInterpretConst WS_EX_xxx(_b2v_WS_EX_xxx, ITCF_HEX4B);
 
 //
 // Window style for "Static"
@@ -911,7 +911,7 @@ const EnumGroup_st _egs_WS_xxx_Static[] =
 	{ SS_TYPEMASK,     _e2v_WS_xxx_Static_TYPE, ARRAYSIZE(_e2v_WS_xxx_Static_TYPE) },
 	{ SS_ELLIPSISMASK, _e2v_WS_xxx_Static_ELLIPSIS, ARRAYSIZE(_e2v_WS_xxx_Static_ELLIPSIS) },
 };
-CInterpretConst WS_xxx_Static(ITCF_HEX4B, 
+const CInterpretConst WS_xxx_Static(ITCF_HEX4B, 
 	_egs_WS_xxx_Static, ARRAYSIZE(_egs_WS_xxx_Static),
 	_b2v_WS_xxx_Static, ARRAYSIZE(_b2v_WS_xxx_Static),     // 8 bits
 	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
@@ -952,7 +952,7 @@ const SingleBit2Val_st _b2v_WS_xxx_Edit[] =
 	ITC_NAMEPAIR(ES_WANTRETURN), // 0x1000L
 	ITC_NAMEPAIR(ES_NUMBER), // 0x2000L
 };
-CInterpretConst WS_xxx_Edit(ITCF_HEX4B,
+const CInterpretConst WS_xxx_Edit(ITCF_HEX4B,
 	_b2v_WS_xxx_Edit, ARRAYSIZE(_b2v_WS_xxx_Edit),
 	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
@@ -1003,7 +1003,7 @@ const EnumGroup_st _egs_WS_xxx_Button[] =
 {
 	{ BS_TYPEMASK, _e2v_WS_xxx_Button_TYPE, ARRAYSIZE(_e2v_WS_xxx_Button_TYPE) },
 };
-CInterpretConst WS_xxx_Button(ITCF_HEX4B,
+const CInterpretConst WS_xxx_Button(ITCF_HEX4B,
 	_egs_WS_xxx_Button, ARRAYSIZE(_egs_WS_xxx_Button),
 	b2v_WS_xxx_Button, ARRAYSIZE(b2v_WS_xxx_Button),     // 10 bits
 	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
@@ -1032,7 +1032,7 @@ const SingleBit2Val_st _b2v_WS_xxx_ListBox[] =
 	ITC_NAMEPAIR(LBS_NOSEL),             // 0x4000L
 	ITC_NAMEPAIR(LBS_COMBOBOX),          // 0x8000L
 };
-CInterpretConst WS_xxx_ListBox(ITCF_HEX4B,
+const CInterpretConst WS_xxx_ListBox(ITCF_HEX4B,
 	_b2v_WS_xxx_ListBox,  ARRAYSIZE(_b2v_WS_xxx_ListBox),  // 16 bits
 	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
@@ -1057,7 +1057,7 @@ const SingleBit2Val_st _b2v_WS_xxx_ComboBox[] =
 	ITC_NAMEPAIR(CBS_UPPERCASE),         // 0x2000L
 	ITC_NAMEPAIR(CBS_LOWERCASE),         // 0x4000L
 };
-CInterpretConst WS_xxx_ComboBox(ITCF_HEX4B, 
+const CInterpretConst WS_xxx_ComboBox(ITCF_HEX4B, 
 	_b2v_WS_xxx_ComboBox, ARRAYSIZE(_b2v_WS_xxx_ComboBox), // 12 bits
 	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd), // 17 bits
 	nullptr, 0);
@@ -1080,7 +1080,7 @@ const Enum2Val_st _e2v_CBN_xxx_ComboBox[]=
 	ITC_NAMEPAIR(CBN_SELENDOK      ), //  9
 	ITC_NAMEPAIR(CBN_SELENDCANCEL  ), //  10
 };
-CInterpretConst CBN_xxx_ComboBox(_e2v_CBN_xxx_ComboBox, ITCF_SINT);
+const CInterpretConst CBN_xxx_ComboBox(_e2v_CBN_xxx_ComboBox, ITCF_SINT);
 
 
 const Enum2Val_st _e2v_HTxxx_HitTest[] = 
@@ -1110,7 +1110,7 @@ const Enum2Val_st _e2v_HTxxx_HitTest[] =
 	ITC_NAMEPAIR(HTCLOSE), //             20
 	ITC_NAMEPAIR(HTHELP), //              21
 };
-CInterpretConst HTxxx_HitTest(_e2v_HTxxx_HitTest, ITCF_SINT);
+const CInterpretConst HTxxx_HitTest(_e2v_HTxxx_HitTest, ITCF_SINT);
 
 
 const SingleBit2Val_st _b2v_MK_xxx_mouse[] =
@@ -1123,7 +1123,7 @@ const SingleBit2Val_st _b2v_MK_xxx_mouse[] =
 	ITC_NAMEPAIR(MK_XBUTTON1), //         0x0020
 	ITC_NAMEPAIR(MK_XBUTTON2), //         0x0040
 };
-CInterpretConst MK_xxx_mouse(_b2v_MK_xxx_mouse, ITCF_HEX2B);
+const CInterpretConst MK_xxx_mouse(_b2v_MK_xxx_mouse, ITCF_HEX2B);
 
 
 const SingleBit2Val_st _b2v_DT_xxx_DrawText[] =
@@ -1151,7 +1151,7 @@ const SingleBit2Val_st _b2v_DT_xxx_DrawText[] =
 	ITC_NAMEPAIR(DT_HIDEPREFIX), //               0x00100000
 	ITC_NAMEPAIR(DT_PREFIXONLY), //               0x00200000
 };
-CInterpretConst DT_xxx_DrawText(_b2v_DT_xxx_DrawText, ITCF_HEX2B);
+const CInterpretConst DT_xxx_DrawText(_b2v_DT_xxx_DrawText, ITCF_HEX2B);
 
 
 
@@ -1173,7 +1173,7 @@ const SingleBit2Val_st _b2v_DesktopRight[] =
 	ITC_NAMEPAIR(DESKTOP_WRITEOBJECTS), //        0x0080L
 	ITC_NAMEPAIR(DESKTOP_SWITCHDESKTOP), //       0x0100L
 };
-CInterpretConst DesktopRights(ITCF_HEX1B,
+const CInterpretConst DesktopRights(ITCF_HEX1B,
 	_b2v_DesktopRight, ARRAYSIZE(_b2v_DesktopRight),  
 	_b2v_StandardRight, N_b2v_StandardRight,
 	_b2v_GenericRight, N_b2v_GenericRight,
@@ -1192,11 +1192,13 @@ const SingleBit2Val_st _b2v_WinstationRight[] =
 	ITC_NAMEPAIR(WINSTA_ENUMERATE), //            0x0100L
 	ITC_NAMEPAIR(WINSTA_READSCREEN), //           0x0200L
 };
-CInterpretConst WinstationRights(ITCF_HEX1B,
+const CInterpretConst WinstationRights(ITCF_HEX1B,
 	_b2v_WinstationRight, ARRAYSIZE(_b2v_WinstationRight),  
 	_b2v_StandardRight, N_b2v_StandardRight,
 	_b2v_GenericRight, N_b2v_GenericRight,
 	nullptr, 0);
+
+
 
 
 

@@ -137,6 +137,9 @@ extern const CInterpretConst DT_xxx_DrawText;
 extern const CInterpretConst DesktopRights;
 extern const CInterpretConst WinstationRights;
 
+extern const Enum2Val_st _e2v_EM_xxx[];
+extern const int N_e2v_EM_xxx;
+extern const CInterpretConst EM_xxx; // Editbox messages (not including RichEdit yet)
 
 } // namespace itc
 
@@ -1199,6 +1202,50 @@ const CInterpretConst WinstationRights(ITCF_HEX1B,
 	nullptr, 0);
 
 
+const Enum2Val_st _e2v_EM_xxx[] = 
+{
+	ITC_NAMEPAIR(EM_GETSEL              ),  // 0x00B0
+	ITC_NAMEPAIR(EM_SETSEL              ),  // 0x00B1
+	ITC_NAMEPAIR(EM_GETRECT             ),  // 0x00B2
+	ITC_NAMEPAIR(EM_SETRECT             ),  // 0x00B3
+	ITC_NAMEPAIR(EM_SETRECTNP           ),  // 0x00B4
+	ITC_NAMEPAIR(EM_SCROLL              ),  // 0x00B5
+	ITC_NAMEPAIR(EM_LINESCROLL          ),  // 0x00B6
+	ITC_NAMEPAIR(EM_SCROLLCARET         ),  // 0x00B7
+	ITC_NAMEPAIR(EM_GETMODIFY           ),  // 0x00B8
+	ITC_NAMEPAIR(EM_SETMODIFY           ),  // 0x00B9
+	ITC_NAMEPAIR(EM_GETLINECOUNT        ),  // 0x00BA
+	ITC_NAMEPAIR(EM_LINEINDEX           ),  // 0x00BB
+	ITC_NAMEPAIR(EM_SETHANDLE           ),  // 0x00BC
+	ITC_NAMEPAIR(EM_GETHANDLE           ),  // 0x00BD
+	ITC_NAMEPAIR(EM_GETTHUMB            ),  // 0x00BE
+	ITC_NAMEPAIR(EM_LINELENGTH          ),  // 0x00C1
+	ITC_NAMEPAIR(EM_REPLACESEL          ),  // 0x00C2
+	ITC_NAMEPAIR(EM_GETLINE             ),  // 0x00C4
+	ITC_NAMEPAIR(EM_LIMITTEXT           ),  // 0x00C5
+	ITC_NAMEPAIR(EM_CANUNDO             ),  // 0x00C6
+	ITC_NAMEPAIR(EM_UNDO                ),  // 0x00C7
+	ITC_NAMEPAIR(EM_FMTLINES            ),  // 0x00C8
+	ITC_NAMEPAIR(EM_LINEFROMCHAR        ),  // 0x00C9
+	ITC_NAMEPAIR(EM_SETTABSTOPS         ),  // 0x00CB
+	ITC_NAMEPAIR(EM_SETPASSWORDCHAR     ),  // 0x00CC
+	ITC_NAMEPAIR(EM_EMPTYUNDOBUFFER     ),  // 0x00CD
+	ITC_NAMEPAIR(EM_GETFIRSTVISIBLELINE ),  // 0x00CE
+	ITC_NAMEPAIR(EM_SETREADONLY         ),  // 0x00CF
+	ITC_NAMEPAIR(EM_SETWORDBREAKPROC    ),  // 0x00D0
+	ITC_NAMEPAIR(EM_GETWORDBREAKPROC    ),  // 0x00D1
+	ITC_NAMEPAIR(EM_GETPASSWORDCHAR     ),  // 0x00D2
+	ITC_NAMEPAIR(EM_SETMARGINS          ),  // 0x00D3
+	ITC_NAMEPAIR(EM_GETMARGINS          ),  // 0x00D4
+	ITC_NAMEPAIR(EM_SETLIMITTEXT        ),  // EM_LIMITTEXT
+	ITC_NAMEPAIR(EM_GETLIMITTEXT        ),  // 0x00D5
+	ITC_NAMEPAIR(EM_POSFROMCHAR         ),  // 0x00D6
+	ITC_NAMEPAIR(EM_CHARFROMPOS         ),  // 0x00D7
+	ITC_NAMEPAIR(EM_SETIMESTATUS        ),  // 0x00D8
+	ITC_NAMEPAIR(EM_GETIMESTATUS        ),  // 0x00D9
+};
+const int N_e2v_EM_xxx = ARRAYSIZE(_e2v_EM_xxx);
+const CInterpretConst EM_xxx(_e2v_WM_xxx, _e2v_EM_xxx, ITCF_HEX2B);
 
 
 

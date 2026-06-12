@@ -5,7 +5,7 @@
 
 namespace itc {
 
-extern const CInterpretConst NERR_xxx;
+extern const CInterpretConst& NERR_xxx();
 
 } // namespace itc
 
@@ -358,13 +358,13 @@ const Enum2Val_st _e2v_NERR_xxx[] =
 	ITC_NAMEPAIR(NERR_ConnectionInsecure), // NERR_BASE + 618
 	ITC_NAMEPAIR(NERR_ProvisioningBlobUnsupported), // NERR_BASE + 619
 };
-const CInterpretConst NERR_xxx(
+ITC_MAKE_OBJECT(NERR_xxx,
 	new Enum2Val_merge(
 		_e2v_NERR_xxx, ARRAYSIZE(_e2v_NERR_xxx),
 		_e2v_WinError, N_e2v_WinError,
 		nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
 	, ITCF_SINT
-	);
+	)
 
 
 } // namespace itc

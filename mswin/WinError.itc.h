@@ -9,7 +9,7 @@ namespace itc {
 
 extern const Enum2Val_st _e2v_WinError[];
 extern const int N_e2v_WinError;
-extern CInterpretConst WinError;
+extern const CInterpretConst& WinError();
 
 } // namespace itc
 
@@ -4138,8 +4138,11 @@ const Enum2Val_st _e2v_WinError[] =
 	ITC_NAMEPAIR(UI_E_TIMER_CLIENT_ALREADY_CONNECTED), // (0x802A010AL)
 };
 const int N_e2v_WinError = ARRAYSIZE(_e2v_WinError);
-CInterpretConst WinError(_e2v_WinError, ITCF_SINT);
-
+const CInterpretConst& WinError()
+{
+	static const CInterpretConst WinError(_e2v_WinError, ITCF_SINT);
+	return WinError;
+}
 
 } // namespace itc
 // [IMPL] //

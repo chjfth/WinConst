@@ -5,9 +5,9 @@
 
 namespace itc {
 
-extern const CInterpretConst itc_SECURITY_LOGON_TYPE;
+extern const CInterpretConst& itc_SECURITY_LOGON_TYPE();
 
-extern const CInterpretConst LOGON_xxx_UserFlags;
+extern const CInterpretConst& LOGON_xxx_UserFlags();
 
 } // namespace itc
 
@@ -55,7 +55,7 @@ const Enum2Val_st _e2v_SECURITY_LOGON_TYPE[] =
     ITC_NAMEPAIR(CachedRemoteInteractive), // Same as RemoteInteractive, this is used internally for auditing purpose
     ITC_NAMEPAIR(CachedUnlock),        // Cached Unlock workstation
 };
-const CInterpretConst itc_SECURITY_LOGON_TYPE(_e2v_SECURITY_LOGON_TYPE, ITCF_SINT);
+ITC_MAKE_OBJECT(itc_SECURITY_LOGON_TYPE, _e2v_SECURITY_LOGON_TYPE, ITCF_SINT)
 
 
 const SingleBit2Val_st _b2v_LogonUserFlags[] =
@@ -65,7 +65,7 @@ const SingleBit2Val_st _b2v_LogonUserFlags[] =
 	ITC_NAMEPAIR(LOGON_PKINIT),      
 	ITC_NAMEPAIR(LOGON_NO_OPTIMIZED),
 };
-const CInterpretConst LOGON_xxx_UserFlags(_b2v_LogonUserFlags, ITCF_HEX2B);
+ITC_MAKE_OBJECT(LOGON_xxx_UserFlags, _b2v_LogonUserFlags, ITCF_HEX2B)
 
 
 } // namespace itc

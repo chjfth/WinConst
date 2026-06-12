@@ -5,26 +5,26 @@
 
 namespace itc {
 
-extern CInterpretConst WS_xxx_SysListView32;
-extern CInterpretConst LVS_EX_xxx;
+extern const CInterpretConst& WS_xxx_SysListView32();
+extern const CInterpretConst& LVS_EX_xxx();
 
-extern CInterpretConst WS_xxx_SysTreeView32;
-extern CInterpretConst TVS_EX_xxx;
+extern const CInterpretConst& WS_xxx_SysTreeView32();
+extern const CInterpretConst& TVS_EX_xxx();
 
-extern CInterpretConst WS_xxx_tooltips_class32_toplevel; // this is most common
-extern CInterpretConst WS_xxx_tooltips_class32_childwnd;
+extern const CInterpretConst& WS_xxx_tooltips_class32_toplevel(); // this is most common
+extern const CInterpretConst& WS_xxx_tooltips_class32_childwnd();
 
-extern CInterpretConst NM_xxx_Generic;
+extern const CInterpretConst& NM_xxx_Generic();
 
-extern CInterpretConst LVN_xxx;
+extern const CInterpretConst& LVN_xxx();
 
-extern CInterpretConst TTF_xxx;
-extern CInterpretConst TTN_xxx;
-extern CInterpretConst TTM_xxx_WM_xxx;
+extern const CInterpretConst& TTF_xxx();
+extern const CInterpretConst& TTN_xxx();
+extern const CInterpretConst& TTM_xxx_WM_xxx(); // both TTM_ and WM_xxx for a tooltip
 
 
-extern CInterpretConst CDDS_xxx;
-extern CInterpretConst CDIS_xxx;
+extern const CInterpretConst& CDDS_xxx();
+extern const CInterpretConst& CDIS_xxx();
 
 } // namespace itc
 
@@ -104,11 +104,15 @@ const EnumGroup_st _egs_WS_xxx_SysListView32[] =
 	{ LVS_TYPEMASK,  _e2v_WS_xxx_SysListView32_TYPE,  ARRAYSIZE(_e2v_WS_xxx_SysListView32_TYPE)  },
 	{ LVS_ALIGNMASK, _e2v_WS_xxx_SysListView32_ALIGN, ARRAYSIZE(_e2v_WS_xxx_SysListView32_ALIGN) },
 };
-CInterpretConst WS_xxx_SysListView32(ITCF_HEX4B,
-	_egs_WS_xxx_SysListView32, ARRAYSIZE(_egs_WS_xxx_SysListView32),
-	_b2v_WS_xxx_SysListView32, ARRAYSIZE(_b2v_WS_xxx_SysListView32), 
-	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
-	nullptr, 0);
+const CInterpretConst& WS_xxx_SysListView32()
+{
+	static const CInterpretConst sobj(ITCF_HEX4B,
+		_egs_WS_xxx_SysListView32, ARRAYSIZE(_egs_WS_xxx_SysListView32),
+		_b2v_WS_xxx_SysListView32, ARRAYSIZE(_b2v_WS_xxx_SysListView32), 
+		_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
+		nullptr, 0);
+	return sobj;
+}
 
 
 // Extended-style for "SysListView32"
@@ -152,7 +156,11 @@ const SingleBit2Val_st _b2v_LVS_EX_xxx[] =
 	ITC_NAMEPAIR(LVS_EX_COLUMNOVERFLOW),   // 0x80000000
 //#endif
 };
-CInterpretConst LVS_EX_xxx(_b2v_LVS_EX_xxx, ITCF_HEX4B);
+const CInterpretConst& LVS_EX_xxx()
+{
+	static const CInterpretConst sobj(_b2v_LVS_EX_xxx, ITCF_HEX4B);
+	return sobj;
+}
 
 
 //
@@ -181,10 +189,14 @@ const SingleBit2Val_st _b2v_WS_xxx_SysTreeView32[] =
 
 	ITC_NAMEPAIR(TVS_NOHSCROLL),           // 0x8000  // TVS_NOSCROLL overrides this
 };
-CInterpretConst WS_xxx_SysTreeView32(ITCF_HEX4B,
-	_b2v_WS_xxx_SysTreeView32, ARRAYSIZE(_b2v_WS_xxx_SysTreeView32),
-	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
-	nullptr, 0);
+const CInterpretConst& WS_xxx_SysTreeView32()
+{
+	static const CInterpretConst sobj(ITCF_HEX4B,
+		_b2v_WS_xxx_SysTreeView32, ARRAYSIZE(_b2v_WS_xxx_SysTreeView32),
+		_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
+		nullptr, 0);
+	return sobj;
+}
 
 
 // Extended-style for "SysTreeView32"
@@ -204,7 +216,11 @@ const SingleBit2Val_st _b2v_TVS_EX_xxx[] =
 	ITC_NAMEPAIR(TVS_EX_DRAWIMAGEASYNC),       // 0x0400
 //#endif
 };
-CInterpretConst TVS_EX_xxx(_b2v_TVS_EX_xxx, ITCF_HEX4B);
+const CInterpretConst& TVS_EX_xxx()
+{
+	static const CInterpretConst sobj(_b2v_TVS_EX_xxx, ITCF_HEX4B);
+	return sobj;
+}
 
 
 //
@@ -224,14 +240,22 @@ const SingleBit2Val_st _b2v_WS_xxx_tooltips_class32[] =
 	ITC_NAMEPAIR(TTS_USEVISUALSTYLE),      // 0x100  // Use themed hyperlinks
 //#endif
 };
-CInterpretConst WS_xxx_tooltips_class32_toplevel(ITCF_HEX4B,
-	_b2v_WS_xxx_tooltips_class32, ARRAYSIZE(_b2v_WS_xxx_tooltips_class32),
-	_b2v_WS_xxx_toplevel, ARRAYSIZE(_b2v_WS_xxx_childwnd),
-	nullptr, 0);
-CInterpretConst WS_xxx_tooltips_class32_childwnd(ITCF_HEX4B,
-	_b2v_WS_xxx_tooltips_class32, ARRAYSIZE(_b2v_WS_xxx_tooltips_class32),
-	_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
-	nullptr, 0);
+const CInterpretConst& WS_xxx_tooltips_class32_toplevel()
+{
+	static const CInterpretConst sobj(ITCF_HEX4B,
+		_b2v_WS_xxx_tooltips_class32, ARRAYSIZE(_b2v_WS_xxx_tooltips_class32),
+		_b2v_WS_xxx_toplevel, ARRAYSIZE(_b2v_WS_xxx_childwnd),
+		nullptr, 0);
+	return sobj;
+}
+const CInterpretConst& WS_xxx_tooltips_class32_childwnd()
+{
+	static const CInterpretConst sobj(ITCF_HEX4B,
+		_b2v_WS_xxx_tooltips_class32, ARRAYSIZE(_b2v_WS_xxx_tooltips_class32),
+		_b2v_WS_xxx_childwnd, ARRAYSIZE(_b2v_WS_xxx_childwnd),
+		nullptr, 0);
+	return sobj;
+}
 
 
 //
@@ -267,7 +291,11 @@ const Enum2Val_st _e2v_NM_xxx_Generic[] =
 	ITC_NAMEPAIR(NM_CUSTOMTEXT          ), // -24
 //	ITC_NAMEPAIR(NM_TVSTATEIMAGECHANGING), // -24 (looks not generic)
 };
-CInterpretConst NM_xxx_Generic(_e2v_NM_xxx_Generic, ITCF_SINT);
+const CInterpretConst& NM_xxx_Generic()
+{
+	static const CInterpretConst sobj(_e2v_NM_xxx_Generic, ITCF_SINT);
+	return sobj;
+}
 
 
 // + ListView NM_xxx
@@ -314,13 +342,18 @@ const Enum2Val_st _e2v_LVN_xxx[]=
 	ITC_NAMEPAIR(LVN_GETEMPTYMARKUP), // -187
 #endif
 };
-CInterpretConst LVN_xxx(
-	new Enum2Val_merge(
-		_e2v_NM_xxx_Generic,  ARRAYSIZE(_e2v_NM_xxx_Generic),
-		_e2v_LVN_xxx, ARRAYSIZE(_e2v_LVN_xxx),
-		nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
-	, ITCF_SINT
+const CInterpretConst& LVN_xxx()
+{
+	static const CInterpretConst sobj(
+		new Enum2Val_merge(
+			_e2v_NM_xxx_Generic,  ARRAYSIZE(_e2v_NM_xxx_Generic),
+			_e2v_LVN_xxx, ARRAYSIZE(_e2v_LVN_xxx),
+			nullptr, 0
+		) // this Enum2Val_merge object will not be deleted, by design
+		, ITCF_SINT
 	); 
+	return sobj;
+}
 // old name NM_xxx_ListView
 
 
@@ -337,7 +370,11 @@ const SingleBit2Val_st _b2v_TTF_xxx[] =
 	ITC_NAMEPAIR(TTF_PARSELINKS), //          0x1000
 	ITC_NAMEPAIR(TTF_DI_SETITEM), //          0x8000       // valid only on the TTN_NEEDTEXT callback
 };
-CInterpretConst TTF_xxx(_b2v_TTF_xxx, ITCF_HEX2B);
+const CInterpretConst& TTF_xxx()
+{
+	static const CInterpretConst sobj(_b2v_TTF_xxx, ITCF_HEX2B);
+	return sobj;
+}
 
 const Enum2Val_st _e2v_TTN_xxx[] =
 {
@@ -347,7 +384,11 @@ const Enum2Val_st _e2v_TTN_xxx[] =
 	ITC_NAMEPAIR(TTN_POP), //              (TTN_FIRST - 2)
 	ITC_NAMEPAIR(TTN_LINKCLICK), //        (TTN_FIRST - 3)
 };
-CInterpretConst TTN_xxx(_e2v_TTN_xxx, _e2v_NM_xxx_Generic, ITCF_SINT);
+const CInterpretConst& TTN_xxx()
+{
+	static const CInterpretConst sobj(_e2v_TTN_xxx, _e2v_NM_xxx_Generic, ITCF_SINT);
+	return sobj;
+}
 
 const Enum2Val_st _e2v_TTM_xxx[] = // tooltip window messages
 {
@@ -396,12 +437,18 @@ const Enum2Val_st _e2v_TTM_xxx[] = // tooltip window messages
 	ITC_NAMEPAIR(TTM_POPUP), //               (WM_USER + 34)
 	ITC_NAMEPAIR(TTM_GETTITLE), //            (WM_USER + 35) // wParam = 0, lParam = TTGETTITLE*
 };
-CInterpretConst TTM_xxx_WM_xxx(
-	new Enum2Val_merge(
-		_e2v_TTM_xxx, ARRAYSIZE(_e2v_TTM_xxx),
-		_e2v_WM_xxx, N_e2v_WM_xxx,
-		nullptr, 0)
-	, ITCF_HEX1B);
+const CInterpretConst& TTM_xxx_WM_xxx()
+{
+	static const CInterpretConst sobj(
+		new Enum2Val_merge(
+			_e2v_TTM_xxx, ARRAYSIZE(_e2v_TTM_xxx),
+			_e2v_WM_xxx, N_e2v_WM_xxx,
+			nullptr, 0
+		)
+		, ITCF_HEX1B
+	);
+	return sobj;
+}
 
 
 
@@ -420,7 +467,11 @@ const Enum2Val_st _e2v_CDDS_xxx[] = // custom-draw drawstage flags (NMCUSTOMDRAW
 	ITC_NAMEPAIR(CDDS_ITEMPOSTERASE), //      (CDDS_ITEM | CDDS_POSTERASE)
 	ITC_NAMEPAIR(CDDS_SUBITEM), //            0x00020000
 };
-CInterpretConst CDDS_xxx(_e2v_CDDS_xxx, ITCF_HEX1B);
+const CInterpretConst& CDDS_xxx()
+{
+	static const CInterpretConst sobj(_e2v_CDDS_xxx, ITCF_HEX1B);
+	return sobj;
+}
 
 const SingleBit2Val_st _b2v_CDIS_xxx[] = // custom-draw itemState flags (NMCUSTOMDRAW)
 {
@@ -438,7 +489,11 @@ const SingleBit2Val_st _b2v_CDIS_xxx[] = // custom-draw itemState flags (NMCUSTO
 	ITC_NAMEPAIR(CDIS_OTHERSIDEHOT), //       0x0800
 	ITC_NAMEPAIR(CDIS_DROPHILITED), //        0x1000
 };
-CInterpretConst CDIS_xxx(_b2v_CDIS_xxx, ITCF_HEX2B);
+const CInterpretConst& CDIS_xxx()
+{
+	static const CInterpretConst sobj(_b2v_CDIS_xxx, ITCF_HEX2B);
+	return sobj;
+}
 
 
 

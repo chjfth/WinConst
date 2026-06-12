@@ -6,58 +6,59 @@
 namespace itc {
 
 
-extern CInterpretConst SidTypeXXX;
-extern const CInterpretConst itc_SID_NAME_USE;
+extern const CInterpretConst& SidTypeXXX();
+extern const CInterpretConst& (*itc_SID_NAME_USE)(); // oldname
 
 extern const SingleBit2Val_st _b2v_GenericRight[];
-extern CInterpretConst GenericRight;
+extern const CInterpretConst& GenericRight();
 extern const int N_b2v_GenericRight;
 
 extern const SingleBit2Val_st _b2v_StandardRight[];
-extern CInterpretConst StandardRight;
+extern const CInterpretConst& StandardRight();
 extern const int N_b2v_StandardRight; // needed by WinSvc.itc.cpp etc.
 
 extern const SingleBit2Val_st _b2v_GenericAndStandardRight[];
-extern CInterpretConst GenericAndStandardRight;
+extern const CInterpretConst& GenericAndStandardRight();
 extern const int N_b2v_GenericAndStandardRight;
 
 extern const SingleBit2Val_st _b2v_FILE_ATTRIBUTE_xxx[];
-extern CInterpretConst FILE_ATTRIBUTE_xxx;
 extern const int N_b2v_FILE_ATTRIBUTE_xxx; // used by WinBase dwFlagsAndAttributes
+extern const CInterpretConst& FILE_ATTRIBUTE_xxx();
 
 
-extern CInterpretConst FileRights;
-extern CInterpretConst DirectoryRights;
-extern CInterpretConst TokenRights;
-extern CInterpretConst ProcessRights;
-extern CInterpretConst ThreadRights;
-extern CInterpretConst JobRights;
+extern const CInterpretConst& FileRights();
+extern const CInterpretConst& DirectoryRights();
+extern const CInterpretConst& TokenRights();
+extern const CInterpretConst& ProcessRights();
+extern const CInterpretConst& ThreadRights();
+extern const CInterpretConst& JobRights();
 
-extern CInterpretConst xxx_SECURITY_INFORMATION;
+extern const CInterpretConst& xxx_SECURITY_INFORMATION();
 
-extern CInterpretConst xxx_ACE_TYPE; // oldname
-extern CInterpretConst AceType;
-extern CInterpretConst xxx_ACE_flags; // oldname
-extern CInterpretConst AceFlags;
+extern const CInterpretConst& (*xxx_ACE_TYPE)(); // oldname
+extern const CInterpretConst& AceType();
 
-extern CInterpretConst SE_xxx_sdControl;
+extern const CInterpretConst& (*xxx_ACE_flags)(); // oldname
+extern const CInterpretConst& AceFlags();
 
-extern CInterpretConst SYSTEM_MANDATORY_LABEL_NO_xxx;
+extern const CInterpretConst& SE_xxx_sdControl();
 
-extern CInterpretConst dwShareMode;
+extern const CInterpretConst& SYSTEM_MANDATORY_LABEL_NO_xxx();
 
-extern CInterpretConst SecurityXXX_ImpersonationLevel;
-extern CInterpretConst itc_SECURITY_IMPERSONATION_LEVEL;
+extern const CInterpretConst& dwShareMode();
 
-extern CInterpretConst TokenElevationTypeXXX;
+extern const CInterpretConst& SecurityXXX_ImpersonationLevel();
+extern const CInterpretConst& (*itc_SECURITY_IMPERSONATION_LEVEL)(); //oldname
 
-extern CInterpretConst SE_GROUP_xxx;
+extern const CInterpretConst& TokenElevationTypeXXX();
 
-extern CInterpretConst itc_TOKEN_TYPE;
+extern const CInterpretConst& SE_GROUP_xxx();
 
-extern CInterpretConst SECURITY_MANDATORY_xxx;
+extern const CInterpretConst& itc_TOKEN_TYPE();
 
-extern CInterpretConst TOKEN_MANDATORY_POLICY_xxx;
+extern const CInterpretConst& SECURITY_MANDATORY_xxx();
+
+extern const CInterpretConst& TOKEN_MANDATORY_POLICY_xxx();
 
 
 } // namespace itc
@@ -99,8 +100,12 @@ const Enum2Val_st e2v_SidType[] =
 	ITC_NAMEPAIR(SidTypeComputer),    // 9
 	ITC_NAMEPAIR(SidTypeLabel),    // 10
 };
-CInterpretConst SidTypeXXX(e2v_SidType, ARRAYSIZE(e2v_SidType), ITCF_SINT);
-const CInterpretConst itc_SID_NAME_USE = SidTypeXXX;
+const CInterpretConst& SidTypeXXX()
+{
+	static const CInterpretConst SidTypeXXX(e2v_SidType, ARRAYSIZE(e2v_SidType), ITCF_SINT);
+	return SidTypeXXX;
+}
+const CInterpretConst& (*itc_SID_NAME_USE)() = SidTypeXXX;
 
 
 const SingleBit2Val_st _b2v_GenericRight[] =
@@ -110,7 +115,11 @@ const SingleBit2Val_st _b2v_GenericRight[] =
 	ITC_NAMEPAIR(GENERIC_EXECUTE), // (0x20000000L)
 	ITC_NAMEPAIR(GENERIC_ALL),     // (0x10000000L)	
 };
-CInterpretConst GenericRight(_b2v_GenericRight, ITCF_HEX4B);
+const CInterpretConst& GenericRight()
+{
+	static const CInterpretConst GenericRight(_b2v_GenericRight, ITCF_HEX4B);
+	return GenericRight;
+}
 const int N_b2v_GenericRight = ARRAYSIZE(_b2v_GenericRight);
 
 const SingleBit2Val_st _b2v_StandardRight[] =
@@ -121,7 +130,12 @@ const SingleBit2Val_st _b2v_StandardRight[] =
 	ITC_NAMEPAIR(WRITE_OWNER),  //   (0x00080000L)
 	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
 };
-CInterpretConst StandardRight(_b2v_StandardRight, ITCF_HEX4B);
+const CInterpretConst& StandardRight()
+{
+	static const CInterpretConst 
+		StandardRight(_b2v_StandardRight, ITCF_HEX4B);
+	return StandardRight;
+}
 const int N_b2v_StandardRight = ARRAYSIZE(_b2v_StandardRight);
 
 const SingleBit2Val_st _b2v_GenericAndStandardRight[] =
@@ -137,7 +151,11 @@ const SingleBit2Val_st _b2v_GenericAndStandardRight[] =
 	ITC_NAMEPAIR(WRITE_OWNER),  //   (0x00080000L)
 	ITC_NAMEPAIR(SYNCHRONIZE),  //   (0x00100000L)
 };
-CInterpretConst GenericAndStandardRight(_b2v_GenericAndStandardRight, ITCF_HEX4B);
+const CInterpretConst& GenericAndStandardRight()
+{
+	static const CInterpretConst GenericAndStandardRight(_b2v_GenericAndStandardRight, ITCF_HEX4B);
+	return GenericAndStandardRight;
+}
 const int N_b2v_GenericAndStandardRight = ARRAYSIZE(_b2v_GenericAndStandardRight);
 
 
@@ -152,8 +170,12 @@ const SingleBit2Val_st _b2v_FileRight[] =
 	ITC_NAMEPAIR(FILE_READ_ATTRIBUTES), // 0x0080
 	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0x0100
 };
-CInterpretConst FileRights(_b2v_FileRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
-
+const CInterpretConst& FileRights()
+{
+	static const CInterpretConst 
+		FileRights(_b2v_FileRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+	return FileRights;
+}
 
 const SingleBit2Val_st _b2v_DirectoryRight[] =
 {
@@ -167,8 +189,12 @@ const SingleBit2Val_st _b2v_DirectoryRight[] =
 	ITC_NAMEPAIR(FILE_READ_ATTRIBUTES), // 0x0080
 	ITC_NAMEPAIR(FILE_WRITE_ATTRIBUTES),// 0x0100
 };
-CInterpretConst DirectoryRights(_b2v_DirectoryRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
-
+const CInterpretConst& DirectoryRights()
+{
+	static const CInterpretConst 
+		DirectoryRights(_b2v_DirectoryRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+	return DirectoryRights;
+}
 
 const SingleBit2Val_st _b2v_TokenRight[] =
 {
@@ -182,7 +208,12 @@ const SingleBit2Val_st _b2v_TokenRight[] =
 	ITC_NAMEPAIR(TOKEN_ADJUST_DEFAULT), //   (0x0080)
 	ITC_NAMEPAIR(TOKEN_ADJUST_SESSIONID),  //(0x0100)
 };
-CInterpretConst TokenRights(_b2v_TokenRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+const CInterpretConst& TokenRights()
+{
+	static const CInterpretConst 
+		TokenRights(_b2v_TokenRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+	return TokenRights;
+}
 
 
 const SingleBit2Val_st _b2v_ProcessRight[] =
@@ -201,7 +232,12 @@ const SingleBit2Val_st _b2v_ProcessRight[] =
 	ITC_NAMEPAIR(PROCESS_SUSPEND_RESUME), //             (0x0800)  
 	ITC_NAMEPAIR(PROCESS_QUERY_LIMITED_INFORMATION), //  (0x1000)  
 };
-CInterpretConst ProcessRights(_b2v_ProcessRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+const CInterpretConst& ProcessRights()
+{
+	static const CInterpretConst 
+		ProcessRights(_b2v_ProcessRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+	return ProcessRights;
+}
 
 
 const SingleBit2Val_st _b2v_ThreadRight[] =
@@ -218,7 +254,12 @@ const SingleBit2Val_st _b2v_ThreadRight[] =
 	ITC_NAMEPAIR(THREAD_SET_LIMITED_INFORMATION), //   (0x0400)  // winnt
 	ITC_NAMEPAIR(THREAD_QUERY_LIMITED_INFORMATION), // (0x0800)  // winnt
 };
-CInterpretConst ThreadRights(_b2v_ThreadRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+const CInterpretConst& ThreadRights()
+{
+	static const CInterpretConst 
+		ThreadRights(_b2v_ThreadRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+	return ThreadRights;
+}
 
 
 const SingleBit2Val_st _b2v_JobRight[] =
@@ -229,7 +270,12 @@ const SingleBit2Val_st _b2v_JobRight[] =
 	ITC_NAMEPAIR(JOB_OBJECT_TERMINATE), //                (0x0008)
 	ITC_NAMEPAIR(JOB_OBJECT_SET_SECURITY_ATTRIBUTES), //  (0x0010)
 };
-CInterpretConst JobRights(_b2v_JobRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+const CInterpretConst& JobRights()
+{
+	static const CInterpretConst 
+		JobRights(_b2v_JobRight, _b2v_GenericAndStandardRight, ITCF_HEX1B);
+	return JobRights;
+}
 
 
 
@@ -246,7 +292,12 @@ const SingleBit2Val_st _b2v_xxx_SECURITY_INFORMATION[] =
 	ITC_NAMEPAIR(UNPROTECTED_DACL_SECURITY_INFORMATION), // 0x20000000
 	ITC_NAMEPAIR(UNPROTECTED_SACL_SECURITY_INFORMATION), // 0x10000000
 };
-CInterpretConst xxx_SECURITY_INFORMATION(_b2v_xxx_SECURITY_INFORMATION, ITCF_HEX1B);
+const CInterpretConst& xxx_SECURITY_INFORMATION()
+{
+	static const CInterpretConst 
+		xxx_SECURITY_INFORMATION(_b2v_xxx_SECURITY_INFORMATION, ITCF_HEX1B);
+	return xxx_SECURITY_INFORMATION;
+}
 
 
 const Enum2Val_st _e2v_xxx_ACE_TYPE[] =
@@ -270,8 +321,14 @@ const Enum2Val_st _e2v_xxx_ACE_TYPE[] =
 	ITC_NAMEPAIR(SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE   ), // 16
 	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_ACE_TYPE         ), // 17
 };
-CInterpretConst xxx_ACE_TYPE(_e2v_xxx_ACE_TYPE, ITCF_SINT); // oldname
-CInterpretConst AceType(_e2v_xxx_ACE_TYPE, ITCF_SINT);
+const CInterpretConst& AceType()
+{
+	static const CInterpretConst 
+		AceType(_e2v_xxx_ACE_TYPE, ITCF_SINT);
+	return AceType;
+}
+const CInterpretConst& (*xxx_ACE_TYPE)() = AceType; // oldname
+
 
 const SingleBit2Val_st _b2v_ACE_flags[] =
 {
@@ -283,8 +340,13 @@ const SingleBit2Val_st _b2v_ACE_flags[] =
 	ITC_NAMEPAIR(SUCCESSFUL_ACCESS_ACE_FLAG ), // 0x40
 	ITC_NAMEPAIR(FAILED_ACCESS_ACE_FLAG     ), // 0x80
 };
-CInterpretConst xxx_ACE_flags(_b2v_ACE_flags, ITCF_HEX1B); // oldname
-CInterpretConst AceFlags(_b2v_ACE_flags, ITCF_HEX1B);
+const CInterpretConst& AceFlags()
+{
+	static const CInterpretConst 
+		AceFlags(_b2v_ACE_flags, ITCF_HEX1B);
+	return AceFlags;
+}
+const CInterpretConst& (*xxx_ACE_flags)() = AceFlags; // oldname
 
 
 #define SE_DACL_UNTRUSTED                (0x0040)
@@ -309,16 +371,26 @@ const SingleBit2Val_st _b2v_SECURITY_DESCRIPTOR_control[] =
 	ITC_NAMEPAIR(SE_RM_CONTROL_VALID     ), // 0x4000
 	ITC_NAMEPAIR(SE_SELF_RELATIVE        ), // 0x8000
 };
-CInterpretConst SE_xxx_sdControl(_b2v_SECURITY_DESCRIPTOR_control, ITCF_HEX2B);
+const CInterpretConst& SE_xxx_sdControl()
+{
+	static const CInterpretConst 
+		SE_xxx_sdControl(_b2v_SECURITY_DESCRIPTOR_control, ITCF_HEX2B);
+	return SE_xxx_sdControl;
+}
 
 
 const SingleBit2Val_st _b2v_SYSTEM_MANDATORY_LABEL_NO_xxx[] =
 {
-	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_WRITE_UP), //         0x1
-	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_READ_UP), //          0x2
-	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP) //       0x4
+	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_WRITE_UP), //       0x1
+	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_READ_UP),  //       0x2
+	ITC_NAMEPAIR(SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP)//       0x4
 };
-CInterpretConst SYSTEM_MANDATORY_LABEL_NO_xxx(_b2v_SYSTEM_MANDATORY_LABEL_NO_xxx, ITCF_HEX1B);
+const CInterpretConst& SYSTEM_MANDATORY_LABEL_NO_xxx()
+{
+	static const CInterpretConst 
+		SYSTEM_MANDATORY_LABEL_NO_xxx(_b2v_SYSTEM_MANDATORY_LABEL_NO_xxx, ITCF_HEX1B);
+	return SYSTEM_MANDATORY_LABEL_NO_xxx;
+}
 
 
 const SingleBit2Val_st _b2v_dwShareMode[] =
@@ -327,8 +399,12 @@ const SingleBit2Val_st _b2v_dwShareMode[] =
 	ITC_NAMEPAIR(FILE_SHARE_WRITE),  // 0x02
 	ITC_NAMEPAIR(FILE_SHARE_DELETE), // 0x04
 };
-CInterpretConst dwShareMode(_b2v_dwShareMode, ITCF_HEX1B);
-
+const CInterpretConst& dwShareMode()
+{
+	static const CInterpretConst 
+		dwShareMode(_b2v_dwShareMode, ITCF_HEX1B);
+	return dwShareMode;
+}
 
 
 const SingleBit2Val_st _b2v_FILE_ATTRIBUTE_xxx[] = 
@@ -351,7 +427,11 @@ const SingleBit2Val_st _b2v_FILE_ATTRIBUTE_xxx[] =
 	ITC_NAMEPAIR(FILE_ATTRIBUTE_ENCRYPTED), //            0x00004000  
 	ITC_NAMEPAIR(FILE_ATTRIBUTE_VIRTUAL), //              0x00010000  
 };
-CInterpretConst FILE_ATTRIBUTE_xxx(_b2v_FILE_ATTRIBUTE_xxx, ITCF_HEX2B);
+const CInterpretConst& FILE_ATTRIBUTE_xxx()
+{
+	static const CInterpretConst FILE_ATTRIBUTE_xxx(_b2v_FILE_ATTRIBUTE_xxx, ITCF_HEX2B);
+	return FILE_ATTRIBUTE_xxx;
+}
 const int N_b2v_FILE_ATTRIBUTE_xxx = ARRAYSIZE(_b2v_FILE_ATTRIBUTE_xxx);
 
 const Enum2Val_st _e2v_SECURITY_IMPERSONATION_LEVEL[] =
@@ -361,8 +441,13 @@ const Enum2Val_st _e2v_SECURITY_IMPERSONATION_LEVEL[] =
 	ITC_NAMEPAIR(SecurityImpersonation),
 	ITC_NAMEPAIR(SecurityDelegation),
 };
-CInterpretConst SecurityXXX_ImpersonationLevel(_e2v_SECURITY_IMPERSONATION_LEVEL, ITCF_SINT);
-CInterpretConst itc_SECURITY_IMPERSONATION_LEVEL(_e2v_SECURITY_IMPERSONATION_LEVEL);
+const CInterpretConst& SecurityXXX_ImpersonationLevel()
+{
+	static const CInterpretConst 
+		SecurityXXX_ImpersonationLevel(_e2v_SECURITY_IMPERSONATION_LEVEL, ITCF_SINT);
+	return SecurityXXX_ImpersonationLevel;
+}
+const CInterpretConst& (*itc_SECURITY_IMPERSONATION_LEVEL)() = SecurityXXX_ImpersonationLevel;
 
 
 const Enum2Val_st _e2v_TOKEN_ELEVATION_TYPE[] =
@@ -371,7 +456,12 @@ const Enum2Val_st _e2v_TOKEN_ELEVATION_TYPE[] =
 	ITC_NAMEPAIR(TokenElevationTypeFull),
 	ITC_NAMEPAIR(TokenElevationTypeLimited)
 };
-CInterpretConst TokenElevationTypeXXX(_e2v_TOKEN_ELEVATION_TYPE, ITCF_SINT);
+const CInterpretConst& TokenElevationTypeXXX()
+{
+	static const CInterpretConst
+		TokenElevationTypeXXX(_e2v_TOKEN_ELEVATION_TYPE, ITCF_SINT);
+	return TokenElevationTypeXXX;
+}
 
 
 const SingleBit2Val_st _b2v_SE_GROUP_xxx[] =
@@ -386,7 +476,12 @@ const SingleBit2Val_st _b2v_SE_GROUP_xxx[] =
 	ITC_NAMEPAIR(SE_GROUP_LOGON_ID          ), // (0xC0000000L)
 	ITC_NAMEPAIR(SE_GROUP_RESOURCE          ), // (0x20000000L)
 };
-CInterpretConst SE_GROUP_xxx(_b2v_SE_GROUP_xxx, ITCF_HEX1B);
+const CInterpretConst& SE_GROUP_xxx()
+{
+	static const CInterpretConst
+		SE_GROUP_xxx(_b2v_SE_GROUP_xxx, ITCF_HEX1B);
+	return SE_GROUP_xxx;
+}
 
 
 const Enum2Val_st _e2v_TOKEN_TYPE[] =
@@ -394,8 +489,11 @@ const Enum2Val_st _e2v_TOKEN_TYPE[] =
 	ITC_NAMEPAIR(TokenPrimary), // = 1
 	ITC_NAMEPAIR(TokenImpersonation), // = 2
 };
-CInterpretConst itc_TOKEN_TYPE(_e2v_TOKEN_TYPE);
-
+const CInterpretConst& itc_TOKEN_TYPE()
+{
+	static const CInterpretConst sobj(_e2v_TOKEN_TYPE);
+	return sobj;
+}
 
 const Enum2Val_st _e2v_SECURITY_MANDATORY_xxx[] =
 {
@@ -407,7 +505,11 @@ const Enum2Val_st _e2v_SECURITY_MANDATORY_xxx[] =
 	ITC_NAMEPAIR(SECURITY_MANDATORY_SYSTEM_RID), //               (0x00004000L)
 	ITC_NAMEPAIR(SECURITY_MANDATORY_PROTECTED_PROCESS_RID), //    (0x00005000L)
 };
-CInterpretConst SECURITY_MANDATORY_xxx(_e2v_SECURITY_MANDATORY_xxx, ITCF_HEX2B);
+const CInterpretConst& SECURITY_MANDATORY_xxx()
+{
+	static const CInterpretConst sobj(_e2v_SECURITY_MANDATORY_xxx, ITCF_HEX2B);
+	return sobj;
+}
 
 
 const SingleBit2Val_st _b2v_TOKEN_MANDATORY_POLICY_xxx[] =
@@ -416,8 +518,11 @@ const SingleBit2Val_st _b2v_TOKEN_MANDATORY_POLICY_xxx[] =
 	ITC_NAMEPAIR(TOKEN_MANDATORY_POLICY_NO_WRITE_UP), //     0x1
 	ITC_NAMEPAIR(TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN), // 0x2
 };
-CInterpretConst TOKEN_MANDATORY_POLICY_xxx(_b2v_TOKEN_MANDATORY_POLICY_xxx, ITCF_HEX1B);
-
+const CInterpretConst& TOKEN_MANDATORY_POLICY_xxx()
+{
+	static const CInterpretConst sobj(_b2v_TOKEN_MANDATORY_POLICY_xxx, ITCF_HEX1B);
+	return sobj;
+}
 
 
 } // namespace itc

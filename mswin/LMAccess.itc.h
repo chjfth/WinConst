@@ -5,7 +5,7 @@
 
 namespace itc {
 
-extern const CInterpretConst ACCESS_xxx;
+extern const CInterpretConst& ACCESS_xxx();
 
 
 } // namespace itc
@@ -49,9 +49,11 @@ const SingleBit2Val_st b2v_ACCESS_GROUP[] =
 {
 	ITC_NAMEPAIR(ACCESS_GROUP)
 };
-const CInterpretConst ACCESS_xxx(ITCF_HEX1B, e2v_ACCESS_xxx, ARRAYSIZE(e2v_ACCESS_xxx),
+ITC_MAKE_OBJECT(ACCESS_xxx,
+	ITCF_HEX1B, 
+	e2v_ACCESS_xxx, ARRAYSIZE(e2v_ACCESS_xxx),
 	b2v_ACCESS_GROUP, ARRAYSIZE(b2v_ACCESS_GROUP),
-	nullptr, 0);
+	nullptr, 0)
 
 
 

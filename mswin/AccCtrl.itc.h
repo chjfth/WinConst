@@ -6,7 +6,7 @@
 namespace itc {
 
 
-extern const CInterpretConst SE_xxx_objectType;
+extern const CInterpretConst& SE_xxx_objectType();
 
 
 } // namespace itc
@@ -52,7 +52,7 @@ const Enum2Val_st e2v_SE_OBJECT_TYPE[] =
 	ITC_NAMEPAIR(SE_WMIGUID_OBJECT),       // 11
 	ITC_NAMEPAIR(SE_REGISTRY_WOW64_32KEY), // 12
 };
-const CInterpretConst SE_xxx_objectType(e2v_SE_OBJECT_TYPE, ITCF_SINT);
+ITC_MAKE_OBJECT(SE_xxx_objectType, e2v_SE_OBJECT_TYPE, ITCF_SINT);
 
 
 } // namespace itc

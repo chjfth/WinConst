@@ -6,11 +6,11 @@
 namespace itc {
 
 
-extern CInterpretConst Aclui_SI_xxx;
+extern const CInterpretConst& Aclui_SI_xxx();
 
-extern CInterpretConst Aclui_PSPCB_xxx;
+extern const CInterpretConst& Aclui_PSPCB_xxx();
 
-extern CInterpretConst Aclui_SI_PAGE_xxx;
+extern const CInterpretConst& Aclui_SI_PAGE_xxx();
 
 
 } // namespace itc
@@ -72,17 +72,19 @@ const SingleBit2Val_st _b2v_Aclui_SI_xxx[] =
 	ITC_NAMEPAIR(SI_OWNER_ELEVATION_REQUIRED ), // 0x04000000L
 	ITC_NAMEPAIR(SI_MAY_WRITE                ), // 0x10000000L //not sure if user can write permission
 };
-CInterpretConst Aclui_SI_xxx(_b2v_Aclui_SI_xxx, ITCF_HEX4B);
+ITC_MAKE_OBJECT(Aclui_SI_xxx, _b2v_Aclui_SI_xxx, ITCF_HEX4B)
 
 
 const Enum2Val_st _e2v_CSecurityInformation_PrshtWmsg[] =
 {
 	ITC_NAMEPAIR(PSPCB_SI_INITDIALOG), // WM_USER+1
 };
-CInterpretConst Aclui_PSPCB_xxx(new Enum2Val_merge(
-	_e2v_CSecurityInformation_PrshtWmsg, ARRAYSIZE(_e2v_CSecurityInformation_PrshtWmsg),
-	_e2v_PSPCB_xxx_wmsg, _e2v_PSPCB_xxx_wmsg_size,
-	nullptr, 0), ITCF_UINT);
+ITC_MAKE_OBJECT(Aclui_PSPCB_xxx,
+	new Enum2Val_merge(
+		_e2v_CSecurityInformation_PrshtWmsg, ARRAYSIZE(_e2v_CSecurityInformation_PrshtWmsg),
+		_e2v_PSPCB_xxx_wmsg, _e2v_PSPCB_xxx_wmsg_size,
+		nullptr, 0), 
+	ITCF_UINT)
 
 
 const Enum2Val_st _e2v_CSecurityInformation_PrshtPageType[] =
@@ -94,7 +96,7 @@ const Enum2Val_st _e2v_CSecurityInformation_PrshtPageType[] =
 	ITC_NAMEPAIR(SI_PAGE_EFFECTIVE),
 	ITC_NAMEPAIR(SI_PAGE_TAKEOWNERSHIP),
 };
-CInterpretConst Aclui_SI_PAGE_xxx(_e2v_CSecurityInformation_PrshtPageType, ITCF_UINT);
+ITC_MAKE_OBJECT(Aclui_SI_PAGE_xxx, _e2v_CSecurityInformation_PrshtPageType, ITCF_UINT)
 
 
 

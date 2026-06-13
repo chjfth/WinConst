@@ -5,7 +5,7 @@
 
 namespace itc {
 
-extern const CInterpretConst DBT_xxx;
+extern const CInterpretConst& DBT_xxx();
 
 } // namespace itc
 
@@ -52,7 +52,7 @@ const Enum2Val_st _e2v_DBT_xxx[] =
 	ITC_NAMEPAIR(DBT_DEVINSTPROPERTYCHANGED  ), // 0x800A  // a property on the device changed
 #endif
 };
-const CInterpretConst DBT_xxx(_e2v_DBT_xxx, ITCF_HEX2B);
+ITC_MAKE_OBJECT(DBT_xxx, _e2v_DBT_xxx, ITCF_HEX2B)
 
 
 } // namespace itc

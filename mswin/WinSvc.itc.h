@@ -5,9 +5,9 @@
 
 namespace itc {
 
-extern const CInterpretConst SERVICE_CONTROL_xxx;
+extern const CInterpretConst& SERVICE_CONTROL_xxx();
 
-extern const CInterpretConst ServiceRights;
+extern const CInterpretConst& ServiceRights();
 
 
 } // namespace itc
@@ -59,7 +59,7 @@ const Enum2Val_st _e2v_SERVICE_CONTROL_xxx[] =
 	ITC_NAMEPAIR(SERVICE_CONTROL_TIMECHANGE             ), // 16
 	ITC_NAMEPAIR(SERVICE_CONTROL_TRIGGEREVENT           ), // 17
 };
-const CInterpretConst SERVICE_CONTROL_xxx(_e2v_SERVICE_CONTROL_xxx, ITCF_UINT);
+ITC_MAKE_OBJECT(SERVICE_CONTROL_xxx, _e2v_SERVICE_CONTROL_xxx, ITCF_UINT)
 
 const SingleBit2Val_st _b2v_ServiceRight[] = {
 	
@@ -73,10 +73,11 @@ const SingleBit2Val_st _b2v_ServiceRight[] = {
 	ITC_NAMEPAIR(SERVICE_INTERROGATE), //            0x0080
 	ITC_NAMEPAIR(SERVICE_USER_DEFINED_CONTROL), //   0x0100
 };
-const CInterpretConst ServiceRights(ITCF_HEX1B,
+ITC_MAKE_OBJECT(ServiceRights, 
+	ITCF_HEX1B,
 	_b2v_ServiceRight, ARRAYSIZE(_b2v_ServiceRight),  
 	_b2v_StandardRight, N_b2v_StandardRight,
-	nullptr, 0);
+	nullptr, 0)
 
 
 } // namespace itc

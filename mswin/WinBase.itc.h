@@ -1,5 +1,7 @@
-#ifndef __CHHI__WinBase_h_20260312_
-#define __CHHI__WinBase_h_20260312_
+#ifndef __itc__WinBase_h_
+#define __itc__WinBase_h_
+#define __itc__WinBase_h_created_ 20260312
+#define __itc__WinBase_h_updated_ 20260624
 
 #include <InterpretConst.h>
 
@@ -47,14 +49,11 @@ const SingleBit2Val_st _b2v_FilemapRight[] =
 	ITC_NAMEPAIR(SECTION_EXTEND_SIZE), // 0x10
 	ITC_NAMEPAIR(FILE_MAP_EXECUTE), // 0x20
 };
-const CInterpretConst& FilemapRights()
-{
-	static const CInterpretConst sobj(ITCF_HEX1B,
-		_b2v_FilemapRight, ARRAYSIZE(_b2v_FilemapRight),  
-		_b2v_StandardRight, N_b2v_StandardRight,
-		nullptr, 0);
-	return sobj;
-}
+ITC_MAKE_OBJECT(FilemapRights,
+	ITCF_HEX1B,
+	_b2v_FilemapRight, ARRAYSIZE(_b2v_FilemapRight),  
+	_b2v_StandardRight, N_b2v_StandardRight,
+	nullptr, 0)
 
 
 const Enum2Val_st _e2v_dwCreationDisposition[] =
@@ -65,11 +64,7 @@ const Enum2Val_st _e2v_dwCreationDisposition[] =
 	ITC_NAMEPAIR(OPEN_ALWAYS), //         4
 	ITC_NAMEPAIR(TRUNCATE_EXISTING), //   5
 };
-const CInterpretConst& dwCreationDisposition()
-{
-	static const CInterpretConst sobj(_e2v_dwCreationDisposition, ITCF_UINT);
-	return sobj;
-}
+ITC_MAKE_OBJECT(dwCreationDisposition, _e2v_dwCreationDisposition, ITCF_UINT)
 
 
 const SingleBit2Val_st _b2v_FILE_FLAG_xxx[] =
@@ -86,21 +81,14 @@ const SingleBit2Val_st _b2v_FILE_FLAG_xxx[] =
 	ITC_NAMEPAIR(FILE_FLAG_OPEN_NO_RECALL), //        0x00100000 sad, conflicts with SECURITY_SQOS_PRESENT
 	ITC_NAMEPAIR(FILE_FLAG_FIRST_PIPE_INSTANCE), //   0x00080000 sad, conflicts with SECURITY_EFFECTIVE_ONLY
 };
-const CInterpretConst& FILE_FLAG_xxx()
-{
-	static const CInterpretConst sobj(_b2v_FILE_FLAG_xxx, ITCF_HEX4B);
-	return sobj;
-}
+ITC_MAKE_OBJECT(FILE_FLAG_xxx, _b2v_FILE_FLAG_xxx, ITCF_HEX4B)
 
 
-const CInterpretConst& dwFlagsAndAttributes()
-{
-	static const CInterpretConst sobj(ITCF_HEX4B,
-		_b2v_FILE_ATTRIBUTE_xxx, N_b2v_FILE_ATTRIBUTE_xxx, // need WinNT.itc.h
-		_b2v_FILE_FLAG_xxx, ARRAYSIZE(_b2v_FILE_FLAG_xxx), 
-		nullptr, 0);
-	return sobj;
-}
+ITC_MAKE_OBJECT(dwFlagsAndAttributes,
+	ITCF_HEX4B,
+	_b2v_FILE_ATTRIBUTE_xxx, N_b2v_FILE_ATTRIBUTE_xxx, // need WinNT.itc.h
+	_b2v_FILE_FLAG_xxx, ARRAYSIZE(_b2v_FILE_FLAG_xxx), 
+	nullptr, 0)
 
 
 } // namespace itc

@@ -8,15 +8,10 @@
 namespace itc {
 
 
-
 extern const CInterpretConst& MCIERR_xxx();
 
-/*
-extern const SingleBit2Val_st _b2v_YYY[];
-extern const int N_b2v_YYY;
-extern const CInterpretConst& YYY();
+extern const CInterpretConst& MCI_NOTIFY_xxx();
 
-*/
 
 } // namespace itc
 
@@ -129,6 +124,14 @@ const Enum2Val_st _e2v_MCIERR_xxx[] =
 ITC_MAKE_OBJECT(MCIERR_xxx, _e2v_MCIERR_xxx, ITCF_SINT)
 
 
+const Enum2Val_st _e2v_MCI_NOTIFY_xxx[] =
+{
+	ITC_NAMEPAIR(MCI_NOTIFY_SUCCESSFUL), //           0x0001
+	ITC_NAMEPAIR(MCI_NOTIFY_SUPERSEDED), //           0x0002
+	ITC_NAMEPAIR(MCI_NOTIFY_ABORTED   ), //           0x0004
+	ITC_NAMEPAIR(MCI_NOTIFY_FAILURE   ), //           0x0008
+};
+ITC_MAKE_OBJECT(MCI_NOTIFY_xxx, _e2v_MCI_NOTIFY_xxx, ITCF_HEX1B)
 
 
 } // namespace itc

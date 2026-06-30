@@ -7,8 +7,27 @@
 
 namespace itc {
 
+/* Error code ranges, excerpt from mmsystem.h (7 groups)
 
+#define MMSYSERR_BASE          0
+#define WAVERR_BASE            32
+#define MIDIERR_BASE           64
+#define TIMERR_BASE            96
+#define JOYERR_BASE            160
+#define MCIERR_BASE            256
+#define MIXERR_BASE            1024
+
+*/
+
+extern const CInterpretConst& MmsystemError(); // this contains all 7 groups, prefer to use it
+//
+extern const CInterpretConst& MMSYSERR_xxx();
+extern const CInterpretConst& WAVERR_xxx();
+extern const CInterpretConst& MIDIERR_xxx();
+extern const CInterpretConst& TIMERR_xxx();
+extern const CInterpretConst& JOYERR_xxx();
 extern const CInterpretConst& MCIERR_xxx();
+extern const CInterpretConst& MIXERR_xxx();
 
 extern const CInterpretConst& MCI_NOTIFY_xxx();
 
@@ -38,6 +57,79 @@ extern const CInterpretConst& MCI_NOTIFY_xxx();
 namespace itc {
 
 // More ctor reference: My evclip 20250411.v1
+
+const Enum2Val_st _e2v_MMSYSERR_xxx[] =
+{
+	ITC_NAMEPAIR(MMSYSERR_ERROR       ), // (MMSYSERR_BASE + 1) 
+	ITC_NAMEPAIR(MMSYSERR_BADDEVICEID ), // (MMSYSERR_BASE + 2) 
+	ITC_NAMEPAIR(MMSYSERR_NOTENABLED  ), // (MMSYSERR_BASE + 3) 
+	ITC_NAMEPAIR(MMSYSERR_ALLOCATED   ), // (MMSYSERR_BASE + 4) 
+	ITC_NAMEPAIR(MMSYSERR_INVALHANDLE ), // (MMSYSERR_BASE + 5) 
+	ITC_NAMEPAIR(MMSYSERR_NODRIVER    ), // (MMSYSERR_BASE + 6) 
+	ITC_NAMEPAIR(MMSYSERR_NOMEM       ), // (MMSYSERR_BASE + 7) 
+	ITC_NAMEPAIR(MMSYSERR_NOTSUPPORTED), // (MMSYSERR_BASE + 8) 
+	ITC_NAMEPAIR(MMSYSERR_BADERRNUM   ), // (MMSYSERR_BASE + 9) 
+	ITC_NAMEPAIR(MMSYSERR_INVALFLAG   ), // (MMSYSERR_BASE + 10)
+	ITC_NAMEPAIR(MMSYSERR_INVALPARAM  ), // (MMSYSERR_BASE + 11)
+	ITC_NAMEPAIR(MMSYSERR_HANDLEBUSY  ), // (MMSYSERR_BASE + 12)
+	ITC_NAMEPAIR(MMSYSERR_INVALIDALIAS), // (MMSYSERR_BASE + 13)
+	ITC_NAMEPAIR(MMSYSERR_BADDB       ), // (MMSYSERR_BASE + 14)
+	ITC_NAMEPAIR(MMSYSERR_KEYNOTFOUND ), // (MMSYSERR_BASE + 15)
+	ITC_NAMEPAIR(MMSYSERR_READERROR   ), // (MMSYSERR_BASE + 16)
+	ITC_NAMEPAIR(MMSYSERR_WRITEERROR  ), // (MMSYSERR_BASE + 17)
+	ITC_NAMEPAIR(MMSYSERR_DELETEERROR ), // (MMSYSERR_BASE + 18)
+	ITC_NAMEPAIR(MMSYSERR_VALNOTFOUND ), // (MMSYSERR_BASE + 19)
+	ITC_NAMEPAIR(MMSYSERR_NODRIVERCB  ), // (MMSYSERR_BASE + 20)
+	ITC_NAMEPAIR(MMSYSERR_MOREDATA    ), // (MMSYSERR_BASE + 21)
+	ITC_NAMEPAIR(MMSYSERR_LASTERROR   ), // (MMSYSERR_BASE + 21)
+};
+ITC_MAKE_OBJECT(MMSYSERR_xxx, _e2v_MMSYSERR_xxx, ITCF_SINT)
+
+
+const Enum2Val_st _e2v_WAVERR_xxx[] =
+{
+	ITC_NAMEPAIR(WAVERR_BADFORMAT   ), //  (WAVERR_BASE + 0)
+	ITC_NAMEPAIR(WAVERR_STILLPLAYING), //  (WAVERR_BASE + 1)
+	ITC_NAMEPAIR(WAVERR_UNPREPARED  ), //  (WAVERR_BASE + 2)
+	ITC_NAMEPAIR(WAVERR_SYNC        ), //  (WAVERR_BASE + 3)
+	ITC_NAMEPAIR(WAVERR_LASTERROR   ), //  (WAVERR_BASE + 3)
+};
+ITC_MAKE_OBJECT(WAVERR_xxx, _e2v_WAVERR_xxx, ITCF_SINT)
+
+
+const Enum2Val_st _e2v_MIDIERR_xxx[] =
+{
+	ITC_NAMEPAIR(MIDIERR_UNPREPARED   ), // (MIDIERR_BASE + 0)
+	ITC_NAMEPAIR(MIDIERR_STILLPLAYING ), // (MIDIERR_BASE + 1)
+	ITC_NAMEPAIR(MIDIERR_NOMAP        ), // (MIDIERR_BASE + 2)
+	ITC_NAMEPAIR(MIDIERR_NOTREADY     ), // (MIDIERR_BASE + 3)
+	ITC_NAMEPAIR(MIDIERR_NODEVICE     ), // (MIDIERR_BASE + 4)
+	ITC_NAMEPAIR(MIDIERR_INVALIDSETUP ), // (MIDIERR_BASE + 5)
+	ITC_NAMEPAIR(MIDIERR_BADOPENMODE  ), // (MIDIERR_BASE + 6)
+	ITC_NAMEPAIR(MIDIERR_DONT_CONTINUE), // (MIDIERR_BASE + 7)
+	ITC_NAMEPAIR(MIDIERR_LASTERROR    ), // (MIDIERR_BASE + 7)
+};
+ITC_MAKE_OBJECT(MIDIERR_xxx, _e2v_MIDIERR_xxx, ITCF_SINT)
+
+
+const Enum2Val_st _e2v_TIMERR_xxx[] =
+{
+	ITC_NAMEPAIR(TIMERR_NOERROR ), //       (0)             
+	ITC_NAMEPAIR(TIMERR_NOCANDO ), //       (TIMERR_BASE+1) 
+	ITC_NAMEPAIR(TIMERR_STRUCT  ), //       (TIMERR_BASE+33)
+};
+ITC_MAKE_OBJECT(TIMERR_xxx, _e2v_TIMERR_xxx, ITCF_SINT)
+
+
+const Enum2Val_st _e2v_JOYERR_xxx[] =
+{
+	ITC_NAMEPAIR(JOYERR_NOERROR  ), //     (0)             
+	ITC_NAMEPAIR(JOYERR_PARMS    ), //     (JOYERR_BASE+5) 
+	ITC_NAMEPAIR(JOYERR_NOCANDO  ), //     (JOYERR_BASE+6) 
+	ITC_NAMEPAIR(JOYERR_UNPLUGGED), //     (JOYERR_BASE+7) 
+};
+ITC_MAKE_OBJECT(JOYERR_xxx, _e2v_JOYERR_xxx, ITCF_SINT)
+
 
 const Enum2Val_st _e2v_MCIERR_xxx[] =
 {
@@ -123,6 +215,32 @@ const Enum2Val_st _e2v_MCIERR_xxx[] =
 };
 ITC_MAKE_OBJECT(MCIERR_xxx, _e2v_MCIERR_xxx, ITCF_SINT)
 
+
+const Enum2Val_st _e2v_MIXERR_xxx[] =
+{
+	ITC_NAMEPAIR(MIXERR_INVALLINE   ), //         (MIXERR_BASE + 0)
+	ITC_NAMEPAIR(MIXERR_INVALCONTROL), //         (MIXERR_BASE + 1)
+	ITC_NAMEPAIR(MIXERR_INVALVALUE  ), //         (MIXERR_BASE + 2)
+	ITC_NAMEPAIR(MIXERR_LASTERROR   ), //         (MIXERR_BASE + 2)
+};
+ITC_MAKE_OBJECT(MIXERR_xxx, _e2v_MIXERR_xxx, ITCF_SINT)
+
+
+ITC_MAKE_OBJECT(MmsystemError,
+	new Enum2Val_merge(
+		_e2v_MMSYSERR_xxx, ARRAYSIZE(_e2v_MMSYSERR_xxx),
+		_e2v_WAVERR_xxx, ARRAYSIZE(_e2v_WAVERR_xxx),
+		_e2v_MIDIERR_xxx, ARRAYSIZE(_e2v_MIDIERR_xxx),
+		_e2v_TIMERR_xxx, ARRAYSIZE(_e2v_TIMERR_xxx),
+		_e2v_JOYERR_xxx, ARRAYSIZE(_e2v_JOYERR_xxx),
+		_e2v_MCIERR_xxx, ARRAYSIZE(_e2v_MCIERR_xxx),
+		_e2v_MIXERR_xxx, ARRAYSIZE(_e2v_MIXERR_xxx),
+		nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
+	, ITCF_SINT
+	)
+
+
+////////
 
 const Enum2Val_st _e2v_MCI_NOTIFY_xxx[] =
 {

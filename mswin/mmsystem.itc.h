@@ -5,6 +5,8 @@
 
 #include <InterpretConst.h>
 
+#define ITCS_MmsystemError(mmerr) ITCSvn((mmerr), itc::MmsystemError)
+
 namespace itc {
 
 /* Error code ranges, excerpt from mmsystem.h (7 groups)
@@ -30,6 +32,8 @@ extern const CInterpretConst& MCIERR_xxx();
 extern const CInterpretConst& MIXERR_xxx();
 
 extern const CInterpretConst& MCI_NOTIFY_xxx();
+
+extern const CInterpretConst& MM_xxx_winmsg();
 
 
 } // namespace itc
@@ -60,6 +64,7 @@ namespace itc {
 
 const Enum2Val_st _e2v_MMSYSERR_xxx[] =
 {
+	ITC_NAMEPAIR(MMSYSERR_NOERROR), // 0
 	ITC_NAMEPAIR(MMSYSERR_ERROR       ), // (MMSYSERR_BASE + 1) 
 	ITC_NAMEPAIR(MMSYSERR_BADDEVICEID ), // (MMSYSERR_BASE + 2) 
 	ITC_NAMEPAIR(MMSYSERR_NOTENABLED  ), // (MMSYSERR_BASE + 3) 
@@ -250,6 +255,49 @@ const Enum2Val_st _e2v_MCI_NOTIFY_xxx[] =
 	ITC_NAMEPAIR(MCI_NOTIFY_FAILURE   ), //           0x0008
 };
 ITC_MAKE_OBJECT(MCI_NOTIFY_xxx, _e2v_MCI_NOTIFY_xxx, ITCF_HEX1B)
+
+
+const Enum2Val_st _e2v_MM_xxx_winmsg[] =
+{
+	ITC_NAMEPAIR(MM_JOY1MOVE        ), // 0x3A0           /* joystick */
+	ITC_NAMEPAIR(MM_JOY2MOVE        ), // 0x3A1
+	ITC_NAMEPAIR(MM_JOY1ZMOVE       ), // 0x3A2
+	ITC_NAMEPAIR(MM_JOY2ZMOVE       ), // 0x3A3
+	ITC_NAMEPAIR(MM_JOY1BUTTONDOWN  ), // 0x3B5
+	ITC_NAMEPAIR(MM_JOY2BUTTONDOWN  ), // 0x3B6
+	ITC_NAMEPAIR(MM_JOY1BUTTONUP    ), // 0x3B7
+	ITC_NAMEPAIR(MM_JOY2BUTTONUP    ), // 0x3B8
+	ITC_NAMEPAIR(MM_MCINOTIFY       ), // 0x3B9           /* MCI */
+	ITC_NAMEPAIR(MM_WOM_OPEN        ), // 0x3BB           /* waveform output */
+	ITC_NAMEPAIR(MM_WOM_CLOSE       ), // 0x3BC
+	ITC_NAMEPAIR(MM_WOM_DONE        ), // 0x3BD
+	ITC_NAMEPAIR(MM_WIM_OPEN        ), // 0x3BE           /* waveform input */
+	ITC_NAMEPAIR(MM_WIM_CLOSE       ), // 0x3BF
+	ITC_NAMEPAIR(MM_WIM_DATA        ), // 0x3C0
+	ITC_NAMEPAIR(MM_MIM_OPEN        ), // 0x3C1           /* MIDI input */
+	ITC_NAMEPAIR(MM_MIM_CLOSE       ), // 0x3C2
+	ITC_NAMEPAIR(MM_MIM_DATA        ), // 0x3C3
+	ITC_NAMEPAIR(MM_MIM_LONGDATA    ), // 0x3C4
+	ITC_NAMEPAIR(MM_MIM_ERROR       ), // 0x3C5
+	ITC_NAMEPAIR(MM_MIM_LONGERROR   ), // 0x3C6
+	ITC_NAMEPAIR(MM_MOM_OPEN        ), // 0x3C7           /* MIDI output */
+	ITC_NAMEPAIR(MM_MOM_CLOSE       ), // 0x3C8
+	ITC_NAMEPAIR(MM_MOM_DONE        ), // 0x3C9
+	ITC_NAMEPAIR(MM_DRVM_OPEN       ), //0x3D0           /* installable drivers */
+	ITC_NAMEPAIR(MM_DRVM_CLOSE      ), //0x3D1
+	ITC_NAMEPAIR(MM_DRVM_DATA       ), //0x3D2
+	ITC_NAMEPAIR(MM_DRVM_ERROR      ), //0x3D3
+	ITC_NAMEPAIR(MM_STREAM_OPEN     ), // 0x3D4
+	ITC_NAMEPAIR(MM_STREAM_CLOSE    ), // 0x3D5
+	ITC_NAMEPAIR(MM_STREAM_DONE     ), // 0x3D6
+	ITC_NAMEPAIR(MM_STREAM_ERROR    ), // 0x3D7
+	ITC_NAMEPAIR(MM_MOM_POSITIONCB  ), // 0x3CA           /* Callback for MEVT_POSITIONCB */
+	ITC_NAMEPAIR(MM_MCISIGNAL       ), // 0x3CB
+	ITC_NAMEPAIR(MM_MIM_MOREDATA    ), //  0x3CC          /* MIM_DONE w/ pending events */
+	ITC_NAMEPAIR(MM_MIXM_LINE_CHANGE), //     0x3D0       /* mixer line change notify */
+	ITC_NAMEPAIR(MM_MIXM_CONTROL_CHANGE), //  0x3D1       /* mixer control change notify */
+};
+ITC_MAKE_OBJECT(MM_xxx_winmsg, _e2v_MM_xxx_winmsg, ITCF_HEX2B)
 
 
 } // namespace itc

@@ -5,18 +5,36 @@
 
 #include <InterpretConst.h>
 
+#define ITCS_MmsystemError(mmerr) ITCSvn((mmerr), itc::MmsystemError)
+
 namespace itc {
 
+/* Error code ranges, excerpt from mmsystem.h (7 groups)
 
-
-extern const CInterpretConst& MCIERR_xxx();
-
-/*
-extern const SingleBit2Val_st _b2v_YYY[];
-extern const int N_b2v_YYY;
-extern const CInterpretConst& YYY();
+#define MMSYSERR_BASE          0
+#define WAVERR_BASE            32
+#define MIDIERR_BASE           64
+#define TIMERR_BASE            96
+#define JOYERR_BASE            160
+#define MCIERR_BASE            256
+#define MIXERR_BASE            1024
 
 */
+
+extern const CInterpretConst& MmsystemError(); // this contains all 7 groups, prefer to use it
+//
+extern const CInterpretConst& MMSYSERR_xxx();
+extern const CInterpretConst& WAVERR_xxx();
+extern const CInterpretConst& MIDIERR_xxx();
+extern const CInterpretConst& TIMERR_xxx();
+extern const CInterpretConst& JOYERR_xxx();
+extern const CInterpretConst& MCIERR_xxx();
+extern const CInterpretConst& MIXERR_xxx();
+
+extern const CInterpretConst& MCI_NOTIFY_xxx();
+
+extern const CInterpretConst& MM_xxx_winmsg();
+
 
 } // namespace itc
 
@@ -43,6 +61,80 @@ extern const CInterpretConst& YYY();
 namespace itc {
 
 // More ctor reference: My evclip 20250411.v1
+
+const Enum2Val_st _e2v_MMSYSERR_xxx[] =
+{
+	ITC_NAMEPAIR(MMSYSERR_NOERROR), // 0
+	ITC_NAMEPAIR(MMSYSERR_ERROR       ), // (MMSYSERR_BASE + 1) 
+	ITC_NAMEPAIR(MMSYSERR_BADDEVICEID ), // (MMSYSERR_BASE + 2) 
+	ITC_NAMEPAIR(MMSYSERR_NOTENABLED  ), // (MMSYSERR_BASE + 3) 
+	ITC_NAMEPAIR(MMSYSERR_ALLOCATED   ), // (MMSYSERR_BASE + 4) 
+	ITC_NAMEPAIR(MMSYSERR_INVALHANDLE ), // (MMSYSERR_BASE + 5) 
+	ITC_NAMEPAIR(MMSYSERR_NODRIVER    ), // (MMSYSERR_BASE + 6) 
+	ITC_NAMEPAIR(MMSYSERR_NOMEM       ), // (MMSYSERR_BASE + 7) 
+	ITC_NAMEPAIR(MMSYSERR_NOTSUPPORTED), // (MMSYSERR_BASE + 8) 
+	ITC_NAMEPAIR(MMSYSERR_BADERRNUM   ), // (MMSYSERR_BASE + 9) 
+	ITC_NAMEPAIR(MMSYSERR_INVALFLAG   ), // (MMSYSERR_BASE + 10)
+	ITC_NAMEPAIR(MMSYSERR_INVALPARAM  ), // (MMSYSERR_BASE + 11)
+	ITC_NAMEPAIR(MMSYSERR_HANDLEBUSY  ), // (MMSYSERR_BASE + 12)
+	ITC_NAMEPAIR(MMSYSERR_INVALIDALIAS), // (MMSYSERR_BASE + 13)
+	ITC_NAMEPAIR(MMSYSERR_BADDB       ), // (MMSYSERR_BASE + 14)
+	ITC_NAMEPAIR(MMSYSERR_KEYNOTFOUND ), // (MMSYSERR_BASE + 15)
+	ITC_NAMEPAIR(MMSYSERR_READERROR   ), // (MMSYSERR_BASE + 16)
+	ITC_NAMEPAIR(MMSYSERR_WRITEERROR  ), // (MMSYSERR_BASE + 17)
+	ITC_NAMEPAIR(MMSYSERR_DELETEERROR ), // (MMSYSERR_BASE + 18)
+	ITC_NAMEPAIR(MMSYSERR_VALNOTFOUND ), // (MMSYSERR_BASE + 19)
+	ITC_NAMEPAIR(MMSYSERR_NODRIVERCB  ), // (MMSYSERR_BASE + 20)
+	ITC_NAMEPAIR(MMSYSERR_MOREDATA    ), // (MMSYSERR_BASE + 21)
+	ITC_NAMEPAIR(MMSYSERR_LASTERROR   ), // (MMSYSERR_BASE + 21)
+};
+ITC_MAKE_OBJECT(MMSYSERR_xxx, _e2v_MMSYSERR_xxx, ITCF_SINT)
+
+
+const Enum2Val_st _e2v_WAVERR_xxx[] =
+{
+	ITC_NAMEPAIR(WAVERR_BADFORMAT   ), //  (WAVERR_BASE + 0)
+	ITC_NAMEPAIR(WAVERR_STILLPLAYING), //  (WAVERR_BASE + 1)
+	ITC_NAMEPAIR(WAVERR_UNPREPARED  ), //  (WAVERR_BASE + 2)
+	ITC_NAMEPAIR(WAVERR_SYNC        ), //  (WAVERR_BASE + 3)
+	ITC_NAMEPAIR(WAVERR_LASTERROR   ), //  (WAVERR_BASE + 3)
+};
+ITC_MAKE_OBJECT(WAVERR_xxx, _e2v_WAVERR_xxx, ITCF_SINT)
+
+
+const Enum2Val_st _e2v_MIDIERR_xxx[] =
+{
+	ITC_NAMEPAIR(MIDIERR_UNPREPARED   ), // (MIDIERR_BASE + 0)
+	ITC_NAMEPAIR(MIDIERR_STILLPLAYING ), // (MIDIERR_BASE + 1)
+	ITC_NAMEPAIR(MIDIERR_NOMAP        ), // (MIDIERR_BASE + 2)
+	ITC_NAMEPAIR(MIDIERR_NOTREADY     ), // (MIDIERR_BASE + 3)
+	ITC_NAMEPAIR(MIDIERR_NODEVICE     ), // (MIDIERR_BASE + 4)
+	ITC_NAMEPAIR(MIDIERR_INVALIDSETUP ), // (MIDIERR_BASE + 5)
+	ITC_NAMEPAIR(MIDIERR_BADOPENMODE  ), // (MIDIERR_BASE + 6)
+	ITC_NAMEPAIR(MIDIERR_DONT_CONTINUE), // (MIDIERR_BASE + 7)
+	ITC_NAMEPAIR(MIDIERR_LASTERROR    ), // (MIDIERR_BASE + 7)
+};
+ITC_MAKE_OBJECT(MIDIERR_xxx, _e2v_MIDIERR_xxx, ITCF_SINT)
+
+
+const Enum2Val_st _e2v_TIMERR_xxx[] =
+{
+	ITC_NAMEPAIR(TIMERR_NOERROR ), //       (0)             
+	ITC_NAMEPAIR(TIMERR_NOCANDO ), //       (TIMERR_BASE+1) 
+	ITC_NAMEPAIR(TIMERR_STRUCT  ), //       (TIMERR_BASE+33)
+};
+ITC_MAKE_OBJECT(TIMERR_xxx, _e2v_TIMERR_xxx, ITCF_SINT)
+
+
+const Enum2Val_st _e2v_JOYERR_xxx[] =
+{
+	ITC_NAMEPAIR(JOYERR_NOERROR  ), //     (0)             
+	ITC_NAMEPAIR(JOYERR_PARMS    ), //     (JOYERR_BASE+5) 
+	ITC_NAMEPAIR(JOYERR_NOCANDO  ), //     (JOYERR_BASE+6) 
+	ITC_NAMEPAIR(JOYERR_UNPLUGGED), //     (JOYERR_BASE+7) 
+};
+ITC_MAKE_OBJECT(JOYERR_xxx, _e2v_JOYERR_xxx, ITCF_SINT)
+
 
 const Enum2Val_st _e2v_MCIERR_xxx[] =
 {
@@ -129,6 +221,83 @@ const Enum2Val_st _e2v_MCIERR_xxx[] =
 ITC_MAKE_OBJECT(MCIERR_xxx, _e2v_MCIERR_xxx, ITCF_SINT)
 
 
+const Enum2Val_st _e2v_MIXERR_xxx[] =
+{
+	ITC_NAMEPAIR(MIXERR_INVALLINE   ), //         (MIXERR_BASE + 0)
+	ITC_NAMEPAIR(MIXERR_INVALCONTROL), //         (MIXERR_BASE + 1)
+	ITC_NAMEPAIR(MIXERR_INVALVALUE  ), //         (MIXERR_BASE + 2)
+	ITC_NAMEPAIR(MIXERR_LASTERROR   ), //         (MIXERR_BASE + 2)
+};
+ITC_MAKE_OBJECT(MIXERR_xxx, _e2v_MIXERR_xxx, ITCF_SINT)
+
+
+ITC_MAKE_OBJECT(MmsystemError,
+	new Enum2Val_merge(
+		_e2v_MMSYSERR_xxx, ARRAYSIZE(_e2v_MMSYSERR_xxx),
+		_e2v_WAVERR_xxx, ARRAYSIZE(_e2v_WAVERR_xxx),
+		_e2v_MIDIERR_xxx, ARRAYSIZE(_e2v_MIDIERR_xxx),
+		_e2v_TIMERR_xxx, ARRAYSIZE(_e2v_TIMERR_xxx),
+		_e2v_JOYERR_xxx, ARRAYSIZE(_e2v_JOYERR_xxx),
+		_e2v_MCIERR_xxx, ARRAYSIZE(_e2v_MCIERR_xxx),
+		_e2v_MIXERR_xxx, ARRAYSIZE(_e2v_MIXERR_xxx),
+		nullptr, 0) // this Enum2Val_merge object will not be deleted, by design
+	, ITCF_SINT
+	)
+
+
+////////
+
+const Enum2Val_st _e2v_MCI_NOTIFY_xxx[] =
+{
+	ITC_NAMEPAIR(MCI_NOTIFY_SUCCESSFUL), //           0x0001
+	ITC_NAMEPAIR(MCI_NOTIFY_SUPERSEDED), //           0x0002
+	ITC_NAMEPAIR(MCI_NOTIFY_ABORTED   ), //           0x0004
+	ITC_NAMEPAIR(MCI_NOTIFY_FAILURE   ), //           0x0008
+};
+ITC_MAKE_OBJECT(MCI_NOTIFY_xxx, _e2v_MCI_NOTIFY_xxx, ITCF_HEX1B)
+
+
+const Enum2Val_st _e2v_MM_xxx_winmsg[] =
+{
+	ITC_NAMEPAIR(MM_JOY1MOVE        ), // 0x3A0           /* joystick */
+	ITC_NAMEPAIR(MM_JOY2MOVE        ), // 0x3A1
+	ITC_NAMEPAIR(MM_JOY1ZMOVE       ), // 0x3A2
+	ITC_NAMEPAIR(MM_JOY2ZMOVE       ), // 0x3A3
+	ITC_NAMEPAIR(MM_JOY1BUTTONDOWN  ), // 0x3B5
+	ITC_NAMEPAIR(MM_JOY2BUTTONDOWN  ), // 0x3B6
+	ITC_NAMEPAIR(MM_JOY1BUTTONUP    ), // 0x3B7
+	ITC_NAMEPAIR(MM_JOY2BUTTONUP    ), // 0x3B8
+	ITC_NAMEPAIR(MM_MCINOTIFY       ), // 0x3B9           /* MCI */
+	ITC_NAMEPAIR(MM_WOM_OPEN        ), // 0x3BB           /* waveform output */
+	ITC_NAMEPAIR(MM_WOM_CLOSE       ), // 0x3BC
+	ITC_NAMEPAIR(MM_WOM_DONE        ), // 0x3BD
+	ITC_NAMEPAIR(MM_WIM_OPEN        ), // 0x3BE           /* waveform input */
+	ITC_NAMEPAIR(MM_WIM_CLOSE       ), // 0x3BF
+	ITC_NAMEPAIR(MM_WIM_DATA        ), // 0x3C0
+	ITC_NAMEPAIR(MM_MIM_OPEN        ), // 0x3C1           /* MIDI input */
+	ITC_NAMEPAIR(MM_MIM_CLOSE       ), // 0x3C2
+	ITC_NAMEPAIR(MM_MIM_DATA        ), // 0x3C3
+	ITC_NAMEPAIR(MM_MIM_LONGDATA    ), // 0x3C4
+	ITC_NAMEPAIR(MM_MIM_ERROR       ), // 0x3C5
+	ITC_NAMEPAIR(MM_MIM_LONGERROR   ), // 0x3C6
+	ITC_NAMEPAIR(MM_MOM_OPEN        ), // 0x3C7           /* MIDI output */
+	ITC_NAMEPAIR(MM_MOM_CLOSE       ), // 0x3C8
+	ITC_NAMEPAIR(MM_MOM_DONE        ), // 0x3C9
+	ITC_NAMEPAIR(MM_DRVM_OPEN       ), //0x3D0           /* installable drivers */
+	ITC_NAMEPAIR(MM_DRVM_CLOSE      ), //0x3D1
+	ITC_NAMEPAIR(MM_DRVM_DATA       ), //0x3D2
+	ITC_NAMEPAIR(MM_DRVM_ERROR      ), //0x3D3
+	ITC_NAMEPAIR(MM_STREAM_OPEN     ), // 0x3D4
+	ITC_NAMEPAIR(MM_STREAM_CLOSE    ), // 0x3D5
+	ITC_NAMEPAIR(MM_STREAM_DONE     ), // 0x3D6
+	ITC_NAMEPAIR(MM_STREAM_ERROR    ), // 0x3D7
+	ITC_NAMEPAIR(MM_MOM_POSITIONCB  ), // 0x3CA           /* Callback for MEVT_POSITIONCB */
+	ITC_NAMEPAIR(MM_MCISIGNAL       ), // 0x3CB
+	ITC_NAMEPAIR(MM_MIM_MOREDATA    ), //  0x3CC          /* MIM_DONE w/ pending events */
+	ITC_NAMEPAIR(MM_MIXM_LINE_CHANGE), //     0x3D0       /* mixer line change notify */
+	ITC_NAMEPAIR(MM_MIXM_CONTROL_CHANGE), //  0x3D1       /* mixer control change notify */
+};
+ITC_MAKE_OBJECT(MM_xxx_winmsg, _e2v_MM_xxx_winmsg, ITCF_HEX2B)
 
 
 } // namespace itc

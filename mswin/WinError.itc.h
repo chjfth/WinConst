@@ -29,8 +29,7 @@ extern const CInterpretConst& WinError();
 #if defined(WinError_IMPL) || (defined CHHI_ALL_IMPL && !defined CHHI_ALL_IMPL_HIDE_WinError) // [IMPL]
 // [IMPL] //
 // [IMPL] //
-// Include system/OS headers here
-// ...
+#include <WinError.h>
 // [IMPL] //
 // [IMPL] //
 namespace itc {
